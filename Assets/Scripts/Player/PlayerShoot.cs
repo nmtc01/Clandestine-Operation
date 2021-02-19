@@ -13,32 +13,35 @@ public class PlayerShoot : MonoBehaviour
 
     private PlayerControl playerControl;
 
+    [SerializeField]
+    private Gun defaultGun = null;
+    private Gun currentGun;
+    [SerializeField]
+    private GameObject gunPosition = null;
+
     // Start is called before the first frame update
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
+        currentGun = defaultGun;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Aim"))
+        bool isAiming = Input.GetButton("Aim");
+
+        if (isAiming)
         {
             RotateSpine();
-
-            playerControl.SetIsAiming(true);
-
-            /*if(Input.GetButtonDown("Fire"))
-            {
-                Debug.Log("Fire");
-            }*/
         } 
         else
         {
             spine.transform.localRotation = Quaternion.Euler(initalRotation);
-
-            playerControl.SetIsAiming(false);
         }
+
+        playerControl.SetIsAiming(isAiming);
+        currentGun.SetCanShoot(isAiming);
     }
 
     private void RotateSpine()
