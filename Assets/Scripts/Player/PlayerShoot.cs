@@ -51,17 +51,13 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 lookToMouseVec = vpMousePos - vpSpinePos;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(lookToMouseVec, transform.forward) / lookToMouseVec.magnitude);
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()) / lookToMouseVec.magnitude);
 
         if(vpMousePos.x < vpSpinePos.x)
         {
             rot %= 180;
-            transform.rotation = Quaternion.Euler(0, -90, 0);
         } 
-        else
-        {
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-        }
+        playerControl.RotateSkeleton(vpMousePos.x < vpSpinePos.x);
 
         if (rot >= maxRotation) rot = maxRotation;
 

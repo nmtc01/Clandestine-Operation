@@ -3,6 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float playerSpeed;
+    public Transform cameraTarget;
+    public float aheadAmount;
+    public float aheadSpeed;
 
     private PlayerControl playerControl;
 
@@ -10,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerSpeed = 10f;
-
+        aheadAmount = 4f;
+        aheadSpeed = 2f;
         playerControl = GetComponent<PlayerControl>();
     }
 
@@ -24,10 +28,18 @@ public class PlayerMovement : MonoBehaviour
     void Move() 
     {
         float movement = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(playerSpeed*movement*Time.deltaTime, 0f, 0f);
-
-        // Turn
-        if (!Mathf.Approximately(0, movement) && !playerControl.IsAiming())
-            transform.rotation = movement > 0 ? Quaternion.Euler(0, 90, 0) : Quaternion.Euler(0, -90, 0);
+        if (movement != 0)
+        {
+            transform.position += new Vector3(playerSpeed*movement*Time.deltaTime, 0f, 0f);
+            if (!playerControl.IsAiming())
+            {
+                // Turn
+                if (!Mathf.Approximately(0, movement)) 
+                    playerControl.RotateSkeleton(movement < 0);
+            
+                // Camera follow movement
+                cameraTarget.localPosition = new Vector3(cameraTarget.localPosition.x, cameraTarget.localPosition.y, Mathf.Lerp(cameraTarget.localPosition.z, aheadAmount * movement, aheadSpeed * Time.deltaTime));
+            }
+        }
     }
 }

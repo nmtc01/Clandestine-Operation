@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player;
+    public Transform target;
     public Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        offset = new Vector3(0, 1, -10);
     }
 
     private void LateUpdate() 
@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Follow()
     {
-        Vector3 playerPosition = player.transform.position + offset;
-        transform.position = playerPosition;
+        Vector3 targetPosition = target.transform.position + offset;
+        transform.position = targetPosition;
     }
 }
