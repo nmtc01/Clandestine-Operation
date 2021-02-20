@@ -5,6 +5,12 @@ public class PlayerControl : MonoBehaviour
     private bool isAiming = false;
     [SerializeField]
     private GameObject skeleton = null;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public bool IsAiming()
     {
@@ -14,6 +20,7 @@ public class PlayerControl : MonoBehaviour
     public void SetIsAiming(bool aiming)
     {
         isAiming = aiming;
+        animator.SetBool("isAiming", aiming);
     }
 
     public void RotateSkeleton(bool rotate) 
