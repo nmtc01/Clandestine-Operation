@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 493491101}
   - component: {fileID: 493491104}
   - component: {fileID: 493491103}
+  - component: {fileID: 493491105}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -382,7 +383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 10
-  player: {fileID: 919132149196690374}
   enemyTargetPositions:
   - {x: 8.51, y: -0.5, z: 2}
   - {x: 8.51, y: -0.5, z: -2}
@@ -409,6 +409,21 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &493491105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493491100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0e049eed2b040468344d98c10c1e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 543450653657319804}
+  maxAngle: 45
+  maxRadius: 5
 --- !u!1 &576380017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1051,7 @@ GameObject:
   - component: {fileID: 42970777}
   - component: {fileID: 42970779}
   - component: {fileID: 919132149196690375}
+  - component: {fileID: 919132149196690376}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1056,6 +1072,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeleton: {fileID: 1007202496}
+--- !u!136 &919132149196690376
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149196690374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3.25
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.625, z: 0}
 --- !u!4 &1031632034294215457
 Transform:
   m_ObjectHideFlags: 0

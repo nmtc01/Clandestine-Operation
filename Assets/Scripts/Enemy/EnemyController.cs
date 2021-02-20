@@ -9,9 +9,6 @@ public class EnemyController : MonoBehaviour
     private float lookRadius = 10f;
 
     [SerializeField]
-    private GameObject player = null;
-
-    [SerializeField]
     private List<Vector3> enemyTargetPositions = new List<Vector3>();
     private int currentTargetPosition = 0;
     [SerializeField]
@@ -32,13 +29,12 @@ public class EnemyController : MonoBehaviour
         if (canWalk)
         {
             agent.SetDestination(enemyTargetPositions[currentTargetPosition]);
-            Debug.Log("Set Destination: " + currentTargetPosition);
+
             // Face the target
             FaceTarget();
 
             if (agent.remainingDistance == 0)
             {
-                Debug.Log("Can't walk.");
                 canWalk = false;
                 StartCoroutine(WaitOnPosition());
             }
@@ -50,8 +46,6 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(timeWaitingInEachPosition);
 
         currentTargetPosition = (currentTargetPosition + 1) % enemyTargetPositions.Count;
-
-        Debug.Log("New Target: " + currentTargetPosition);
 
         canWalk = true;
 
