@@ -21,6 +21,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private Material mat = null;
 
+    [SerializeField]
+    private float aimMaxLength = 50f;
     private bool isAiming = false;
     private Vector2 aimLineStartPos = Vector2.zero, aimLineEndPos = Vector2.zero;
 
@@ -74,14 +76,22 @@ public class PlayerShoot : MonoBehaviour
 
     private void SetAimingLinePositions()
     {
-        Vector3 bulletSpawnerPosition = currentGun.GetBulletSpawnerPosition();
-        aimLineStartPos = Camera.main.WorldToViewportPoint(bulletSpawnerPosition);
-        aimLineEndPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
+        aimLineStartPos = Camera.main.WorldToViewportPoint(bulletSpawnerTransform.position);
+
+        RaycastHit hit;
+        if(Physics.Raycast(bulletSpawnerTransform.position, bulletSpawnerTransform.forward, out hit))
+        {
+            aimLineEndPos = Camera.main.WorldToViewportPoint(hit.point);
+        }   
+        else
+        {
+            aimLineEndPos = Camera.main.WorldToViewportPoint(bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength);
+        }
     }
 
     private void DrawAimingLine()
     {
-        Debug.Log("AQUI");
         GL.PushMatrix();
         GL.LoadOrtho();
 

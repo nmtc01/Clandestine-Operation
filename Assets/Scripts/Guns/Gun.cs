@@ -63,8 +63,8 @@ public class Gun : MonoBehaviour
         canShoot = shoot;
     }
 
-    public Vector3 GetBulletSpawnerPosition()
+    public Transform GetBulletSpawnerTransform()
     {
-        return bulletSpawner.transform.position;
+        return bulletSpawner.transform;
     }
 }
