@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
     private float maxAngle = 45f;
     [SerializeField]
     private float maxRadius = 20f;
+    private bool wasInFOV = false;
     #endregion
 
 
@@ -50,10 +51,14 @@ public class EnemyController : MonoBehaviour
             Vector3 direction = (playerTransform.position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             FaceTarget(lookRotation);
+
+            wasInFOV = true;
         } 
-        else
+        else if(wasInFOV)
         {
-            //TODO If the player isn't in the enemy FOV, the enemy continues its path
+            //If the player isn't in the enemy FOV, the enemy continues its path
+            canWalk = true;
+            wasInFOV = false;
         }
 
         if (canWalk)
@@ -84,6 +89,6 @@ public class EnemyController : MonoBehaviour
 
     private void FaceTarget(Quaternion lookRotation)
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
     }
 }
