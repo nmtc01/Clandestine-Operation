@@ -63,7 +63,6 @@ public class PlayerShoot : MonoBehaviour
 
         if (vpMousePos.y > vpSpinePos.y) rot *= -1;
 
-        Debug.Log(rot);
         spine.transform.localRotation = Quaternion.Euler(new Vector3(rot, initalRotation.y, initalRotation.z));
     }
 }
