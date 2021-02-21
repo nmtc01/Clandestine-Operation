@@ -4,7 +4,7 @@ public class PlayerControl : MonoBehaviour
 {
     private bool isAiming = false;
     private bool isWalking = false;
-    private bool isOppositeDir = false;
+    private float oppositeDir = 0f;
     [SerializeField]
     private GameObject skeleton = null;
     private Animator animator;
@@ -31,10 +31,10 @@ public class PlayerControl : MonoBehaviour
         animator.SetBool("isWalking", walking);
     }
 
-    public void SetIsOppositeDir(bool oppositeDir)
+    public void SetOppositeDir(float oppositeDir)
     {
-        isOppositeDir = oppositeDir;
-        animator.SetBool("isOppositeDir", oppositeDir);
+        this.oppositeDir = oppositeDir;
+        animator.SetFloat("oppositeDir", oppositeDir, 0.1f, Time.deltaTime);
     }
 
     public void RotateSkeleton(bool rotate) 

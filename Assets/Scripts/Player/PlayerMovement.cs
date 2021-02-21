@@ -47,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
                 // Player is aiming
                 // Player moving while aiming in opposite directions
                 if (movement * playerControl.getSkeletonDirection().x < 0) 
-                    playerControl.SetIsOppositeDir(true);
-                else playerControl.SetIsOppositeDir(false);
+                    playerControl.SetOppositeDir(1f);
+                else playerControl.SetOppositeDir(0f);
             }
         }
         else playerControl.SetIsWalking(false);
