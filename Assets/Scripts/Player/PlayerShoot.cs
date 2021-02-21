@@ -51,7 +51,7 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()));
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()),-1f,1f));
 
         if(vpMousePos.x < vpSpinePos.x)
         {
