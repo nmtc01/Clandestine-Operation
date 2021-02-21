@@ -49,9 +49,9 @@ public class PlayerShoot : MonoBehaviour
         Vector2 vpMousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         Vector2 vpSpinePos = Camera.main.WorldToViewportPoint(spine.transform.position);
 
-        Vector2 lookToMouseVec = vpMousePos - vpSpinePos;
+        Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()) / lookToMouseVec.magnitude);
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()));
 
         if(vpMousePos.x < vpSpinePos.x)
         {
