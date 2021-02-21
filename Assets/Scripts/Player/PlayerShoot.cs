@@ -18,6 +18,11 @@ public class PlayerShoot : MonoBehaviour
     private Gun currentGun;
     [SerializeField]
     private GameObject gunPosition = null;
+    [SerializeField]
+    private Material mat = null;
+
+    private bool isAiming = false;
+    private Vector2 aimLineStartPos = Vector2.zero, aimLineEndPos = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +34,12 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool isAiming = Input.GetButton("Aim");
+        isAiming = Input.GetButton("Aim");
 
         if (isAiming)
         {
             RotateSpine();
+            SetAimingLinePositions();
         } 
         else
         {
@@ -64,5 +70,38 @@ public class PlayerShoot : MonoBehaviour
         if (vpMousePos.y > vpSpinePos.y) rot *= -1;
 
         spine.transform.localRotation = Quaternion.Euler(new Vector3(rot, initalRotation.y, initalRotation.z));
+    }
+
+    private void SetAimingLinePositions()
+    {
+        Vector3 bulletSpawnerPosition = currentGun.GetBulletSpawnerPosition();
+        aimLineStartPos = Camera.main.WorldToViewportPoint(bulletSpawnerPosition);
+        aimLineEndPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+    }
+
+    private void DrawAimingLine()
+    {
+        Debug.Log("AQUI");
+        GL.PushMatrix();
+        GL.LoadOrtho();
+
+        mat.SetPass(0);
+        
+        GL.Begin(GL.LINES);
+        GL.Color(mat.color);
+
+        GL.Vertex(aimLineStartPos);
+        GL.Vertex(aimLineEndPos);
+
+        GL.End();
+        GL.PopMatrix();
+    }
+
+    private void OnRenderObject()
+    {
+        if (isAiming)
+        {
+            DrawAimingLine();
+        }
     }
 }

@@ -156,6 +156,7 @@ MonoBehaviour:
   initalRotation: {x: 0, y: -6.758, z: -2.748}
   defaultGun: {fileID: 343566191}
   gunPosition: {fileID: 1092672036}
+  mat: {fileID: 2100000, guid: 943766fed1e50844589f13394cac4402, type: 2}
 --- !u!1001 &343566188
 PrefabInstance:
   m_ObjectHideFlags: 0
