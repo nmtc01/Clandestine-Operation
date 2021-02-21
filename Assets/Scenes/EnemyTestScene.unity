@@ -333,7 +333,6 @@ GameObject:
   - component: {fileID: 493491101}
   - component: {fileID: 493491104}
   - component: {fileID: 493491103}
-  - component: {fileID: 493491105}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -384,9 +383,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 10
   enemyTargetPositions:
-  - {x: 8.51, y: -0.5, z: 2}
-  - {x: 8.51, y: -0.5, z: -2}
+  - {x: 8.51, y: -0.4, z: 2}
+  - {x: 8.51, y: -0.4, z: -2}
   timeWaitingInEachPosition: 5
+  playerTransform: {fileID: 543450653657319804}
+  maxAngle: 45
+  maxRadius: 20
 --- !u!195 &493491104
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -409,21 +411,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &493491105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493491100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e0e049eed2b040468344d98c10c1e5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 543450653657319804}
-  maxAngle: 45
-  maxRadius: 5
 --- !u!1 &576380017
 GameObject:
   m_ObjectHideFlags: 0

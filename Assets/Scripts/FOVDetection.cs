@@ -2,55 +2,27 @@ using UnityEngine;
 
 public class FOVDetection : MonoBehaviour
 {
-    #region EDITOR FOV TEST
-#if UNITY_EDITOR
-    [SerializeField]
-    private Transform player = null;
-
-    [SerializeField]
-    private float maxAngle = 45f;
-
-    [SerializeField]
-    private float maxRadius = 5f;
-
-    private bool isInFov = false;
-
-    private void OnDrawGizmos()
-    {
-        if (isInFov)
-        {
-            Gizmos.color = Color.green;
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-        }
-        Gizmos.DrawWireSphere(transform.position, maxRadius);
-
-        Vector3 fovLine1 = Quaternion.AngleAxis(maxAngle, transform.up) * transform.forward * maxRadius;
-        Vector3 fovLine2 = Quaternion.AngleAxis(-maxAngle, transform.up) * transform.forward * maxRadius;
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, fovLine1);
-        Gizmos.DrawRay(transform.position, fovLine2);
-
-        Gizmos.color = Color.black;
-        Gizmos.DrawRay(transform.position, transform.forward * maxRadius);
-    }
-
-    private void Update()
-    {
-        isInFov = InFOV(transform, player.transform, maxAngle, maxRadius);
-    }
-#endif
-    #endregion
-
     public static bool InFOV(Transform checkingObject, Transform target, float maxAngle, float maxRadius)
     {
-        Collider[] overlaps = new Collider[10];
+        // Target is in FOV if isn't more than maxRadius from the checking object
+        if ((target.position - checkingObject.position).magnitude > maxRadius) 
+        {
+            return false;
+        }
+
+        Vector3 targetDirection = (target.position - checkingObject.position).normalized;
+
+        float angle = Mathf.Rad2Deg * Mathf.Acos(Vector3.Dot(targetDirection, checkingObject.forward));
+        
+        if(Mathf.Abs(angle) <= maxAngle) // Target is in FOV
+        {
+            return true;
+        }
+
+        /*Collider[] overlaps = new Collider[10];
         int count = Physics.OverlapSphereNonAlloc(checkingObject.position, maxRadius, overlaps);
         
-        for(int i = 0; i < count + 1; i++)
+        for(int i = 0; i < count; i++)
         {
             if(overlaps[i] != null && overlaps[i].transform == target)
             {
@@ -70,7 +42,7 @@ public class FOVDetection : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
 
         return false;
     }
