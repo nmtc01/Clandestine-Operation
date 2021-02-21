@@ -3,6 +3,8 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     private bool isAiming = false;
+    private bool isWalking = false;
+    private bool isOppositeDir = false;
     [SerializeField]
     private GameObject skeleton = null;
     private Animator animator;
@@ -21,6 +23,18 @@ public class PlayerControl : MonoBehaviour
     {
         isAiming = aiming;
         animator.SetBool("isAiming", aiming);
+    }
+
+    public void SetIsWalking(bool walking)
+    {
+        isWalking = walking;
+        animator.SetBool("isWalking", walking);
+    }
+
+    public void SetIsOppositeDir(bool oppositeDir)
+    {
+        isOppositeDir = oppositeDir;
+        animator.SetBool("isOppositeDir", oppositeDir);
     }
 
     public void RotateSkeleton(bool rotate) 

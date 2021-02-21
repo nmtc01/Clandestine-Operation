@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
         float movement = Input.GetAxis("Horizontal");
         if (movement != 0)
         {
+            // Player is walking
+            playerControl.SetIsWalking(true);
             transform.position += new Vector3(playerSpeed*movement*Time.deltaTime, 0f, 0f);
             if (!playerControl.IsAiming())
             {
@@ -40,6 +42,15 @@ public class PlayerMovement : MonoBehaviour
                 // Camera follow movement
                 cameraTarget.localPosition = new Vector3(cameraTarget.localPosition.x, cameraTarget.localPosition.y, Mathf.Lerp(cameraTarget.localPosition.z, aheadAmount * movement, aheadSpeed * Time.deltaTime));
             }
+            else
+            {
+                // Player is aiming
+                // Player moving while aiming in opposite directions
+                if (movement * playerControl.getSkeletonDirection().x < 0) 
+                    playerControl.SetIsOppositeDir(true);
+                else playerControl.SetIsOppositeDir(false);
+            }
         }
+        else playerControl.SetIsWalking(false);
     }
 }
