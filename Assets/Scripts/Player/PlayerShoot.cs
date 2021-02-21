@@ -22,7 +22,7 @@ public class PlayerShoot : MonoBehaviour
     private Material mat = null;
 
     [SerializeField]
-    private float aimMaxLength = 50f;
+    private float aimMaxLength = 15f;
     private bool isAiming = false;
     private Vector2 aimLineStartPos = Vector2.zero, aimLineEndPos = Vector2.zero;
     [SerializeField]
@@ -33,6 +33,8 @@ public class PlayerShoot : MonoBehaviour
     {
         playerControl = GetComponent<PlayerControl>();
         currentGun = defaultGun;
+
+        aimingIgnoredColliders = ~aimingIgnoredColliders;
     }
 
     // Update is called once per frame
@@ -91,17 +93,20 @@ public class PlayerShoot : MonoBehaviour
          *          out hit
          *      )
          */
+        Vector3 endWorldPoint; 
         RaycastHit hit;
         if(Physics.Raycast(bulletSpawnerTransform.position, bulletSpawnerTransform.forward, out hit, aimMaxLength, aimingIgnoredColliders))
         {
-            aimLineEndPos = Camera.main.WorldToViewportPoint(hit.point);
+            endWorldPoint = hit.point;
         }   
         else
         {
-            aimLineEndPos = Camera.main.WorldToViewportPoint(bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength);
+            endWorldPoint = bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength;
         }
+        
+        aimLineEndPos = Camera.main.WorldToViewportPoint(endWorldPoint);
 
-        currentGun.SetShootingDirection((aimLineEndPos - aimLineStartPos).normalized);
+        currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
     }
 
     private void DrawAimingLine()

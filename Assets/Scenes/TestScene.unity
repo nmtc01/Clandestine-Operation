@@ -157,7 +157,7 @@ MonoBehaviour:
   defaultGun: {fileID: 343566191}
   gunPosition: {fileID: 1092672036}
   mat: {fileID: 2100000, guid: 943766fed1e50844589f13394cac4402, type: 2}
-  aimMaxLength: 50
+  aimMaxLength: 15
   aimingIgnoredColliders:
     serializedVersion: 2
     m_Bits: 64
