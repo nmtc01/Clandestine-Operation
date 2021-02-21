@@ -157,6 +157,10 @@ MonoBehaviour:
   defaultGun: {fileID: 343566191}
   gunPosition: {fileID: 1092672036}
   mat: {fileID: 2100000, guid: 943766fed1e50844589f13394cac4402, type: 2}
+  aimMaxLength: 50
+  aimingIgnoredColliders:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &343566188
 PrefabInstance:
   m_ObjectHideFlags: 0

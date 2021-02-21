@@ -25,6 +25,8 @@ public class PlayerShoot : MonoBehaviour
     private float aimMaxLength = 50f;
     private bool isAiming = false;
     private Vector2 aimLineStartPos = Vector2.zero, aimLineEndPos = Vector2.zero;
+    [SerializeField]
+    private LayerMask aimingIgnoredColliders = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -79,8 +81,18 @@ public class PlayerShoot : MonoBehaviour
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
         aimLineStartPos = Camera.main.WorldToViewportPoint(bulletSpawnerTransform.position);
 
+        /* 
+         * TODO 
+         *  Change Raycast to BoxCast and detect collisions with objects even if they are not on the same z coordinate
+         *      Physics.BoxCast(
+         *          bulletSpawner.transform.position, 
+         *          new Vector3(.1f, .1f, 10f), 
+         *          bulletSpawner.transform.forward, 
+         *          out hit
+         *      )
+         */
         RaycastHit hit;
-        if(Physics.Raycast(bulletSpawnerTransform.position, bulletSpawnerTransform.forward, out hit))
+        if(Physics.Raycast(bulletSpawnerTransform.position, bulletSpawnerTransform.forward, out hit, aimMaxLength, aimingIgnoredColliders))
         {
             aimLineEndPos = Camera.main.WorldToViewportPoint(hit.point);
         }   
@@ -88,6 +100,8 @@ public class PlayerShoot : MonoBehaviour
         {
             aimLineEndPos = Camera.main.WorldToViewportPoint(bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength);
         }
+
+        currentGun.SetShootingDirection((aimLineEndPos - aimLineStartPos).normalized);
     }
 
     private void DrawAimingLine()
