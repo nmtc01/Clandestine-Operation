@@ -29,17 +29,24 @@ public class EnemyController : MonoBehaviour
     private float maxRadius = 20f;
     private bool wasInFOV = false;
     #endregion
-
+    private Animator animator;
+    [SerializeField]
+    private float stoppingDistanceError = .5f;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        SetAgentNewDestination();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Walk Animation
+        SetIsWalking(canWalk);
+        
         if(FOVDetection.InFOV(transform, playerTransform, maxAngle, maxRadius))
         {
             // Stopping agent from moving
@@ -59,20 +66,13 @@ public class EnemyController : MonoBehaviour
             //If the player isn't in the enemy FOV, the enemy continues its path
             canWalk = true;
             wasInFOV = false;
+            SetAgentNewDestination();
         }
 
-        if (canWalk)
+        if (canWalk && Vector3.Distance(enemyTargetPositions[currentTargetPosition], transform.position) <= stoppingDistanceError && agent.remainingDistance == 0)
         {
-            agent.SetDestination(enemyTargetPositions[currentTargetPosition]);
-
-            // Face the target
-            FaceTarget(Quaternion.Euler(agent.steeringTarget));
-
-            if (agent.remainingDistance == 0)
-            {
-                canWalk = false;
-                StartCoroutine(WaitOnPosition());
-            }
+            canWalk = false;
+            StartCoroutine(WaitOnPosition());
         }
     }
 
@@ -83,12 +83,27 @@ public class EnemyController : MonoBehaviour
         currentTargetPosition = (currentTargetPosition + 1) % enemyTargetPositions.Count;
 
         canWalk = true;
+        
+        SetAgentNewDestination();
 
         yield return null;
+    }
+
+    private void SetAgentNewDestination()
+    {
+        agent.SetDestination(enemyTargetPositions[currentTargetPosition]);
+
+        // Face the target
+        FaceTarget(Quaternion.Euler(agent.steeringTarget));
     }
 
     private void FaceTarget(Quaternion lookRotation)
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
+    }
+
+    public void SetIsWalking(bool walking)
+    {
+        animator.SetBool("isWalking", walking);
     }
 }
