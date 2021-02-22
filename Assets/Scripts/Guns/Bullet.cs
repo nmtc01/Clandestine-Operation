@@ -20,7 +20,24 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Damage player or enemy
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            // Damage player - caused by enemy shooting
+            Debug.Log("Damage Player");
+        }
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if(collision.gameObject.CompareTag("Head"))
+            {
+                // Kill enemy with 1 shot
+                Debug.Log("Kill Enemy");
+            } 
+            else
+            {
+                // Damage enemy - caused by player shooting
+                Debug.Log("Damage Enemy");
+            }
+        }
 
         // Destroy Bullet
         Destroy(gameObject);
