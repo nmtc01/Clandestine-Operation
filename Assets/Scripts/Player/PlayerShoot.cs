@@ -24,9 +24,10 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private float aimMaxLength = 15f;
     private bool isAiming = false;
-    private Vector2 aimLineStartPos = Vector2.zero, aimLineEndPos = Vector2.zero;
     [SerializeField]
     private LayerMask aimingIgnoredColliders = 0;
+    [SerializeField]
+    private LineRenderer aimingLine = null;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class PlayerShoot : MonoBehaviour
         else
         {
             spine.transform.localRotation = Quaternion.Euler(initalRotation);
+            ResetAimingLine();
         }
 
         playerControl.SetIsAiming(isAiming);
@@ -81,7 +83,6 @@ public class PlayerShoot : MonoBehaviour
     private void SetAimingLinePositions()
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
-        aimLineStartPos = Camera.main.WorldToViewportPoint(bulletSpawnerTransform.position);
 
         /* 
          * TODO 
@@ -103,34 +104,16 @@ public class PlayerShoot : MonoBehaviour
         {
             endWorldPoint = bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength;
         }
-        
-        aimLineEndPos = Camera.main.WorldToViewportPoint(endWorldPoint);
+
+        aimingLine.gameObject.SetActive(true);
+        aimingLine.SetPosition(0, bulletSpawnerTransform.position);
+        aimingLine.SetPosition(1, endWorldPoint);
 
         currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
     }
 
-    private void DrawAimingLine()
+    private void ResetAimingLine()
     {
-        GL.PushMatrix();
-        GL.LoadOrtho();
-
-        mat.SetPass(0);
-        
-        GL.Begin(GL.LINES);
-        GL.Color(mat.color);
-
-        GL.Vertex(aimLineStartPos);
-        GL.Vertex(aimLineEndPos);
-
-        GL.End();
-        GL.PopMatrix();
-    }
-
-    private void OnRenderObject()
-    {
-        if (isAiming)
-        {
-            DrawAimingLine();
-        }
+        aimingLine.gameObject.SetActive(false);
     }
 }
