@@ -40,9 +40,6 @@ public class PlayerMovement : MonoBehaviour
                     playerControl.RotateSkeleton(movement < 0);
             }
             else camDelta = playerControl.getSkeletonDirection().x * movement < 0 ? -1 : 1;
-            Debug.Log(playerControl.getSkeletonDirection().x > 0);
-            Debug.Log(movement > 0);
-            Debug.Log(camDelta);
 
             // Camera follow movement
             cameraTarget.localPosition = new Vector3(cameraTarget.localPosition.x, cameraTarget.localPosition.y, Mathf.Lerp(cameraTarget.localPosition.z, aheadAmount * camDelta * movement, aheadSpeed * Time.deltaTime));
