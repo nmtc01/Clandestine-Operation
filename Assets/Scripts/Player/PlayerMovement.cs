@@ -29,17 +29,23 @@ public class PlayerMovement : MonoBehaviour
     {
         float movement = Input.GetAxis("Horizontal");
         if (movement != 0)
-        {
+        {  
+            int camDelta = 1;
             transform.position += new Vector3(playerSpeed*movement*Time.deltaTime, 0f, 0f);
+
             if (!playerControl.IsAiming())
             {
                 // Turn
                 if (!Mathf.Approximately(0, movement)) 
                     playerControl.RotateSkeleton(movement < 0);
-            
-                // Camera follow movement
-                cameraTarget.localPosition = new Vector3(cameraTarget.localPosition.x, cameraTarget.localPosition.y, Mathf.Lerp(cameraTarget.localPosition.z, aheadAmount * movement, aheadSpeed * Time.deltaTime));
             }
+            else camDelta = playerControl.getSkeletonDirection().x * movement < 0 ? -1 : 1;
+            Debug.Log(playerControl.getSkeletonDirection().x > 0);
+            Debug.Log(movement > 0);
+            Debug.Log(camDelta);
+
+            // Camera follow movement
+            cameraTarget.localPosition = new Vector3(cameraTarget.localPosition.x, cameraTarget.localPosition.y, Mathf.Lerp(cameraTarget.localPosition.z, aheadAmount * camDelta * movement, aheadSpeed * Time.deltaTime));
         }
     }
 }
