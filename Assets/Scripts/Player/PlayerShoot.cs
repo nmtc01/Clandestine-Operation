@@ -65,7 +65,7 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()));
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()),-1f,1f));
 
         if(vpMousePos.x < vpSpinePos.x)
         {
@@ -87,12 +87,15 @@ public class PlayerShoot : MonoBehaviour
         /* 
          * TODO 
          *  Change Raycast to BoxCast and detect collisions with objects even if they are not on the same z coordinate
-         *      Physics.BoxCast(
-         *          bulletSpawner.transform.position, 
-         *          new Vector3(.1f, .1f, 10f), 
-         *          bulletSpawner.transform.forward, 
-         *          out hit
-         *      )
+         *    Physics.BoxCast(
+         *          bulletSpawnerTransform.position, 
+         *          new Vector3(5f, .0001f, 3f), 
+         *          bulletSpawnerTransform.forward,
+         *          out hit, 
+         *          Quaternion.identity, 
+         *          aimMaxLength, 
+         *          aimingIgnoredColliders
+         *    )
          */
         Vector3 endWorldPoint; 
         RaycastHit hit;
