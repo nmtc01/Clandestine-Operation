@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour
             agent.ResetPath();
 
             // Enemy looks to the player
+            SetIsAiming(true);
             Vector3 direction = (playerTransform.position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             FaceTarget(lookRotation);
@@ -66,6 +67,7 @@ public class EnemyController : MonoBehaviour
             //If the player isn't in the enemy FOV, the enemy continues its path
             canWalk = true;
             wasInFOV = false;
+            SetIsAiming(false);
             SetAgentNewDestination();
         }
 
@@ -105,5 +107,10 @@ public class EnemyController : MonoBehaviour
     public void SetIsWalking(bool walking)
     {
         animator.SetBool("isWalking", walking);
+    }
+
+    public void SetIsAiming(bool aiming)
+    {
+        animator.SetBool("isAiming", aiming);
     }
 }
