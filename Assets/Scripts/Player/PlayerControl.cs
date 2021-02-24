@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour, IHealthController
 {
     private bool isAiming = false;
     private bool isWalking = false;
