@@ -4,16 +4,15 @@ public class Health : MonoBehaviour
 {
     [SerializeField]
     private float maxHealth = 100f;
-
-    [SerializeField]
-    private IHealthController healthController = null;
+    private IHealthController healthController;
 
     private float currentHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;    
+        currentHealth = maxHealth;
+        healthController = GetComponent<IHealthController>();
     }
 
     public void Kill()

@@ -99,7 +99,10 @@ public class PlayerShoot : MonoBehaviour
          */
         Vector3 endWorldPoint; 
         RaycastHit hit;
-        if(Physics.Raycast(bulletSpawnerTransform.position, bulletSpawnerTransform.forward, out hit, aimMaxLength, aimingIgnoredColliders))
+        Vector3 rayDirection = Vector3.Project(bulletSpawnerTransform.forward, Vector3.right);
+        Vector3 startPoint = bulletSpawnerTransform.position;
+        startPoint.z = 0;
+        if(Physics.Raycast(startPoint, rayDirection, out hit, aimMaxLength, aimingIgnoredColliders))
         {
             endWorldPoint = hit.point;
         }   
