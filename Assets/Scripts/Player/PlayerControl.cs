@@ -33,6 +33,11 @@ public class PlayerControl : MonoBehaviour
         animator.SetFloat("oppositeDir", oppositeDir, 0.1f, Time.deltaTime);
     }
 
+    public void SetIsDead(bool dead)
+    {
+        animator.SetBool("isDead", dead);
+    }
+
     public void RotateSkeleton(bool rotate) 
     {
         skeleton.transform.rotation = Quaternion.Euler(0, rotate ? -90 : 90, 0);

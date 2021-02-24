@@ -113,4 +113,9 @@ public class EnemyController : MonoBehaviour
     {
         animator.SetBool("isAiming", aiming);
     }
+
+    public void SetIsDead(bool dead)
+    {
+        animator.SetBool("isDead", dead);
+    }
 }
