@@ -7,12 +7,8 @@ public class PlayerControl : MonoBehaviour
     private float oppositeDir = 0f;
     [SerializeField]
     private GameObject skeleton = null;
+    [SerializeField]
     private Animator animator;
-
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     public bool IsAiming()
     {
