@@ -22,8 +22,6 @@ public class EnemyController : MonoBehaviour, IHealthController
     #region FOV Variables
 
     [SerializeField]
-    private Transform playerTransform = null;
-    [SerializeField]
     private float maxAngle = 45f;
     [SerializeField]
     private float maxRadius = 20f;
@@ -33,12 +31,21 @@ public class EnemyController : MonoBehaviour, IHealthController
     [SerializeField]
     private float stoppingDistanceError = .5f;
 
+    #region Aim and Shoot Variables
+    [SerializeField]
+    private Gun gun = null;
+    private IEnumerator shootingBehaviour = null;
+    [SerializeField]
+    private float timeToShoot = 1f, timeBetweenShots = 1.5f; 
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         SetAgentNewDestination();
+        shootingBehaviour = AimAndShoot();
     }
 
     // Update is called once per frame
@@ -47,7 +54,7 @@ public class EnemyController : MonoBehaviour, IHealthController
         // Walk Animation
         SetIsWalking(canWalk);
         
-        if(FOVDetection.InFOV(transform, playerTransform, maxAngle, maxRadius))
+        if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, maxRadius))
         {
             // Stopping agent from moving
             canWalk = false;
@@ -56,9 +63,12 @@ public class EnemyController : MonoBehaviour, IHealthController
 
             // Enemy looks to the player
             SetIsAiming(true);
-            Vector3 direction = (playerTransform.position - transform.position).normalized;
+            Vector3 direction = (Player.GetInstance().transform.position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             FaceTarget(lookRotation);
+
+            gun.SetShootingDirection(direction);
+            StartCoroutine(shootingBehaviour);
 
             wasInFOV = true;
         } 
@@ -69,6 +79,7 @@ public class EnemyController : MonoBehaviour, IHealthController
             wasInFOV = false;
             SetIsAiming(false);
             SetAgentNewDestination();
+            StopCoroutine(shootingBehaviour);
         }
 
         if (canWalk && Vector3.Distance(enemyTargetPositions[currentTargetPosition], transform.position) <= stoppingDistanceError && agent.remainingDistance == 0)
@@ -104,6 +115,18 @@ public class EnemyController : MonoBehaviour, IHealthController
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
     }
 
+    private IEnumerator AimAndShoot()
+    {
+        yield return new WaitForSeconds(timeToShoot);
+
+        while(true)
+        {
+            gun.Shoot();
+            yield return new WaitForSeconds(timeBetweenShots);
+        }
+    }
+
+    #region Animator Related Functions
     public void SetIsWalking(bool walking)
     {
         animator.SetBool("isWalking", walking);
@@ -118,4 +141,5 @@ public class EnemyController : MonoBehaviour, IHealthController
     {
         animator.SetBool("isDead", dead);
     }
+    #endregion
 }
