@@ -18,26 +18,40 @@ public class PlayerShoot : MonoBehaviour
     private Gun currentGun;
     [SerializeField]
     private GameObject gunPosition = null;
+    [SerializeField]
+    private Material mat = null;
+
+    [SerializeField]
+    private float aimMaxLength = 15f;
+    private bool isAiming = false;
+    [SerializeField]
+    private LayerMask aimingIgnoredColliders = 0;
+    [SerializeField]
+    private LineRenderer aimingLine = null;
 
     // Start is called before the first frame update
     void Start()
     {
         playerControl = GetComponent<PlayerControl>();
         currentGun = defaultGun;
+
+        aimingIgnoredColliders = ~aimingIgnoredColliders;
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool isAiming = Input.GetButton("Aim");
+        isAiming = Input.GetButton("Aim");
 
         if (isAiming)
         {
             RotateSpine();
+            SetAimingLinePositions();
         } 
         else
         {
             spine.transform.localRotation = Quaternion.Euler(initalRotation);
+            ResetAimingLine();
         }
 
         playerControl.SetIsAiming(isAiming);
@@ -64,5 +78,42 @@ public class PlayerShoot : MonoBehaviour
         if (vpMousePos.y > vpSpinePos.y) rot *= -1;
 
         spine.transform.localRotation = Quaternion.Euler(new Vector3(rot, initalRotation.y, initalRotation.z));
+    }
+
+    private void SetAimingLinePositions()
+    {
+        Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
+
+        /* 
+         * TODO 
+         *  Change Raycast to BoxCast and detect collisions with objects even if they are not on the same z coordinate
+         *      Physics.BoxCast(
+         *          bulletSpawner.transform.position, 
+         *          new Vector3(.1f, .1f, 10f), 
+         *          bulletSpawner.transform.forward, 
+         *          out hit
+         *      )
+         */
+        Vector3 endWorldPoint; 
+        RaycastHit hit;
+        if(Physics.Raycast(bulletSpawnerTransform.position, bulletSpawnerTransform.forward, out hit, aimMaxLength, aimingIgnoredColliders))
+        {
+            endWorldPoint = hit.point;
+        }   
+        else
+        {
+            endWorldPoint = bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength;
+        }
+
+        aimingLine.gameObject.SetActive(true);
+        aimingLine.SetPosition(0, bulletSpawnerTransform.position);
+        aimingLine.SetPosition(1, endWorldPoint);
+
+        currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
+    }
+
+    private void ResetAimingLine()
+    {
+        aimingLine.gameObject.SetActive(false);
     }
 }

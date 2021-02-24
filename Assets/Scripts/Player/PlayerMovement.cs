@@ -32,15 +32,15 @@ public class PlayerMovement : MonoBehaviour
         {
             // Player is walking
             playerControl.SetIsWalking(true);
+            
+            int camDelta = 1;
             transform.position += new Vector3(playerSpeed*movement*Time.deltaTime, 0f, 0f);
+
             if (!playerControl.IsAiming())
             {
                 // Turn
                 if (!Mathf.Approximately(0, movement)) 
                     playerControl.RotateSkeleton(movement < 0);
-            
-                // Camera follow movement
-                cameraTarget.localPosition = new Vector3(cameraTarget.localPosition.x, cameraTarget.localPosition.y, Mathf.Lerp(cameraTarget.localPosition.z, aheadAmount * movement, aheadSpeed * Time.deltaTime));
             }
             else
             {
@@ -50,6 +50,9 @@ public class PlayerMovement : MonoBehaviour
                     playerControl.SetOppositeDir(1f);
                 else playerControl.SetOppositeDir(0f);
             }
+
+            // Camera follow movement
+            cameraTarget.localPosition = new Vector3(Mathf.Lerp(cameraTarget.localPosition.x, aheadAmount * camDelta * movement, aheadSpeed * Time.deltaTime), cameraTarget.localPosition.y, cameraTarget.localPosition.z);
         }
         else playerControl.SetIsWalking(false);
     }

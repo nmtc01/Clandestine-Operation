@@ -18,48 +18,41 @@ public class Gun : MonoBehaviour
 
     private bool canShoot = false;
 
+    private Vector3 shootDirection;
+
+    private void Start()
+    {
+        shootDirection = bulletSpawner.transform.forward;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(canShoot)
+        if(canShoot && Input.GetButtonDown("Fire"))
         {
-            /*Draw ray? */
-
-            if (Input.GetButtonDown("Fire"))
-            {
-                Debug.Log("Fire");
-
-                Vector3 shootDirection = bulletSpawner.transform.forward;
-
-                RaycastHit hit;
-                if (Physics.Raycast(bulletSpawner.transform.position, bulletSpawner.transform.forward, out hit, range))
-                {
-                    /* 
-                     * TODO 
-                     *  Change Raycast to BoxCast and detect collisions with objects even if they are not on the same z coordinate
-                     *      Physics.BoxCast(
-                     *          bulletSpawner.transform.position, 
-                     *          new Vector3(.1f, .1f, 10f), 
-                     *          bulletSpawner.transform.forward, 
-                     *          out hit
-                     *      )
-                     */
-                    shootDirection = (hit.point - bulletSpawner.transform.position).normalized;
-                }
-
-                Shoot(shootDirection);
-            }
+            Shoot();
         }
     }
 
-    private void Shoot(Vector3 dir)
+    private void Shoot()
     {
-        GameObject instBullet = Instantiate(bullet, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
-        instBullet.GetComponent<Rigidbody>().AddForce(dir * shootForce, ForceMode.Impulse);
+        GameObject instBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
+        instBullet.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce, ForceMode.Impulse);
+        instBullet.GetComponent<Bullet>().SetDamage(damage);
     }
 
     public void SetCanShoot(bool shoot)
     {
         canShoot = shoot;
+    }
+
+    public void SetShootingDirection(Vector3 direction)
+    {
+        shootDirection = direction;
+    }
+
+    public Transform GetBulletSpawnerTransform()
+    {
+        return bulletSpawner.transform;
     }
 }
