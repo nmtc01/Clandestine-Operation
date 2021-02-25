@@ -1633,9 +1633,8 @@ MonoBehaviour:
   spine: {fileID: 7192360885785296595}
   maxRotation: 45
   initalRotation: {x: 0, y: 0, z: 0}
-  defaultGun: {fileID: 3440194902649124235}
+  defaultGun: {fileID: 2433647240542301530}
   gunPosition: {fileID: 3440194900652112314}
-  mat: {fileID: 2100000, guid: 943766fed1e50844589f13394cac4402, type: 2}
   aimMaxLength: 15
   aimingIgnoredColliders:
     serializedVersion: 2
@@ -3873,6 +3872,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3440194900652112313}
     m_Modifications:
+    - target: {fileID: 2357374174929225394, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
+      propertyPath: shootForce
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2454022883823559439, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
       propertyPath: m_Name
       value: Gun
@@ -3928,14 +3931,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2973959476250147253, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
   m_PrefabInstance: {fileID: 103897350714698728}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3440194902649124235 stripped
+--- !u!114 &2433647240542301530 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3372942264458714723, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2357374174929225394, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
   m_PrefabInstance: {fileID: 103897350714698728}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27b48781d06d254bab4b53981f25316, type: 3}
+  m_Script: {fileID: 11500000, guid: ea69c7b104b29724181c9c9fae6b930f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -29,15 +29,17 @@ public class Bullet : MonoBehaviour
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Health enemyHealth = collision.gameObject.GetComponent<Health>();
 
             if(collision.gameObject.CompareTag("Head"))
             {
+                EnemyHead enemyHead = collision.gameObject.GetComponent<EnemyHead>();
                 // Kill enemy with 1 shot
-                enemyHealth?.Kill();
+                enemyHead?.KillEnemy();
             } 
             else
             {
+                Health enemyHealth = collision.gameObject.GetComponent<Health>();
+
                 // Damage enemy - caused by player shooting
                 enemyHealth?.Damage(damage);
             }

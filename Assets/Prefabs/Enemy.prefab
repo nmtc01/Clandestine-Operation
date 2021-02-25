@@ -1501,6 +1501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5341949115784427425}
   - component: {fileID: 7036782542317440693}
+  - component: {fileID: 1125487470585053072}
   m_Layer: 8
   m_Name: mixamorig:Head
   m_TagString: Head
@@ -1536,6 +1537,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.38056055, y: 0.5548099, z: 0.4632392}
   m_Center: {x: 0.0079293465, y: 0.32191336, z: 0.07536579}
+--- !u!114 &1125487470585053072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8972041806552089005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc33ebd30b5be949b0d325051312306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 4536371879737574855}
 --- !u!1 &9075901942766266217
 GameObject:
   m_ObjectHideFlags: 0
