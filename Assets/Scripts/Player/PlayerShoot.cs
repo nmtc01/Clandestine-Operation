@@ -18,8 +18,6 @@ public class PlayerShoot : MonoBehaviour
     private Gun currentGun;
     [SerializeField]
     private GameObject gunPosition = null;
-    [SerializeField]
-    private Material mat = null;
 
     [SerializeField]
     private float aimMaxLength = 15f;
@@ -97,11 +95,13 @@ public class PlayerShoot : MonoBehaviour
          *          aimingIgnoredColliders
          *    )
          */
-        Vector3 endWorldPoint; 
+        Vector2 endWorldPoint; 
+        
         RaycastHit hit;
-        Vector3 rayDirection = Vector3.Project(bulletSpawnerTransform.forward, Vector3.right);
-        Vector3 startPoint = bulletSpawnerTransform.position;
-        startPoint.z = 0;
+        
+        Vector2 rayDirection = bulletSpawnerTransform.forward;
+        Vector2 startPoint = bulletSpawnerTransform.position;
+
         if(Physics.Raycast(startPoint, rayDirection, out hit, aimMaxLength, aimingIgnoredColliders))
         {
             endWorldPoint = hit.point;
@@ -115,7 +115,7 @@ public class PlayerShoot : MonoBehaviour
         aimingLine.SetPosition(0, bulletSpawnerTransform.position);
         aimingLine.SetPosition(1, endWorldPoint);
 
-        currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
+        currentGun.SetShootingDirection((endWorldPoint - startPoint).normalized);
     }
 
     private void ResetAimingLine()

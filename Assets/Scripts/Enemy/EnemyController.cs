@@ -58,7 +58,6 @@ public class EnemyController : MonoBehaviour, IHealthController
         {
             // Stopping agent from moving
             canWalk = false;
-            StopAllCoroutines();
             agent.ResetPath();
 
             // Enemy looks to the player
@@ -68,8 +67,11 @@ public class EnemyController : MonoBehaviour, IHealthController
             FaceTarget(lookRotation);
 
             gun.SetShootingDirection(direction);
-            StartCoroutine(shootingBehaviour);
-
+            if (!wasInFOV)
+            {
+                StopAllCoroutines();
+                StartCoroutine(shootingBehaviour);
+            }
             wasInFOV = true;
         } 
         else if(wasInFOV)

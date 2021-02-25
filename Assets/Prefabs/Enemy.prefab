@@ -808,7 +808,7 @@ Transform:
   m_GameObject: {fileID: 4536371879737574905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.51, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 2039841038424597794}
   m_Father: {fileID: 0}
@@ -871,7 +871,6 @@ MonoBehaviour:
   maxRadius: 20
   stoppingDistanceError: 0.5
   gun: {fileID: 4969204486064234507}
-  enemyDamage: 10
   timeToShoot: 1
   timeBetweenShots: 1.5
 --- !u!95 &4536371879737574852

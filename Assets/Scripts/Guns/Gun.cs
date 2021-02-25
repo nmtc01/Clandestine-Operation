@@ -25,7 +25,7 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject instBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
+        GameObject instBullet = Instantiate(bullet, (Vector2)bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
         instBullet.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce, ForceMode.Impulse);
         instBullet.GetComponent<Bullet>().SetDamage(damage);
     }
