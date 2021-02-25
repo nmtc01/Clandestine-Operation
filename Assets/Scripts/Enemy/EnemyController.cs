@@ -19,6 +19,9 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     private NavMeshAgent agent;
 
+    [SerializeField]
+    private BoxCollider headCollider = null;
+
     #region FOV Variables
 
     [SerializeField]
@@ -141,7 +144,15 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     public void SetIsDead(bool dead)
     {
+        if (dead) DestroyEnemyPhysics();
         animator.SetBool("isDead", dead);
     }
     #endregion
+
+    private void DestroyEnemyPhysics()
+    {
+        GetComponent<Collider>().enabled = false;
+        headCollider.enabled = false;
+        enabled = false;
+    }
 }
