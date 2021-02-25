@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -16,7 +14,7 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject bullet = null;
 
-    private bool canShoot = false;
+    protected bool canShoot = false;
 
     private Vector3 shootDirection;
 
@@ -25,18 +23,9 @@ public class Gun : MonoBehaviour
         shootDirection = bulletSpawner.transform.forward;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Shoot()
     {
-        if(canShoot && Input.GetButtonDown("Fire"))
-        {
-            Shoot();
-        }
-    }
-
-    private void Shoot()
-    {
-        GameObject instBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
+        GameObject instBullet = Instantiate(bullet, (Vector2)bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
         instBullet.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce, ForceMode.Impulse);
         instBullet.GetComponent<Bullet>().SetDamage(damage);
     }

@@ -131,9 +131,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2973959476250147253}
-  - component: {fileID: 3372942264458714723}
+  - component: {fileID: 2357374174929225394}
   m_Layer: 7
-  m_Name: Gun
+  m_Name: Player Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
---- !u!114 &3372942264458714723
+--- !u!114 &2357374174929225394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2454022883823559439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27b48781d06d254bab4b53981f25316, type: 3}
+  m_Script: {fileID: 11500000, guid: ea69c7b104b29724181c9c9fae6b930f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10

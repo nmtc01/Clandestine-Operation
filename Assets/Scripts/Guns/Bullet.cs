@@ -22,20 +22,24 @@ public class Bullet : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            Health playerHealth = collision.gameObject.GetComponent<Health>();
+
             // Damage player - caused by enemy shooting
-            Debug.Log("Damage Player");
+            playerHealth?.Damage(damage);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            Health enemyHealth = collision.gameObject.GetComponent<Health>();
+
             if(collision.gameObject.CompareTag("Head"))
             {
                 // Kill enemy with 1 shot
-                Debug.Log("Kill Enemy");
+                enemyHealth?.Kill();
             } 
             else
             {
                 // Damage enemy - caused by player shooting
-                Debug.Log("Damage Enemy");
+                enemyHealth?.Damage(damage);
             }
         }
 
