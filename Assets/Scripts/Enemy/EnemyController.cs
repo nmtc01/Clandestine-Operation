@@ -44,6 +44,7 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     [SerializeField]
     private TimerCountDown timer;
+    private bool alertedBefore = false;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,12 @@ public class EnemyController : MonoBehaviour, IHealthController
         if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, maxRadius))
         {
             // Starts timer countdown
-            timer.StartCounting();
+            if (!alertedBefore)
+            {
+                timer.StartCounting();
+                timer.incrementEnemiesAlerted();
+                alertedBefore = true;
+            }
 
             // Stopping agent from moving
             canWalk = false;
@@ -150,7 +156,11 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     public void SetIsDead(bool dead)
     {
-        if (dead) DestroyEnemyPhysics();
+        if (dead) 
+        {
+            DestroyEnemyPhysics();
+            if (alertedBefore) timer.decrementEnemiesAlerted();
+        }
         animator.SetBool("isDead", dead);
     }
     #endregion

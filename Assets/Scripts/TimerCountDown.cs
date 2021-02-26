@@ -6,15 +6,17 @@ public class TimerCountDown : MonoBehaviour
 {
     public GameObject textDisplay;
     public bool takingAway = false;
-    public bool startCounting = false;
+    private bool startCounting = false;
 
     const int time = 30;
-    public int secondsLeft;
+    public static int secondsLeft;
+
+    public static int enemiesAlerted = 0;
 
     void Start()
     {
         secondsLeft = time;
-        textDisplay.GetComponent<Text>().text = "00:" + secondsLeft;
+        textDisplay.GetComponent<Text>().text = "";
     }
 
     void Update()
@@ -27,20 +29,15 @@ public class TimerCountDown : MonoBehaviour
 
     public void StartCounting()
     {
-        if (!startCounting)
-        {
-            startCounting = true;
-            secondsLeft = time;
-        }
+        startCounting = true;
+        secondsLeft = time;
     }
 
     public void StopCounting()
     {
-        if (startCounting)
-        {
-            startCounting = false;
-            secondsLeft = time;
-        }
+        startCounting = false;
+        secondsLeft = time;
+        textDisplay.GetComponent<Text>().text = "";
     }
 
     IEnumerator TimerTake()
@@ -57,5 +54,17 @@ public class TimerCountDown : MonoBehaviour
     public bool isFinished() 
     {
         return secondsLeft <= 0;
+    }
+
+    public void incrementEnemiesAlerted()
+    {
+        enemiesAlerted++;
+    }
+
+    public void decrementEnemiesAlerted()
+    {
+        enemiesAlerted--;
+        if (enemiesAlerted == 0)
+            StopCounting();
     }
 }
