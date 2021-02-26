@@ -67,7 +67,7 @@ public class EnemyController : MonoBehaviour, IHealthController
             if (!alertedBefore)
             {
                 timer.StartCounting();
-                timer.incrementEnemiesAlerted();
+                timer.IncrementEnemiesAlerted();
                 alertedBefore = true;
             }
 
@@ -159,7 +159,7 @@ public class EnemyController : MonoBehaviour, IHealthController
         if (dead) 
         {
             DestroyEnemyPhysics();
-            if (alertedBefore) timer.decrementEnemiesAlerted();
+            if (alertedBefore) timer.DecrementEnemiesAlerted();
         }
         animator.SetBool("isDead", dead);
     }

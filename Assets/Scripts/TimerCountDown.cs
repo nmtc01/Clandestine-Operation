@@ -37,7 +37,6 @@ public class TimerCountDown : MonoBehaviour
     {
         startCounting = false;
         secondsLeft = time;
-        textDisplay.GetComponent<Text>().text = "";
     }
 
     IEnumerator TimerTake()
@@ -45,23 +44,32 @@ public class TimerCountDown : MonoBehaviour
         takingAway = true;
         yield return new WaitForSeconds(1);
         secondsLeft -= 1;
-        if (secondsLeft < 10)
-            textDisplay.GetComponent<Text>().text = "00:0" + secondsLeft;
-        else textDisplay.GetComponent<Text>().text = "00:" + secondsLeft;
+        if (startCounting)
+        {
+            if (secondsLeft < 10)
+                textDisplay.GetComponent<Text>().text = "00:0" + secondsLeft;
+            else textDisplay.GetComponent<Text>().text = "00:" + secondsLeft;
+        }
+        else textDisplay.GetComponent<Text>().text = "";
         takingAway = false;
     }
 
-    public bool isFinished() 
+    public bool IsFinished() 
     {
         return secondsLeft <= 0;
     }
 
-    public void incrementEnemiesAlerted()
+    public bool IsCounting()
+    {
+        return startCounting;
+    }
+
+    public void IncrementEnemiesAlerted()
     {
         enemiesAlerted++;
     }
 
-    public void decrementEnemiesAlerted()
+    public void DecrementEnemiesAlerted()
     {
         enemiesAlerted--;
         if (enemiesAlerted == 0)

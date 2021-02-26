@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour, IHealthController
 
     void Update()
     {
-        if (timer.isFinished())
+        if (timer.IsFinished())
             SetIsDead(true);
     }
 
