@@ -42,11 +42,16 @@ public class EnemyController : MonoBehaviour, IHealthController
     private float timeToShoot = 1f, timeBetweenShots = 1.5f; 
     #endregion
 
+    
+    [SerializeField]
+    private TimerCountDown timer;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        timer = GetComponent<TimerCountDown>();
         SetAgentNewDestination();
         shootingBehaviour = AimAndShoot();
     }
@@ -59,6 +64,9 @@ public class EnemyController : MonoBehaviour, IHealthController
         
         if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, maxRadius))
         {
+            // Starts timer countdown
+            timer.StartCounting();
+
             // Stopping agent from moving
             canWalk = false;
             agent.ResetPath();
