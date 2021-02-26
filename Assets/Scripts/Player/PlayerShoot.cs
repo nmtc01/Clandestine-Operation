@@ -95,7 +95,7 @@ public class PlayerShoot : MonoBehaviour
          *          aimingIgnoredColliders
          *    )
          */
-        Vector2 endWorldPoint; 
+        Vector3 endWorldPoint; 
         
         RaycastHit hit;
         
@@ -115,7 +115,7 @@ public class PlayerShoot : MonoBehaviour
         aimingLine.SetPosition(0, bulletSpawnerTransform.position);
         aimingLine.SetPosition(1, endWorldPoint);
 
-        currentGun.SetShootingDirection((endWorldPoint - startPoint).normalized);
+        currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
     }
 
     private void ResetAimingLine()
