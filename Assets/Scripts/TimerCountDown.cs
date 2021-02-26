@@ -5,15 +5,16 @@ using UnityEngine.UI;
 public class TimerCountDown : MonoBehaviour
 {
     public GameObject textDisplay;
-    public int secondsLeft;
     public bool takingAway = false;
     public bool startCounting = false;
 
     const int time = 30;
+    public int secondsLeft;
 
     void Start()
     {
-        textDisplay.GetComponent<Text>().text = "00:" + time;
+        secondsLeft = time;
+        textDisplay.GetComponent<Text>().text = "00:" + secondsLeft;
     }
 
     void Update()
@@ -51,5 +52,10 @@ public class TimerCountDown : MonoBehaviour
             textDisplay.GetComponent<Text>().text = "00:0" + secondsLeft;
         else textDisplay.GetComponent<Text>().text = "00:" + secondsLeft;
         takingAway = false;
+    }
+
+    public bool isFinished() 
+    {
+        return secondsLeft <= 0;
     }
 }

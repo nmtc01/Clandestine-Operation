@@ -9,6 +9,14 @@ public class PlayerControl : MonoBehaviour, IHealthController
     private GameObject skeleton = null;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private TimerCountDown timer;
+
+    void Update()
+    {
+        if (timer.isFinished())
+            SetIsDead(true);
+    }
 
     public bool IsAiming()
     {

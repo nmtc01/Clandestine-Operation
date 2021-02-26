@@ -42,7 +42,6 @@ public class EnemyController : MonoBehaviour, IHealthController
     private float timeToShoot = 1f, timeBetweenShots = 1.5f; 
     #endregion
 
-    
     [SerializeField]
     private TimerCountDown timer;
 
@@ -51,7 +50,6 @@ public class EnemyController : MonoBehaviour, IHealthController
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        timer = GetComponent<TimerCountDown>();
         SetAgentNewDestination();
         shootingBehaviour = AimAndShoot();
     }
