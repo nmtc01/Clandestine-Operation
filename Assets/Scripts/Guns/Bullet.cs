@@ -35,6 +35,8 @@ public class Bullet : MonoBehaviour
                 EnemyHead enemyHead = collision.gameObject.GetComponent<EnemyHead>();
                 // Kill enemy with 1 shot
                 enemyHead?.KillEnemy();
+
+                Score.IncreaseScore(ScoreValues.enemyHeadshot);
             } 
             else
             {
@@ -42,6 +44,8 @@ public class Bullet : MonoBehaviour
 
                 // Damage enemy - caused by player shooting
                 enemyHealth?.Damage(damage);
+
+                Score.IncreaseScore(ScoreValues.enemyShot);
             }
         }
 

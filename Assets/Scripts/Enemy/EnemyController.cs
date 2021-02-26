@@ -160,6 +160,8 @@ public class EnemyController : MonoBehaviour, IHealthController
         {
             DestroyEnemyPhysics();
             if (alertedBefore) timer.DecrementEnemiesAlerted();
+
+            Score.IncreaseScore(ScoreValues.enemyKill);
         }
         animator.SetBool("isDead", dead);
     }
