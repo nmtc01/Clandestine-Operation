@@ -168,6 +168,8 @@ public class EnemyController : MonoBehaviour, IHealthController
     private void DestroyEnemyPhysics()
     {
         GetComponent<Collider>().enabled = false;
+        StopAllCoroutines();
+        agent.enabled = false;
         headCollider.enabled = false;
         enabled = false;
     }
