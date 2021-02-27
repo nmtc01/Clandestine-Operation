@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8046163217082075006}
   - component: {fileID: 3513556371586444790}
   - component: {fileID: 461980907666746342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2973959476250147253}
   - component: {fileID: 2357374174929225394}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Enemy Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3372942263619773863}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 8298433596696035878}
   - component: {fileID: 5942169658554009426}
   - component: {fileID: 6973034523183976811}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: handel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 643272306182601482}
   - component: {fileID: 2668006614401227010}
   - component: {fileID: 2273542516470252346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 6439443990283380131}
   - component: {fileID: 1849721820842284513}
   - component: {fileID: 6849325468193723906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 8862563259748068505}
   - component: {fileID: 2344140943464981414}
   - component: {fileID: 3975390659404367259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7075374264179005433}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Top_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4958055583750971084}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 2993009565760759925}
   - component: {fileID: 3691717214517084979}
   - component: {fileID: 35180825422842800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
