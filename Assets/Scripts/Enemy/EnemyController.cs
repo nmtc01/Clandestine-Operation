@@ -42,8 +42,6 @@ public class EnemyController : MonoBehaviour, IHealthController
     private float timeToShoot = 1f, timeBetweenShots = 1.5f; 
     #endregion
 
-    [SerializeField]
-    private TimerCountDown timer;
     private bool alertedBefore = false;
 
     // Start is called before the first frame update
@@ -66,8 +64,8 @@ public class EnemyController : MonoBehaviour, IHealthController
             // Starts timer countdown
             if (!alertedBefore)
             {
-                timer.StartCounting();
-                timer.IncrementEnemiesAlerted();
+                TimerCountDown.StartCounting();
+                TimerCountDown.IncrementEnemiesAlerted();
                 alertedBefore = true;
             }
 
@@ -159,7 +157,7 @@ public class EnemyController : MonoBehaviour, IHealthController
         if (dead) 
         {
             DestroyEnemyPhysics();
-            if (alertedBefore) timer.DecrementEnemiesAlerted();
+            if (alertedBefore) TimerCountDown.DecrementEnemiesAlerted();
 
             Score.IncreaseScore(ScoreValues.enemyKill);
         }
@@ -170,6 +168,8 @@ public class EnemyController : MonoBehaviour, IHealthController
     private void DestroyEnemyPhysics()
     {
         GetComponent<Collider>().enabled = false;
+        StopAllCoroutines();
+        agent.enabled = false;
         headCollider.enabled = false;
         enabled = false;
     }

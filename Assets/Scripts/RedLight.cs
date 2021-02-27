@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RedLight : MonoBehaviour
 {
-    [SerializeField]
-    private TimerCountDown timer;
     private Light myLight;
 
     void Start()
@@ -16,7 +12,7 @@ public class RedLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer.IsCounting()) 
+        if (TimerCountDown.IsCounting()) 
         {
             myLight.color = Color.Lerp(myLight.color, Color.red*3, Time.deltaTime);
         }

@@ -18,6 +18,11 @@ public class Bullet : MonoBehaviour
         damage = gunBulletDamage;
     }
 
+    public void SetLayer(string ownerName)
+    {
+        gameObject.layer = LayerMask.NameToLayer(ownerName + "Bullet");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
