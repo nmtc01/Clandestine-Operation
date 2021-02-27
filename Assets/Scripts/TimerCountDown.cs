@@ -1,11 +1,32 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TimerCountDown : MonoBehaviour
 {
-    public GameObject textDisplay;
-    public bool takingAway = false;
+    #region Singleton
+    private static TimerCountDown instance = null;
+
+    public static TimerCountDown GetInstance()
+    {
+        return instance;
+    }
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+    #endregion
+
+    private TMP_Text textDisplay;
     private bool startCounting = false;
 
     const int time = 30;
@@ -13,66 +34,96 @@ public class TimerCountDown : MonoBehaviour
 
     public static int enemiesAlerted = 0;
 
+    private IEnumerator timer = null;
+
     void Start()
     {
+        textDisplay = GetComponent<TMP_Text>();
+
         secondsLeft = time;
-        textDisplay.GetComponent<Text>().text = "";
+        textDisplay.text = "";
     }
 
     void Update()
     {
-        if (takingAway == false && secondsLeft > 0 && startCounting == true)
+        if (startCounting && timer == null)//!takingAway && secondsLeft > 0 && startCounting)
         {
-            StartCoroutine(TimerTake());
+            timer = TimerTake();
+            StartCoroutine(timer);
         }
     }
 
-    public void StartCounting()
+    public static void StartCounting()
     {
-        startCounting = true;
+        instance.SetCounting(true);
+    }
+
+    public static void StopCounting()
+    {
+        instance.SetCounting(false);
+    }
+
+    private void SetCounting(bool count)
+    {
+        startCounting = count;
         secondsLeft = time;
     }
 
-    public void StopCounting()
+    private IEnumerator TimerTake()
     {
-        startCounting = false;
-        secondsLeft = time;
-    }
+        while(secondsLeft > 0) {
+            
+            UpdateText();
 
-    IEnumerator TimerTake()
-    {
-        takingAway = true;
-        yield return new WaitForSeconds(1);
-        secondsLeft -= 1;
-        if (startCounting)
-        {
-            if (secondsLeft < 10)
-                textDisplay.GetComponent<Text>().text = "00:0" + secondsLeft;
-            else textDisplay.GetComponent<Text>().text = "00:" + secondsLeft;
+            yield return new WaitForSeconds(1);
+            secondsLeft -= 1;
         }
-        else textDisplay.GetComponent<Text>().text = "";
-        takingAway = false;
+
+        UpdateText();
+        yield return null;
+    }
+    private void UpdateText()
+    {
+        if (secondsLeft < 10)
+            textDisplay.text = "00:0" + secondsLeft;
+        else 
+            textDisplay.text = "00:" + secondsLeft;
     }
 
-    public bool IsFinished() 
+    public static bool IsFinished() 
     {
         return secondsLeft <= 0;
     }
 
-    public bool IsCounting()
+    private bool GetCounting()
     {
         return startCounting;
     }
 
-    public void IncrementEnemiesAlerted()
+    public static bool IsCounting()
+    {
+        return instance.GetCounting();
+    }
+
+    public static void IncrementEnemiesAlerted()
     {
         enemiesAlerted++;
     }
 
-    public void DecrementEnemiesAlerted()
+    public static void DecrementEnemiesAlerted()
     {
         enemiesAlerted--;
         if (enemiesAlerted == 0)
+        {
+            instance.StopTimer();
             StopCounting();
+        }
+    }
+
+    private void StopTimer()
+    {
+        StopCoroutine(timer);
+        timer = null;
+        textDisplay.text = "";
     }
 }

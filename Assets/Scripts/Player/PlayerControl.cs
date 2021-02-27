@@ -9,12 +9,10 @@ public class PlayerControl : MonoBehaviour, IHealthController
     private GameObject skeleton = null;
     [SerializeField]
     private Animator animator;
-    [SerializeField]
-    private TimerCountDown timer;
-
+    
     void Update()
     {
-        if (timer.IsFinished())
+        if (TimerCountDown.IsFinished())
             SetIsDead(true);
     }
 
