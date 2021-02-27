@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = new Vector3(0, 1, -10);
+        offset = new Vector3(0, 4, -10);
     }
 
     private void LateUpdate() 

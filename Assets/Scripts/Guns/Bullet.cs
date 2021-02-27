@@ -18,6 +18,11 @@ public class Bullet : MonoBehaviour
         damage = gunBulletDamage;
     }
 
+    public void SetLayer(string ownerName)
+    {
+        gameObject.layer = LayerMask.NameToLayer(ownerName + "Bullet");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -26,6 +31,8 @@ public class Bullet : MonoBehaviour
 
             // Damage player - caused by enemy shooting
             playerHealth?.Damage(damage);
+
+            Score.IncreaseScore(ScoreValues.playerShot);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
@@ -35,6 +42,8 @@ public class Bullet : MonoBehaviour
                 EnemyHead enemyHead = collision.gameObject.GetComponent<EnemyHead>();
                 // Kill enemy with 1 shot
                 enemyHead?.KillEnemy();
+
+                Score.IncreaseScore(ScoreValues.enemyHeadshot);
             } 
             else
             {
@@ -42,6 +51,8 @@ public class Bullet : MonoBehaviour
 
                 // Damage enemy - caused by player shooting
                 enemyHealth?.Damage(damage);
+
+                Score.IncreaseScore(ScoreValues.enemyShot);
             }
         }
 

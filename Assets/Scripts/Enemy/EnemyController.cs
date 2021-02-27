@@ -5,9 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour, IHealthController
 {
-    [SerializeField]
-    private float lookRadius = 10f;
-
     #region Walking Variables
     [SerializeField]
     private List<Vector3> enemyTargetPositions = new List<Vector3>();
@@ -27,7 +24,7 @@ public class EnemyController : MonoBehaviour, IHealthController
     [SerializeField]
     private float maxAngle = 45f;
     [SerializeField]
-    private float maxRadius = 20f;
+    private float lookRadius = 15f;
     private bool wasInFOV = false;
     #endregion
     private Animator animator;
@@ -41,6 +38,8 @@ public class EnemyController : MonoBehaviour, IHealthController
     [SerializeField]
     private float timeToShoot = 1f, timeBetweenShots = 1.5f; 
     #endregion
+
+    private bool alertedBefore = false;
 
     // Start is called before the first frame update
     void Start()
@@ -57,8 +56,16 @@ public class EnemyController : MonoBehaviour, IHealthController
         // Walk Animation
         SetIsWalking(canWalk);
         
-        if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, maxRadius))
+        if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, lookRadius))
         {
+            // Starts timer countdown
+            if (!alertedBefore)
+            {
+                TimerCountDown.StartCounting();
+                TimerCountDown.IncrementEnemiesAlerted();
+                alertedBefore = true;
+            }
+
             // Stopping agent from moving
             canWalk = false;
             agent.ResetPath();
@@ -144,7 +151,13 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     public void SetIsDead(bool dead)
     {
-        if (dead) DestroyEnemyPhysics();
+        if (dead) 
+        {
+            DestroyEnemyPhysics();
+            if (alertedBefore) TimerCountDown.DecrementEnemiesAlerted();
+
+            Score.IncreaseScore(ScoreValues.enemyKill);
+        }
         animator.SetBool("isDead", dead);
     }
     #endregion
@@ -152,6 +165,8 @@ public class EnemyController : MonoBehaviour, IHealthController
     private void DestroyEnemyPhysics()
     {
         GetComponent<Collider>().enabled = false;
+        StopAllCoroutines();
+        agent.enabled = false;
         headCollider.enabled = false;
         enabled = false;
     }

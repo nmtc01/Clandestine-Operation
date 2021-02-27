@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8046163217082075006}
   - component: {fileID: 3513556371586444790}
   - component: {fileID: 461980907666746342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,8 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2973959476250147253}
-  - component: {fileID: 2357374174929225394}
-  m_Layer: 7
+  - component: {fileID: 4758318404679754383}
+  m_Layer: 8
   m_Name: Enemy Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
---- !u!114 &2357374174929225394
+--- !u!114 &4758318404679754383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,12 +123,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2454022883823559439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea69c7b104b29724181c9c9fae6b930f, type: 3}
+  m_Script: {fileID: 11500000, guid: b27b48781d06d254bab4b53981f25316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   range: 100
-  shootForce: 100
+  shootForce: 40
   bulletSpawner: {fileID: 3372942263619773856}
   bullet: {fileID: 5891633959458352717, guid: b4164b23fa055764c87440da9ecabd48, type: 3}
 --- !u!1 &3372942263619773856
@@ -140,7 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3372942263619773863}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 8298433596696035878}
   - component: {fileID: 5942169658554009426}
   - component: {fileID: 6973034523183976811}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: handel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 643272306182601482}
   - component: {fileID: 2668006614401227010}
   - component: {fileID: 2273542516470252346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 6439443990283380131}
   - component: {fileID: 1849721820842284513}
   - component: {fileID: 6849325468193723906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 8862563259748068505}
   - component: {fileID: 2344140943464981414}
   - component: {fileID: 3975390659404367259}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,7 +494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7075374264179005433}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Top_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4958055583750971084}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 2993009565760759925}
   - component: {fileID: 3691717214517084979}
   - component: {fileID: 35180825422842800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

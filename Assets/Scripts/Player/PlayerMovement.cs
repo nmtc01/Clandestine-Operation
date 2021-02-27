@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerSpeed = 10f;
+        playerSpeed = 4f;
         aheadAmount = 4f;
         aheadSpeed = 2f;
         playerControl = GetComponent<PlayerControl>();

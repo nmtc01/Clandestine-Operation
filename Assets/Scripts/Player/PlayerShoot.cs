@@ -9,7 +9,7 @@ public class PlayerShoot : MonoBehaviour
     private float maxRotation = 45f;
 
     [SerializeField]
-    private Vector3 initalRotation = Vector3.zero;
+    private Vector3 initialRotation = Vector3.zero;
 
     private PlayerControl playerControl;
 
@@ -26,6 +26,7 @@ public class PlayerShoot : MonoBehaviour
     private LayerMask aimingIgnoredColliders = 0;
     [SerializeField]
     private LineRenderer aimingLine = null;
+    const float spineHeight = 0.075f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,71 +42,61 @@ public class PlayerShoot : MonoBehaviour
     {
         isAiming = Input.GetButton("Aim");
 
+        playerControl.SetIsAiming(isAiming);
+        currentGun.SetCanShoot(isAiming);
+    }
+
+    private void LateUpdate()
+    {
         if (isAiming)
         {
             RotateSpine();
             SetAimingLinePositions();
-        } 
+        }
         else
         {
-            spine.transform.localRotation = Quaternion.Euler(initalRotation);
+            spine.transform.localRotation = Quaternion.Euler(initialRotation);
             ResetAimingLine();
         }
-
-        playerControl.SetIsAiming(isAiming);
-        currentGun.SetCanShoot(isAiming);
     }
 
     private void RotateSpine()
     {
         Vector2 vpMousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        Vector2 vpSpinePos = Camera.main.WorldToViewportPoint(spine.transform.position);
+        Vector2 vpSpinePos = Camera.main.WorldToViewportPoint(spine.transform.position) + new Vector3(0, spineHeight, 0);
 
         Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()),-1f,1f));
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()), -1f, 1f));
 
-        if(vpMousePos.x < vpSpinePos.x)
+        if (vpMousePos.x < vpSpinePos.x)
         {
             rot %= 180;
-        } 
+        }
         playerControl.RotateSkeleton(vpMousePos.x < vpSpinePos.x);
 
         if (rot >= maxRotation) rot = maxRotation;
 
         if (vpMousePos.y > vpSpinePos.y) rot *= -1;
 
-        spine.transform.localRotation = Quaternion.Euler(new Vector3(rot, initalRotation.y, initalRotation.z));
+        spine.transform.localRotation = Quaternion.Euler(new Vector3(rot, initialRotation.y, initialRotation.z));
     }
 
     private void SetAimingLinePositions()
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
 
-        /* 
-         * TODO 
-         *  Change Raycast to BoxCast and detect collisions with objects even if they are not on the same z coordinate
-         *    Physics.BoxCast(
-         *          bulletSpawnerTransform.position, 
-         *          new Vector3(5f, .0001f, 3f), 
-         *          bulletSpawnerTransform.forward,
-         *          out hit, 
-         *          Quaternion.identity, 
-         *          aimMaxLength, 
-         *          aimingIgnoredColliders
-         *    )
-         */
-        Vector3 endWorldPoint; 
-        
+        Vector3 endWorldPoint;
+
         RaycastHit hit;
-        
+
         Vector2 rayDirection = bulletSpawnerTransform.forward;
         Vector2 startPoint = bulletSpawnerTransform.position;
 
-        if(Physics.Raycast(startPoint, rayDirection, out hit, aimMaxLength, aimingIgnoredColliders))
+        if (Physics.Raycast(startPoint, rayDirection, out hit, aimMaxLength, aimingIgnoredColliders))
         {
             endWorldPoint = hit.point;
-        }   
+        }
         else
         {
             endWorldPoint = bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength;
