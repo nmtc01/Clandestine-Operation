@@ -24,7 +24,7 @@ public class EnemyController : MonoBehaviour, IHealthController
     [SerializeField]
     private float maxAngle = 45f;
     [SerializeField]
-    private float lookRadius = 10f;
+    private float lookRadius = 15f;
     private bool wasInFOV = false;
     #endregion
     private Animator animator;
