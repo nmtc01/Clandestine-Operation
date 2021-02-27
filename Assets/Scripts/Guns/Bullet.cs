@@ -31,6 +31,8 @@ public class Bullet : MonoBehaviour
 
             // Damage player - caused by enemy shooting
             playerHealth?.Damage(damage);
+
+            Score.IncreaseScore(ScoreValues.playerShot);
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
