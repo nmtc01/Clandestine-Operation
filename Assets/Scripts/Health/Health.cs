@@ -3,13 +3,13 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private float maxHealth = 100f;
+    protected float maxHealth = 100f;
     private IHealthController healthController;
 
-    private float currentHealth;
+    protected float currentHealth;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealth;
         healthController = GetComponent<IHealthController>();
@@ -22,14 +22,14 @@ public class Health : MonoBehaviour
         healthController.SetIsDead(true);
     }
 
-    public void Damage(float damage)
+    public virtual void Damage(float damage)
     {
         currentHealth -= damage;
 
         if (currentHealth < 0) Kill();
     }
 
-    public void Heal(float value)
+    public virtual void Heal(float value)
     {
         currentHealth += value;
 
