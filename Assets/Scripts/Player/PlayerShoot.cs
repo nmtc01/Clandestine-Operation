@@ -26,6 +26,7 @@ public class PlayerShoot : MonoBehaviour
     private LayerMask aimingIgnoredColliders = 0;
     [SerializeField]
     private LineRenderer aimingLine = null;
+    const float spineHeight = 0.075f;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +60,7 @@ public class PlayerShoot : MonoBehaviour
     private void RotateSpine()
     {
         Vector2 vpMousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        Vector2 vpSpinePos = Camera.main.WorldToViewportPoint(spine.transform.position);
+        Vector2 vpSpinePos = Camera.main.WorldToViewportPoint(spine.transform.position) + new Vector3(0, spineHeight, 0);
 
         Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
