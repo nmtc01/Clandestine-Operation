@@ -41,6 +41,9 @@ public class Score : MonoBehaviour
     private void IncreaseInstanceScore(float inc)
     {
         score_value += inc;
+
+        if (score_value < 0) score_value = 0;
+
         UpdateScoreText();
     }
 
