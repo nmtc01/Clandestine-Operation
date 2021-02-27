@@ -5,9 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour, IHealthController
 {
-    [SerializeField]
-    private float lookRadius = 10f;
-
     #region Walking Variables
     [SerializeField]
     private List<Vector3> enemyTargetPositions = new List<Vector3>();
@@ -27,7 +24,7 @@ public class EnemyController : MonoBehaviour, IHealthController
     [SerializeField]
     private float maxAngle = 45f;
     [SerializeField]
-    private float maxRadius = 20f;
+    private float lookRadius = 10f;
     private bool wasInFOV = false;
     #endregion
     private Animator animator;
@@ -59,7 +56,7 @@ public class EnemyController : MonoBehaviour, IHealthController
         // Walk Animation
         SetIsWalking(canWalk);
         
-        if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, maxRadius))
+        if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, lookRadius))
         {
             // Starts timer countdown
             if (!alertedBefore)
