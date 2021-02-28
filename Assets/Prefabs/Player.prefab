@@ -1562,7 +1562,7 @@ GameObject:
   - component: {fileID: 3666549597828597955}
   - component: {fileID: 3666549597828597964}
   - component: {fileID: 3666549597828597965}
-  - component: {fileID: 225370281827013027}
+  - component: {fileID: 2163246038567115229}
   - component: {fileID: 6092826266106646900}
   - component: {fileID: 3666549597828597954}
   m_Layer: 7
@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spine: {fileID: 7192360885785296595}
   maxRotation: 45
-  initalRotation: {x: 0, y: 0, z: 0}
+  initialRotation: {x: 0, y: 0, z: 0}
   defaultGun: {fileID: 2433647240542301530}
   gunPosition: {fileID: 3440194900652112314}
   aimMaxLength: 15
@@ -1640,7 +1640,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   aimingLine: {fileID: 485027037}
---- !u!114 &225370281827013027
+--- !u!114 &2163246038567115229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1649,10 +1649,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3666549597828597966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c898a1ba98b5a94e9736ddbcb8b1dac, type: 3}
+  m_Script: {fileID: 11500000, guid: 85d5d7646907dd6479d5a2f3db149aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  slider: {fileID: 0}
 --- !u!114 &6092826266106646900
 MonoBehaviour:
   m_ObjectHideFlags: 0
