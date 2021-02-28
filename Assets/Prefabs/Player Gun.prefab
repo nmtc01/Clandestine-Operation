@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   range: 100
-  shootForce: 100
+  shootForce: 40
   bulletSpawner: {fileID: 3372942263619773856}
   bullet: {fileID: 5891633959458352717, guid: b4164b23fa055764c87440da9ecabd48, type: 3}
 --- !u!1 &2488167658165377190
