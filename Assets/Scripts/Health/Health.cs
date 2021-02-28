@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if (currentHealth < 0) Kill();
+        if (currentHealth <= 0) Kill();
     }
 
     public virtual void Heal(float value)
