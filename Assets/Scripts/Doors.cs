@@ -11,7 +11,6 @@ public class Doors : MonoBehaviour
 
     public void OpenDoors()
     {
-        Debug.Log("Open Doors");
         animator.SetTrigger("open");
     }
 }
