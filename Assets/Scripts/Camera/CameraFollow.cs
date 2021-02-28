@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    [SerializeField]
+    private float minXValue = -100f, maxXValue = 100f;
+
     public Transform target;
     public Vector3 offset;
 
@@ -19,6 +22,7 @@ public class CameraFollow : MonoBehaviour
     private void Follow()
     {
         Vector3 targetPosition = target.transform.position + offset;
+        targetPosition.x = Mathf.Clamp(targetPosition.x, minXValue, maxXValue);
         transform.position = targetPosition;
     }
 }

@@ -260,6 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2c7a4a2a62adb44b89fcba5310e54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minXValue: -35
+  maxXValue: 79
   target: {fileID: 1659568421}
   offset: {x: 0, y: 3, z: 0}
 --- !u!81 &32434246
