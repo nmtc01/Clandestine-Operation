@@ -36,10 +36,19 @@ public class Bullet : MonoBehaviour
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            Armour armour = collision.gameObject.GetComponent<Armour>();
+            
+            if (armour != null && armour.IsActive())
+            {
+                // Damage armour - caused by player shooting
+                armour?.Damage(damage);
 
-            if(collision.gameObject.CompareTag("Head"))
+                Score.IncreaseScore(ScoreValues.armouredEnemyShot);
+            }
+            else if(collision.gameObject.CompareTag("Head"))
             {
                 EnemyHead enemyHead = collision.gameObject.GetComponent<EnemyHead>();
+
                 // Kill enemy with 1 shot
                 enemyHead?.KillEnemy();
 
