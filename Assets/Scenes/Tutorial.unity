@@ -12145,9 +12145,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "This journey won't be easy! You need to defend yourself from the FEUP's
-    security guards.\nTo do that, someone offered you a rubber gun (yes, we know
-    this is a faculty, so we don't want you to kill anyone). \nSo, you can aim with
-    this weapon by pressing\n(mouse right button)."
+    security guards.\nTo do that, we offered you a rubber gun (yes, we know this
+    is a faculty, so we don't want you to kill anyone). \nSo, you can aim with this
+    weapon by pressing\n(mouse right button)."
 --- !u!222 &2033723391
 CanvasRenderer:
   m_ObjectHideFlags: 0
