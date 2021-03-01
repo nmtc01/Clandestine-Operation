@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float aheadSpeed;
 
     private PlayerControl playerControl;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
         aheadAmount = 4f;
         aheadSpeed = 2f;
         playerControl = GetComponent<PlayerControl>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
             playerControl.SetIsWalking(true);
             
             int camDelta = 1;
-            transform.position += new Vector3(playerSpeed*movement*Time.deltaTime, 0f, 0f);
+            transform.position += new Vector3(playerSpeed * movement * Time.deltaTime, 0f, 0f);
 
             if (!playerControl.IsAiming())
             {
