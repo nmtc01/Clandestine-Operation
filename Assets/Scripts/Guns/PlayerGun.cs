@@ -26,10 +26,18 @@ public class PlayerGun : Gun
     void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-        if (canShoot && timeSinceLastShot >= shotCooldown && !isReloading && Input.GetButtonDown("Fire"))
+        if (canShoot && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
         {
             Shoot();
         }
+    }
+
+    /**
+     * Function that detects if the gun can shoot. It should be overrided by this class' children so that other behaviours, such as automatic guns, can be achieved
+     */
+    protected virtual bool GunCanShoot()
+    {
+        return Input.GetButtonDown("Fire");
     }
 
     public override void Shoot()
