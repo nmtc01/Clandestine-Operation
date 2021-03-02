@@ -11,6 +11,10 @@ public class PlayerGun : Gun
     private int clipMaxSize = 10;
     private int clipCurrentSize;
 
+    [SerializeField]
+    private float reloadingTime = 1f;
+    private bool isReloading = false;
+
     public override void Start()
     {
         base.Start();
@@ -22,15 +26,10 @@ public class PlayerGun : Gun
     void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-        if (canShoot && timeSinceLastShot >= shotCooldown && !IsReloading() && Input.GetButtonDown("Fire"))
+        if (canShoot && timeSinceLastShot >= shotCooldown && !isReloading && Input.GetButtonDown("Fire"))
         {
             Shoot();
         }
-    }
-
-    private bool IsReloading()
-    {
-        return clipCurrentSize <= 0;
     }
 
     public override void Shoot()
@@ -45,8 +44,11 @@ public class PlayerGun : Gun
 
     private IEnumerator Reload()
     {
+        isReloading = true;
+        yield return new WaitForSeconds(reloadingTime);
+
         clipCurrentSize = clipMaxSize;
-        Debug.Log("Reloading");
+        isReloading = false;
         yield return null;
     }
 }
