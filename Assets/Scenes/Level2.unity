@@ -2171,7 +2171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919428464}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.454815, y: -3.8034153, z: 2.303688}
+  m_LocalPosition: {x: -38.454815, y: -3.8034153, z: 3.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1096031965}
@@ -3005,7 +3005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279866243}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.455722, y: 8.3, z: 0.1}
+  m_LocalPosition: {x: -15.455722, y: 8.3, z: 1.8}
   m_LocalScale: {x: 92, y: 0.5, z: 10}
   m_Children: []
   m_Father: {fileID: 442481811}
@@ -3463,6 +3463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2c7a4a2a62adb44b89fcba5310e54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minXValue: -100
+  maxXValue: 100
   target: {fileID: 702644794}
   offset: {x: 0, y: 0, z: 0}
 --- !u!1 &1390560483
@@ -3598,7 +3600,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409520526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.53192, y: 8.300001, z: 0.099999905}
+  m_LocalPosition: {x: 35.53192, y: 8.300001, z: 1.8}
   m_LocalScale: {x: 10, y: 0.5, z: 10}
   m_Children: []
   m_Father: {fileID: 442481811}
@@ -3784,11 +3786,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539797919}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1702656648 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
-  m_PrefabInstance: {fileID: 702644792}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1751316009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6387,7 +6384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8209488367743044530}
   m_LocalRotation: {x: 0, y: 0.7069834, z: 0.7072302, w: 0}
-  m_LocalPosition: {x: 10.990511, y: 6.35, z: 0.98}
+  m_LocalPosition: {x: 10.990511, y: 6.35, z: 2.42}
   m_LocalScale: {x: 100, y: 60, z: 99.999985}
   m_Children:
   - {fileID: 815492014338628258}
@@ -6628,7 +6625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d6a94b71df0014d84b30ce3dccf982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1702656648}
   key: {fileID: 383264429}
 --- !u!4 &8327809371277881280
 Transform:
