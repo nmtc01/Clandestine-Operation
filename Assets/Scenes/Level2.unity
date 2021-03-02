@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45128304, g: 0.5001273, b: 0.56884706, a: 1}
+  m_IndirectSpecularColor: {r: 0.45128316, g: 0.50012714, b: 0.56884736, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -751,6 +751,10 @@ PrefabInstance:
     - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: m_Name
       value: Armoured Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063236139909914450, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: enemyTargetPositions.Array.data[0].x
@@ -2923,6 +2927,10 @@ PrefabInstance:
     - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: m_Name
       value: Armoured Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063236139909914450, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: enemyTargetPositions.Array.data[0].x
@@ -6013,6 +6021,10 @@ PrefabInstance:
     - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: m_Name
       value: Armoured Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063236139909914450, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: enemyTargetPositions.Array.data[1].x

@@ -103,7 +103,7 @@ public class PlayerShoot : MonoBehaviour
         }
 
         aimingLine.gameObject.SetActive(true);
-        aimingLine.SetPosition(0, bulletSpawnerTransform.position);
+        aimingLine.SetPosition(0, startPoint);
         aimingLine.SetPosition(1, endWorldPoint);
 
         currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
