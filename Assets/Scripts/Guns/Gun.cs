@@ -5,8 +5,6 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private float damage = 10f;
     [SerializeField]
-    private float range = 100f;
-    [SerializeField]
     private float shootForce = 30f;
     [SerializeField]
     private GameObject bulletSpawner = null;
