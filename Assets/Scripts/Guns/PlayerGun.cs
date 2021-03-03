@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine;
 
 public class PlayerGun : Gun
 {
@@ -14,6 +15,9 @@ public class PlayerGun : Gun
     [SerializeField]
     private float reloadingTime = 1f;
     private bool isReloading = false;
+
+    [SerializeField]
+    private Vector3 gunLocalPosition = Vector3.zero;
 
     public override void Start()
     {
@@ -58,5 +62,11 @@ public class PlayerGun : Gun
         clipCurrentSize = clipMaxSize;
         isReloading = false;
         yield return null;
+    }
+
+    public void SetHandPosition()
+    {
+        transform.localPosition = gunLocalPosition;
+        transform.localRotation = Quaternion.identity;
     }
 }
