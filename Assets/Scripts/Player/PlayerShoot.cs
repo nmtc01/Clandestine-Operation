@@ -113,4 +113,27 @@ public class PlayerShoot : MonoBehaviour
     {
         aimingLine.gameObject.SetActive(false);
     }
+
+    public void SetNewGun(PlayerGun gun)
+    {
+        if(currentGun == defaultGun)
+        {
+            currentGun.gameObject.SetActive(false);
+        } 
+        else
+        {
+            Destroy(currentGun);
+        }
+
+        currentGun = gun;
+        gun.transform.parent = gunPosition.transform;
+        gun.SetHandPosition();
+    }
+
+    public void ResetGun()
+    {
+        Destroy(currentGun);
+        currentGun = defaultGun;
+        currentGun.gameObject.SetActive(true);
+    }
 }

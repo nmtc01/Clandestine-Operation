@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine;
 
 public class PlayerGun : Gun
 {
@@ -9,8 +8,8 @@ public class PlayerGun : Gun
     private float timeSinceLastShot = 0f;
 
     [SerializeField]
-    private int clipMaxSize = 10;
-    private int clipCurrentSize;
+    protected int clipMaxSize = 10;
+    protected int clipCurrentSize;
 
     [SerializeField]
     private float reloadingTime = 1f;
@@ -51,10 +50,16 @@ public class PlayerGun : Gun
         timeSinceLastShot = 0;
         clipCurrentSize--;
 
-        if (clipCurrentSize == 0) StartCoroutine(Reload());
+        if (clipCurrentSize == 0)
+            HandleEmptyClip();
     }
 
-    private IEnumerator Reload()
+    protected virtual void HandleEmptyClip()
+    {
+        StartCoroutine(Reload());
+    }
+
+    protected IEnumerator Reload()
     {
         isReloading = true;
         yield return new WaitForSeconds(reloadingTime);
@@ -66,6 +71,7 @@ public class PlayerGun : Gun
 
     public void SetHandPosition()
     {
+        gameObject.layer = LayerMask.NameToLayer("Player");
         transform.localPosition = gunLocalPosition;
         transform.localRotation = Quaternion.identity;
     }

@@ -14,7 +14,7 @@ public class VendingMachine : MonoBehaviour
         if ((Player.GetInstance().transform.position - this.transform.position).magnitude < range && active)
         {
             key.SetActive(true);
-            if (Input.GetButtonDown("Heal"))
+            if (Input.GetButtonDown("Interact"))
             {
                 Health health = Player.GetInstance().GetComponent<Health>();
                 health.Heal(healFactor);
