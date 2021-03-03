@@ -134,5 +134,6 @@ public class PlayerShoot : MonoBehaviour
     {
         Destroy(currentGun);
         currentGun = defaultGun;
+        currentGun.gameObject.SetActive(true);
     }
 }
