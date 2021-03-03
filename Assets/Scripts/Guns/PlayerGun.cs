@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine;
 
 public class PlayerGun : Gun
 {
@@ -66,6 +65,7 @@ public class PlayerGun : Gun
 
     public void SetHandPosition()
     {
+        gameObject.layer = LayerMask.NameToLayer("Player");
         transform.localPosition = gunLocalPosition;
         transform.localRotation = Quaternion.identity;
     }
