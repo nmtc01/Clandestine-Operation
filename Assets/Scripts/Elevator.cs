@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum ElevatorDoorState
@@ -19,6 +20,9 @@ public class Elevator : MonoBehaviour
 {
     [SerializeField]
     private ElevatorDoor upDoor, downDoor;
+    [SerializeField]
+    private List<GameObject> interactButtons = new List<GameObject>();
+    private bool canInteract = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +36,10 @@ public class Elevator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(canInteract && Input.GetButtonDown("Interact"))
+        {
+            // Player enter door, changes state, player exits other door
+        }
     }
 
     private void ChangeDoorState(ElevatorDoor door)
@@ -59,6 +66,33 @@ public class Elevator : MonoBehaviour
         if (state == ElevatorDoorState.OPEN_DOOR) return "open";
 
         return "";
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        DetectCollisionWithPlayer(other.gameObject, true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        DetectCollisionWithPlayer(other.gameObject, false);
+    }
+
+    private void DetectCollisionWithPlayer(GameObject obj, bool active)
+    {
+        if (obj.layer == LayerMask.NameToLayer("Player"))
+        {
+            canInteract = active;
+            SetButtonsActive(active);
+        }
+    }
+
+    private void SetButtonsActive(bool active)
+    {
+        for (int i = 0; i < interactButtons.Count; ++i)
+        {
+            interactButtons[i].SetActive(active);
+        }
     }
 
 }
