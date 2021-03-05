@@ -40,6 +40,9 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Can't aim and shoot if entering on elevator
+        if (playerControl.IsInElevator()) return;
+
         isAiming = Input.GetButton("Aim");
 
         playerControl.SetIsAiming(isAiming);

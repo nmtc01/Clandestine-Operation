@@ -1514,6 +1514,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 7.482673
       objectReference: {fileID: 0}
+    - target: {fileID: 2775341933900644807, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775341933900644807, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 3325436888328704976, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 13.326127
@@ -1684,11 +1692,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.86
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.81
       objectReference: {fileID: 0}
     - target: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2699,6 +2707,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 442481811}
     m_Modifications:
+    - target: {fileID: 4059326256033875113, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: upDoor.position.x
+      value: -53.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059326256033875113, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: upDoor.position.y
+      value: 6.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059326256033875113, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: upDoor.position.z
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059326256033875113, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: downDoor.position.x
+      value: -53.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059326256033875113, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: downDoor.position.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4059326256033875113, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: downDoor.position.z
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4059326256033875113, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
       propertyPath: interactButtons.Array.size
       value: 2

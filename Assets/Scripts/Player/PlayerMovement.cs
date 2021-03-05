@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -23,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Can't walk with player input if entering on elevator
+        if (playerControl.IsInElevator()) return;
+
         Move();
     }
 
@@ -60,5 +64,70 @@ public class PlayerMovement : MonoBehaviour
             cameraTarget.localPosition = new Vector3(Mathf.Lerp(cameraTarget.localPosition.x, aheadAmount * camDelta * movement, aheadSpeed * Time.deltaTime), cameraTarget.localPosition.y, cameraTarget.localPosition.z);
         }
         else playerControl.SetIsWalking(false);
+    }
+
+    public void WalkToElevatorDoor(Vector3 doorPosition, Elevator elevator)
+    {
+        playerControl.SetInElevator(true);
+        playerControl.SetIsWalking(true);
+
+        StartCoroutine(MoveToElevatorDoor(doorPosition, elevator));
+    }
+
+    private IEnumerator MoveToElevatorDoor(Vector3 doorPosition, Elevator elevator)
+    {
+        Quaternion lookToDoor = Quaternion.Euler(0, -90, 0);
+        float maxTimeToRotate = .2f;
+        for (float t = 0; t <= maxTimeToRotate; t += Time.deltaTime)
+        {
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, lookToDoor, t / maxTimeToRotate);
+            yield return null;
+        }
+
+        Vector3 initVal = transform.position;
+        for (float t = 0; t <= 3; t += Time.deltaTime)
+        {
+            transform.position = Vector3.Lerp(initVal, doorPosition, t / 3f);
+            yield return null;
+        }
+
+        elevator.PlayerEnteredDoor();
+        playerControl.SetIsWalking(false);
+        yield return null;
+    }
+
+    public void UpdatePlayerPosOnElevator(Vector3 doorPosition)
+    {
+        transform.localRotation = Quaternion.Euler(0, 90, 0);
+        transform.position = doorPosition;
+    }
+
+    public void WalkFromElevatorDoor(Vector2 doorPosition, Elevator elevator)
+    {
+        playerControl.SetIsWalking(true);
+
+        StartCoroutine(MoveFromElevatorDoor(doorPosition, elevator));
+    }
+
+    private IEnumerator MoveFromElevatorDoor(Vector2 doorPosition, Elevator elevator)
+    {
+        Vector3 initVal = transform.position;
+        for (float t = 0; t <= 3; t += Time.deltaTime)
+        {
+            transform.position = Vector3.Lerp(initVal, doorPosition, t / 3f);
+            yield return null;
+        }
+
+        float maxTimeToRotate = .2f;
+        for (float t = 0; t <= maxTimeToRotate; t += Time.deltaTime)
+        {
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, t / maxTimeToRotate);
+            yield return null;
+        }
+
+        playerControl.SetIsWalking(false);
+        playerControl.SetInElevator(false);
+        elevator.PlayerCanInteract();
+        yield return null;
     }
 }
