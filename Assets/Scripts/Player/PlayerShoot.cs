@@ -51,7 +51,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (isAiming)
+        if (isAiming && !playerControl.IsCovering())
         {
             RotateSpine();
             SetAimingLinePositions();

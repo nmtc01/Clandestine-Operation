@@ -3,9 +3,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour, IHealthController
 {
     private bool isAiming = false;
-    private bool isWalking = false;
     private bool inElevator = false;
-    private float oppositeDir = 0f;
     private bool isCovering = false;
 
     [SerializeField]
@@ -32,13 +30,11 @@ public class PlayerControl : MonoBehaviour, IHealthController
 
     public void SetIsWalking(bool walking)
     {
-        isWalking = walking;
         animator.SetBool("isWalking", walking);
     }
 
     public void SetOppositeDir(float oppositeDir)
     {
-        this.oppositeDir = oppositeDir;
         animator.SetFloat("oppositeDir", oppositeDir, 0.1f, Time.deltaTime);
     }
 

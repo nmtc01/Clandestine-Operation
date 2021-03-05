@@ -4,9 +4,12 @@ public class Cover : MonoBehaviour
 {
     [SerializeField]
     private GameObject key = null;
-    private int range = 5;
-    private PlayerControl playerControl;
+    private float range = 3f;
     private bool isCovering = false;
+    
+    [SerializeField]
+    private GameObject playerSkeleton = null;
+    private PlayerControl playerControl;
 
     void Start()
     {
@@ -17,14 +20,15 @@ public class Cover : MonoBehaviour
     void Update()
     {
         Transform player = Player.GetInstance().transform;
-        if ((player.position - this.transform.position).magnitude < range)
+        if (Mathf.Abs(this.transform.position.x - player.position.x) <= range)
         {
             key.SetActive(true);
             if (Input.GetButtonDown("Interact"))
             {
                 isCovering = !isCovering;
                 playerControl.SetIsCovering(isCovering);
-                player.SetParent(this.transform);
+                player.position = new Vector3(transform.position.x - range, player.position.y, player.position.z);
+                if (playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1*playerSkeleton.transform.right; // TODO change to RotateSkeleton
             }
         }
         else 
