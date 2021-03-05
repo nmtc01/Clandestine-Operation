@@ -10,7 +10,7 @@ public enum ElevatorDoorState
 }
 
 [Serializable]
-public struct ElevatorDoor
+public class ElevatorDoor
 {
     public Animator animator;
     public ElevatorDoorState state;
@@ -27,6 +27,7 @@ public class Elevator : MonoBehaviour
     private int currentFloor = 0;
 
     private bool canInteract = false;
+    private bool moving = false;
 
     private PlayerMovement playerMovement = null;
 
@@ -54,9 +55,11 @@ public class Elevator : MonoBehaviour
         if(canInteract && Input.GetButtonDown("Interact"))
         {
             // Player enter door, changes state, player exits other door
+            SetButtonsActive(false);
 
             playerMovement.WalkToElevatorDoor(CurrentDoor().position, this);
             canInteract = false;
+            moving = true;
         }
     }
 
@@ -122,7 +125,7 @@ public class Elevator : MonoBehaviour
 
     private void DetectCollisionWithPlayer(GameObject obj, bool active)
     {
-        if (obj.layer == LayerMask.NameToLayer("Player"))
+        if (!moving && obj.layer == LayerMask.NameToLayer("Player"))
         {
             PlayerCanInteract(active);
         }
@@ -144,6 +147,7 @@ public class Elevator : MonoBehaviour
     public void PlayerCanInteract(bool interact = true)
     {
         canInteract = interact;
+        moving = false;
         SetButtonsActive(interact);
     }
 }
