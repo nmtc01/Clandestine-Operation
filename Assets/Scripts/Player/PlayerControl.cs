@@ -6,6 +6,8 @@ public class PlayerControl : MonoBehaviour, IHealthController
     private bool isWalking = false;
     private bool inElevator = false;
     private float oppositeDir = 0f;
+    private bool isCovering = false;
+
     [SerializeField]
     private GameObject skeleton = null;
     [SerializeField]
@@ -63,5 +65,16 @@ public class PlayerControl : MonoBehaviour, IHealthController
     public bool IsInElevator()
     {
         return inElevator;
+    }
+
+    public void SetIsCovering(bool covering)
+    {
+        isCovering = covering;
+        animator.SetBool("isCovering", covering);
+    }
+
+    public bool IsCovering()
+    {
+        return isCovering;
     }
 }

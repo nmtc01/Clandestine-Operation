@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Can't walk with player input if entering on elevator
-        if (playerControl.IsInElevator()) return;
+        // Can't walk with player input if entering on elevator or if is covering
+        if (playerControl.IsInElevator() || playerControl.IsCovering()) return;
 
         Move();
     }
