@@ -9,6 +9,8 @@ public class Cover : MonoBehaviour
     
     [SerializeField]
     private GameObject playerSkeleton = null;
+    [SerializeField]
+    private GameObject crosshair = null;
     private PlayerControl playerControl;
 
     void Start()
@@ -27,12 +29,14 @@ public class Cover : MonoBehaviour
             {
                 isCovering = !isCovering;
                 playerControl.SetIsCovering(isCovering);
+                crosshair.SetActive(isCovering);
                 player.position = new Vector3(transform.position.x - range, player.position.y, player.position.z);
                 if (playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1 * playerSkeleton.transform.right;
             }
         }
         else 
         {
+            crosshair.SetActive(false);
             key.SetActive(false);
         }
     }
