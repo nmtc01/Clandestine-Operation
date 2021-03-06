@@ -50,13 +50,13 @@ public class EnemyController : MonoBehaviour, IHealthController
         shootingBehaviour = AimAndShoot();
     }
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called once per frame
+    void FixedUpdate()
     {
         // Walk Animation
         SetIsWalking(canWalk);
         
-        if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, lookRadius))
+        if(!Player.GetInstanceControl().IsInvisible() && FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, lookRadius))
         {
             // Starts timer countdown
             if (!alertedBefore)

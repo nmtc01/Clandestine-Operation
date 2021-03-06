@@ -172,7 +172,7 @@ public class PlayerShoot : MonoBehaviour
     private void SetAimingCrossHairLinePositions(Vector3 crosshairPos)
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
-        Vector2 startPoint = bulletSpawnerTransform.position;
+        Vector3 startPoint = bulletSpawnerTransform.position;
 
         aimingLine.gameObject.SetActive(true);
         aimingLine.SetPosition(0, startPoint);

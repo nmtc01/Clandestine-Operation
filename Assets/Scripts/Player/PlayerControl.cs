@@ -78,4 +78,9 @@ public class PlayerControl : MonoBehaviour, IHealthController
     {
         return isCovering;
     }
+
+    public bool IsInvisible()
+    {
+        return isCovering && !isAiming;
+    }
 }

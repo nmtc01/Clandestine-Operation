@@ -19,31 +19,6 @@ public class FOVDetection : MonoBehaviour
             return true;
         }
 
-        /*Collider[] overlaps = new Collider[10];
-        int count = Physics.OverlapSphereNonAlloc(checkingObject.position, maxRadius, overlaps);
-        
-        for(int i = 0; i < count; i++)
-        {
-            if(overlaps[i] != null && overlaps[i].transform == target)
-            {
-                Vector3 directionBetween = (target.position - checkingObject.position).normalized;
-                directionBetween.y *= 0;
-
-                float angle = Vector3.Angle(checkingObject.forward, directionBetween);
-
-                if(angle <= maxAngle) //View angle
-                {
-                    Ray ray = new Ray(checkingObject.position, target.position - checkingObject.position);
-                    RaycastHit hit;
-
-                    if(Physics.Raycast(ray, out hit, maxRadius) && hit.transform == target)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }*/
-
         return false;
     }
 }
