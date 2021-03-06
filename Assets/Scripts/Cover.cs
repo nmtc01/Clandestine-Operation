@@ -12,12 +12,6 @@ public class Cover : MonoBehaviour
     private GameObject playerSkeleton = null;
     [SerializeField]
     private GameObject crosshair = null;
-    private PlayerControl playerControl;
-
-    void Start()
-    {
-        playerControl = Player.GetInstance().GetComponent<PlayerControl>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -29,7 +23,7 @@ public class Cover : MonoBehaviour
             if (Input.GetButtonDown("Interact"))
             {
                 isCovering = !isCovering;
-                playerControl.SetIsCovering(isCovering);
+                Player.GetInstanceControl().SetIsCovering(isCovering);
                 crosshair.SetActive(isCovering);
                 player.position = new Vector3(transform.position.x - slack, player.position.y, player.position.z);
                 if (playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1 * playerSkeleton.transform.right;

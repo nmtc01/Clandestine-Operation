@@ -11,8 +11,6 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private Vector3 initialRotation = Vector3.zero;
 
-    private PlayerControl playerControl;
-
     [SerializeField]
     private Gun defaultGun = null;
     private Gun currentGun;
@@ -33,7 +31,6 @@ public class PlayerShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerControl = GetComponent<PlayerControl>();
         currentGun = defaultGun;
 
         aimingIgnoredColliders = ~aimingIgnoredColliders;
@@ -42,6 +39,8 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerControl playerControl = Player.GetInstanceControl();
+
         // Can't aim and shoot if entering on elevator
         if (playerControl.IsInElevator()) return;
 
@@ -53,6 +52,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void LateUpdate()
     {
+        PlayerControl playerControl = Player.GetInstanceControl();
         if (isAiming && !playerControl.IsCovering())
         {
             RotateSpine();
@@ -85,13 +85,13 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()), -1f, 1f));
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, Player.GetInstanceControl().getSkeletonDirection()), -1f, 1f));
 
         if (vpMousePos.x < vpSpinePos.x)
         {
             rot %= 180;
         }
-        playerControl.RotateSkeleton(vpMousePos.x < vpSpinePos.x);
+        Player.GetInstanceControl().RotateSkeleton(vpMousePos.x < vpSpinePos.x);
 
         if (rot >= maxRotation) rot = maxRotation;
 
@@ -184,10 +184,10 @@ public class PlayerShoot : MonoBehaviour
     private void RotateSpineCrosshair(Vector3 crosshairPos)
     {
         Vector3 direction = crosshairPos - spine.transform.position;
-        playerControl.RotateSkeleton(direction);
+        Player.GetInstanceControl().RotateSkeleton(direction);
     }
     private void ResetRotationSpineCrosshair()
     {
-        playerControl.RotateSkeleton(new Vector3(1,0,0));
+        Player.GetInstanceControl().RotateSkeleton(new Vector3(1,0,0));
     }
 }

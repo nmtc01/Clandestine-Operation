@@ -7,8 +7,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTarget;
     public float aheadAmount;
     public float aheadSpeed;
-
-    private PlayerControl playerControl;
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -17,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
         playerSpeed = 4f;
         aheadAmount = 4f;
         aheadSpeed = 2f;
-        playerControl = GetComponent<PlayerControl>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -25,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Can't walk with player input if entering on elevator or if is covering
-        if (playerControl.IsInElevator() || playerControl.IsCovering()) return;
+        if (Player.GetInstanceControl().IsInElevator() || Player.GetInstanceControl().IsCovering()) return;
 
         Move();
     }
@@ -37,37 +34,38 @@ public class PlayerMovement : MonoBehaviour
         if (movement != 0)
         {
             // Player is walking
-            playerControl.SetIsWalking(true);
+            Player.GetInstanceControl().SetIsWalking(true);
             
             int camDelta = 1;
             transform.position += new Vector3(playerSpeed * movement * Time.deltaTime, 0f, 0f);
 
-            if (!playerControl.IsAiming())
+            if (!Player.GetInstanceControl().IsAiming())
             {
                 // Turn
                 if (!Mathf.Approximately(0, movement)) 
-                    playerControl.RotateSkeleton(movement < 0);
+                    Player.GetInstanceControl().RotateSkeleton(movement < 0);
             }
             else
             {
                 // Player is aiming
                 // Player moving while aiming in opposite directions
-                if (movement * playerControl.getSkeletonDirection().x < 0) 
+                if (movement * Player.GetInstanceControl().getSkeletonDirection().x < 0) 
                 {
                     camDelta = -1;
-                    playerControl.SetOppositeDir(1f);
+                    Player.GetInstanceControl().SetOppositeDir(1f);
                 }
-                else playerControl.SetOppositeDir(0f);
+                else Player.GetInstanceControl().SetOppositeDir(0f);
             }
 
             // Camera follow movement
             cameraTarget.localPosition = new Vector3(Mathf.Lerp(cameraTarget.localPosition.x, aheadAmount * camDelta * movement, aheadSpeed * Time.deltaTime), cameraTarget.localPosition.y, cameraTarget.localPosition.z);
         }
-        else playerControl.SetIsWalking(false);
+        else Player.GetInstanceControl().SetIsWalking(false);
     }
 
     public void WalkToElevatorDoor(Vector3 doorPosition, Elevator elevator)
     {
+        PlayerControl playerControl = Player.GetInstanceControl();
         playerControl.SetInElevator(true);
         playerControl.SetIsWalking(true);
 
@@ -92,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         elevator.PlayerEnteredDoor();
-        playerControl.SetIsWalking(false);
+        Player.GetInstanceControl().SetIsWalking(false);
         yield return null;
     }
 
@@ -104,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void WalkFromElevatorDoor(Vector2 doorPosition, Elevator elevator)
     {
-        playerControl.SetIsWalking(true);
+        Player.GetInstanceControl().SetIsWalking(true);
 
         StartCoroutine(MoveFromElevatorDoor(doorPosition, elevator));
     }
@@ -125,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
+        PlayerControl playerControl = Player.GetInstanceControl();
         playerControl.SetIsWalking(false);
         playerControl.SetInElevator(false);
         elevator.PlayerCanInteract();

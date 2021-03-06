@@ -7,7 +7,6 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     private Vector3 offset;
     private Vector3 coveringOffset;
-    private PlayerControl playerControl;
     private bool rotate = true;
 
     // Start is called before the first frame update
@@ -15,7 +14,6 @@ public class CameraFollow : MonoBehaviour
     {
         offset = new Vector3(0, 4, -10);
         coveringOffset = new Vector3(4, 0.8f, -10);
-        playerControl = Player.GetInstance().GetComponent<PlayerControl>();
     }
 
     private void LateUpdate() 
@@ -25,6 +23,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Follow()
     {
+        PlayerControl playerControl = Player.GetInstanceControl();
         if (playerControl.IsCovering() && rotate) 
         {
             Cover(90, -1);
