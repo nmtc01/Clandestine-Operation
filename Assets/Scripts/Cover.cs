@@ -28,7 +28,7 @@ public class Cover : MonoBehaviour
                 isCovering = !isCovering;
                 playerControl.SetIsCovering(isCovering);
                 player.position = new Vector3(transform.position.x - range, player.position.y, player.position.z);
-                if (playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1*playerSkeleton.transform.right; // TODO change to RotateSkeleton
+                if (playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1 * playerSkeleton.transform.right;
             }
         }
         else 
