@@ -38,9 +38,11 @@ public class Elevator : MonoBehaviour
         {
             case 0:
                 SetDoorState(downDoor, ElevatorDoorState.OPEN_DOOR);
+                upDoor.state = ElevatorDoorState.CLOSE_DOOR;
                 break;
             case 1:
                 SetDoorState(upDoor, ElevatorDoorState.OPEN_DOOR);
+                downDoor.state = ElevatorDoorState.CLOSE_DOOR;
                 break;
             default:
                 break;
