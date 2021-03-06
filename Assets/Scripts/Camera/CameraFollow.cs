@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         offset = new Vector3(0, 4, -10);
-        coveringOffset = new Vector3(5, 2, -10);
+        coveringOffset = new Vector3(9, 0, -10);
         playerControl = Player.GetInstance().GetComponent<PlayerControl>();
     }
 
@@ -41,6 +41,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Cover(int radius, int factor)
     {
+        target.position = Player.GetInstance().transform.position;
         this.transform.rotation = Quaternion.Euler(0, radius, 0);
         offset += factor * coveringOffset; 
         rotate = !rotate;

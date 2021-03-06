@@ -56,6 +56,10 @@ public class PlayerShoot : MonoBehaviour
             RotateSpine();
             SetAimingLinePositions();
         }
+        /*else if (isAiming && playerControl.IsCovering()) //TODO
+        {
+            
+        }*/
         else
         {
             spine.transform.localRotation = Quaternion.Euler(initialRotation);
