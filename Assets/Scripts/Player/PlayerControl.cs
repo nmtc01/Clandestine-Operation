@@ -73,4 +73,9 @@ public class PlayerControl : MonoBehaviour, IHealthController
     {
         return isCovering;
     }
+
+    public void SetIsShooting(bool shooting)
+    {
+        animator.SetBool("isShooting", shooting);
+    }
 }

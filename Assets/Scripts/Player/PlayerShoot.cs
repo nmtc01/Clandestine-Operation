@@ -27,6 +27,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private LineRenderer aimingLine = null;
     const float spineHeight = 0.075f;
+    [SerializeField]
+    private GameObject crosshair = null;
 
     // Start is called before the first frame update
     void Start()
@@ -56,14 +58,17 @@ public class PlayerShoot : MonoBehaviour
             RotateSpine();
             SetAimingLinePositions();
         }
-        /*else if (isAiming && playerControl.IsCovering()) //TODO
+        else if (isAiming && playerControl.IsCovering())
         {
-            
-        }*/
+            AimCrosshair();
+            if (Input.GetButtonDown("Fire")) playerControl.SetIsShooting(true);
+            else playerControl.SetIsShooting(false);
+        }
         else
         {
             spine.transform.localRotation = Quaternion.Euler(initialRotation);
             ResetAimingLine();
+            crosshair.SetActive(false);
         }
     }
 
@@ -142,5 +147,18 @@ public class PlayerShoot : MonoBehaviour
         Destroy(currentGun);
         currentGun = defaultGun;
         currentGun.gameObject.SetActive(true);
+    }
+
+    private void AimCrosshair()
+    {
+        crosshair.SetActive(true);
+        Ray vpMousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.Log(vpMousePos);
+        RaycastHit hit;
+        Vector3 crosshairPos;
+        if (Physics.Raycast(vpMousePos, out hit, 10, aimingIgnoredColliders))
+            crosshairPos = hit.point;
+        else crosshairPos = vpMousePos.origin + vpMousePos.direction * 10;
+        crosshair.transform.position = crosshairPos;
     }
 }

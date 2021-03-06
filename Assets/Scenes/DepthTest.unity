@@ -4401,9 +4401,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3666549597828597965, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 827274062}
+    - target: {fileID: 3666549597828597965, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: defaultGun
       value: 
       objectReference: {fileID: 870486197}
+    - target: {fileID: 3666549597828597965, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: aimingIgnoredColliders.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 3666549597828597966, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4450,7 +4458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.62
+      value: -37.7
       objectReference: {fileID: 0}
     - target: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5128,7 +5136,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 12.393812
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5751575536563527067, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
 --- !u!4 &3611941627010515456
 Transform:
