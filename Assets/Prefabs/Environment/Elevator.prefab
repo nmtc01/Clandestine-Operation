@@ -1435,6 +1435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5601785832460071720}
   - component: {fileID: 4059326256033875113}
+  - component: {fileID: 7635972871581628559}
   m_Layer: 0
   m_Name: Elevator
   m_TagString: Untagged
@@ -1481,9 +1482,26 @@ MonoBehaviour:
   upDoor:
     animator: {fileID: 636503898822944786}
     state: 0
+    position: {x: 0, y: 0, z: 0}
   downDoor:
     animator: {fileID: 8689416778402418976}
     state: 1
+    position: {x: 0, y: 0, z: 0}
+  interactButtons: []
+  currentFloor: 0
+--- !u!65 &7635972871581628559
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601785832460071723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3031897, y: 12.885359, z: 1}
+  m_Center: {x: 0.0015217918, y: 6.922477, z: 0}
 --- !u!1 &5773979039252960980
 GameObject:
   m_ObjectHideFlags: 0
