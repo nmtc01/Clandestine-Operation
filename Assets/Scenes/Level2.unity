@@ -2492,6 +2492,49 @@ Transform:
   m_Father: {fileID: 1486275253}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &847946350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847946352}
+  - component: {fileID: 847946351}
+  m_Layer: 0
+  m_Name: LightbulbController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &847946351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847946350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89000b3aa21dfe34bacd948e34f30b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &847946352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847946350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.090261, y: -6.6606784, z: 3.4441562}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &884571913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,17 +3689,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4675191329802456941, guid: a5db7a26df789464cb7ab9f41b3a7e72, type: 3}
   m_PrefabInstance: {fileID: 1198885595}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1198885597 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7871147316257096382, guid: a5db7a26df789464cb7ab9f41b3a7e72, type: 3}
-  m_PrefabInstance: {fileID: 1198885595}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea59a314fcb4a5240b5756382948f79f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1232187483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4640,7 +4672,6 @@ GameObject:
   - component: {fileID: 1409520530}
   - component: {fileID: 1409520529}
   - component: {fileID: 1409520528}
-  - component: {fileID: 1409520531}
   m_Layer: 0
   m_Name: OpenCeiling
   m_TagString: Untagged
@@ -4729,19 +4760,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409520526}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1409520531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409520526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89000b3aa21dfe34bacd948e34f30b8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightbulb: {fileID: 1198885597}
 --- !u!1 &1409915783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5601785832460071723, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}

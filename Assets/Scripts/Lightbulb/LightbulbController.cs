@@ -3,22 +3,33 @@ using UnityEngine;
 
 public class LightbulbController : MonoBehaviour
 {
-    [SerializeField]
-    private Lightbulb lightbulb = null;
-
-    private void Start()
+    #region Singleton
+    private static LightbulbController instance = null;
+    public static LightbulbController GetInstance()
     {
-        lightbulb.SetController(this);
+        return instance;
+    }
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+    #endregion
+
+    public void ShatteredLightbulb(Lightbulb lightbulb)
+    {
+        StartCoroutine(Respawn(lightbulb));
     }
 
-    public void ShatteredLightbulb()
+    private IEnumerator Respawn(Lightbulb lightbulb)
     {
-        StartCoroutine(Respawn());
-    }
-
-    private IEnumerator Respawn()
-    {
-        yield return new WaitForSeconds(Random.Range(2f, 3f));
+        yield return new WaitForSeconds(Random.Range(1f, 2f));
 
         lightbulb.Spawn();
 

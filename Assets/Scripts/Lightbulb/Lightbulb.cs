@@ -9,7 +9,6 @@ public class Lightbulb : MonoBehaviour
     [SerializeField]
     private float lightbulbDamage = 10f;
 
-    private LightbulbController lightbulbController = null;
     private GameObject newCrackedLb = null;
 
     private void OnCollisionEnter(Collision collision)
@@ -23,12 +22,7 @@ public class Lightbulb : MonoBehaviour
             health.Damage(lightbulbDamage);
         }
 
-        lightbulbController.ShatteredLightbulb();
-    }
-
-    public void SetController(LightbulbController controller)
-    {
-        lightbulbController = controller;
+        LightbulbController.GetInstance().ShatteredLightbulb(this);
     }
 
     public void Spawn()
