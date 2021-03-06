@@ -60,9 +60,15 @@ public class PlayerShoot : MonoBehaviour
         }
         else if (isAiming && playerControl.IsCovering())
         {
-            AimCrosshair();
-            if (Input.GetButtonDown("Fire")) playerControl.SetIsShooting(true);
-            else playerControl.SetIsShooting(false);
+            Vector3 crosshairPos = AimCrosshair();
+            RotateSpineCrosshair(crosshairPos);
+            SetAimingCrossHairLinePositions(crosshairPos);
+        }
+        else if (playerControl.IsCovering())
+        {
+            ResetRotationSpineCrosshair();
+            ResetAimingLine();
+            crosshair.SetActive(false);
         }
         else
         {
@@ -149,16 +155,39 @@ public class PlayerShoot : MonoBehaviour
         currentGun.gameObject.SetActive(true);
     }
 
-    private void AimCrosshair()
+    private Vector3 AimCrosshair()
     {
         crosshair.SetActive(true);
         Ray vpMousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.Log(vpMousePos);
         RaycastHit hit;
         Vector3 crosshairPos;
         if (Physics.Raycast(vpMousePos, out hit, 10, aimingIgnoredColliders))
             crosshairPos = hit.point;
         else crosshairPos = vpMousePos.origin + vpMousePos.direction * 10;
         crosshair.transform.position = crosshairPos;
+        
+        return crosshairPos;
+    }
+
+    private void SetAimingCrossHairLinePositions(Vector3 crosshairPos)
+    {
+        Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
+        Vector2 startPoint = bulletSpawnerTransform.position;
+
+        aimingLine.gameObject.SetActive(true);
+        aimingLine.SetPosition(0, startPoint);
+        aimingLine.SetPosition(1, crosshairPos);
+
+        currentGun.SetShootingDirection((crosshairPos - bulletSpawnerTransform.position).normalized);
+    }
+
+    private void RotateSpineCrosshair(Vector3 crosshairPos)
+    {
+        Vector3 direction = crosshairPos - spine.transform.position;
+        playerControl.RotateSkeleton(direction);
+    }
+    private void ResetRotationSpineCrosshair()
+    {
+        playerControl.RotateSkeleton(new Vector3(1,0,0));
     }
 }

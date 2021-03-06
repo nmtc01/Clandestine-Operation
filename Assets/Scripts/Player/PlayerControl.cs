@@ -48,6 +48,11 @@ public class PlayerControl : MonoBehaviour, IHealthController
         skeleton.transform.rotation = Quaternion.Euler(0, rotate ? -90 : 90, 0);
     }
 
+    public void RotateSkeleton(Vector3 direction) 
+    {
+        skeleton.transform.forward = direction;
+    }
+
     public Vector3 getSkeletonDirection()
     {
         return skeleton.transform.forward;
@@ -72,10 +77,5 @@ public class PlayerControl : MonoBehaviour, IHealthController
     public bool IsCovering()
     {
         return isCovering;
-    }
-
-    public void SetIsShooting(bool shooting)
-    {
-        animator.SetBool("isShooting", shooting);
     }
 }
