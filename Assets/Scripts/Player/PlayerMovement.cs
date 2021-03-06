@@ -76,11 +76,12 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator MoveToElevatorDoor(Vector3 doorPosition, Elevator elevator)
     {
-        Quaternion lookToDoor = Quaternion.Euler(0, -90, 0);
+        //Quaternion lookToDoor = Quaternion.Euler(0, -90, 0);
         float maxTimeToRotate = .2f;
+        float initY = playerControl.getSkeletonDirection().y;
         for (float t = 0; t <= maxTimeToRotate; t += Time.deltaTime)
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, lookToDoor, t / maxTimeToRotate);
+            playerControl.RotateSkeleton(Mathf.Lerp(initY, 0, t / maxTimeToRotate));
             yield return null;
         }
 
@@ -98,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void UpdatePlayerPosOnElevator(Vector3 doorPosition)
     {
-        transform.localRotation = Quaternion.Euler(0, 90, 0);
+        playerControl.RotateSkeleton(180);
         transform.position = doorPosition;
     }
 
@@ -115,13 +116,6 @@ public class PlayerMovement : MonoBehaviour
         for (float t = 0; t <= 3; t += Time.deltaTime)
         {
             transform.position = Vector3.Lerp(initVal, doorPosition, t / 3f);
-            yield return null;
-        }
-
-        float maxTimeToRotate = .2f;
-        for (float t = 0; t <= maxTimeToRotate; t += Time.deltaTime)
-        {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, t / maxTimeToRotate);
             yield return null;
         }
 

@@ -18,7 +18,7 @@ public class LightbulbController : MonoBehaviour
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(Random.Range(2f, 5f));
+        yield return new WaitForSeconds(Random.Range(2f, 3f));
 
         lightbulb.Spawn();
 
