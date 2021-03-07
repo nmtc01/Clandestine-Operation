@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField]
     private float minXValue = -100f, maxXValue = 100f;
-    private static float currentMinXVal = -100f, currentMaxXVal = 100f;
+    private float currentMinXVal = -100f, currentMaxXVal = 100f;
 
     public Transform target;
     private Vector3 offset;
@@ -49,12 +49,17 @@ public class CameraFollow : MonoBehaviour
         transform.position = targetPosition;
     }
 
-    public static void SetNewVal(bool max)
+    private void SetNewXValue(bool max)
     {
         if (max)
             currentMaxXVal = instance.transform.position.x;
         else
             currentMinXVal = instance.transform.position.x;
+    }
+
+    public static void SetNewVal(bool max)
+    {
+        instance.SetNewXValue(max);
     }
 
     private void ResetXValues()
