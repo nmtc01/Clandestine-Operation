@@ -5,6 +5,7 @@ public class PlayerControl : MonoBehaviour, IHealthController
     private bool isAiming = false;
     private bool inElevator = false;
     private bool isCovering = false;
+    private bool isAlive = true;
 
     [SerializeField]
     private GameObject skeleton = null;
@@ -41,6 +42,12 @@ public class PlayerControl : MonoBehaviour, IHealthController
     public void SetIsDead(bool dead)
     {
         animator.SetBool("isDead", dead);
+        isAlive = false;
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
     }
 
     public void RotateSkeleton(bool rotate) 
@@ -82,5 +89,13 @@ public class PlayerControl : MonoBehaviour, IHealthController
     public bool IsInvisible()
     {
         return isCovering && !isAiming;
+    }
+
+    public void SetIsFallingBack(bool falling)
+    {
+        isAlive = false;
+        animator.SetBool("isFallingBack", falling);
+        Health health = GetComponent<Health>();
+        health.Kill();
     }
 }

@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Can't walk with player input if entering on elevator or if is covering
-        if (Player.GetInstanceControl().IsInElevator() || Player.GetInstanceControl().IsCovering()) return;
+        if (Player.GetInstanceControl().IsInElevator() || Player.GetInstanceControl().IsCovering() || !Player.GetInstanceControl().IsAlive()) return;
 
         Move();
     }

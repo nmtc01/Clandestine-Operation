@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     [SerializeField]
     private BoxCollider headCollider = null;
+    private bool isAiming = false;
 
     #region FOV Variables
 
@@ -146,7 +147,13 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     public void SetIsAiming(bool aiming)
     {
+        isAiming = aiming;
         animator.SetBool("isAiming", aiming);
+    }
+
+    public bool IsAiming()
+    {
+        return isAiming;
     }
 
     public void SetIsDead(bool dead)
@@ -159,6 +166,11 @@ public class EnemyController : MonoBehaviour, IHealthController
             Score.IncreaseScore(ScoreValues.enemyKill);
         }
         animator.SetBool("isDead", dead);
+    }
+
+    public void SetKillPlayer(bool kill)
+    {
+        animator.SetBool("foundPlayer", kill);
     }
     #endregion
 
