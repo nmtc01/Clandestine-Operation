@@ -54,6 +54,15 @@ public class Bullet : MonoBehaviour
 
                 Score.IncreaseScore(ScoreValues.enemyHeadshot);
             } 
+            else if(collision.gameObject.CompareTag("HeadBoss"))
+            {
+                Health enemyHealth = collision.gameObject.GetComponent<Health>();
+                
+                // Damage enemy - caused by player shooting
+                enemyHealth?.Damage(damage*2);
+
+                Score.IncreaseScore(ScoreValues.enemyShot);
+            } 
             else
             {
                 Health enemyHealth = collision.gameObject.GetComponent<Health>();
