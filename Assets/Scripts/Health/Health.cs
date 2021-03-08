@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
         healthController = GetComponent<IHealthController>();
     }
 
-    public void Kill()
+    public virtual void Kill()
     {
         currentHealth = 0;
 

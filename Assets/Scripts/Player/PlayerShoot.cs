@@ -40,6 +40,9 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Can't aim and shoot if entering on elevator
+        if (playerControl.IsInElevator()) return;
+
         isAiming = Input.GetButton("Aim");
 
         playerControl.SetIsAiming(isAiming);
@@ -103,7 +106,7 @@ public class PlayerShoot : MonoBehaviour
         }
 
         aimingLine.gameObject.SetActive(true);
-        aimingLine.SetPosition(0, bulletSpawnerTransform.position);
+        aimingLine.SetPosition(0, startPoint);
         aimingLine.SetPosition(1, endWorldPoint);
 
         currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
@@ -112,5 +115,28 @@ public class PlayerShoot : MonoBehaviour
     private void ResetAimingLine()
     {
         aimingLine.gameObject.SetActive(false);
+    }
+
+    public void SetNewGun(PlayerGun gun)
+    {
+        if(currentGun == defaultGun)
+        {
+            currentGun.gameObject.SetActive(false);
+        } 
+        else
+        {
+            Destroy(currentGun);
+        }
+
+        currentGun = gun;
+        gun.transform.parent = gunPosition.transform;
+        gun.SetHandPosition();
+    }
+
+    public void ResetGun()
+    {
+        Destroy(currentGun);
+        currentGun = defaultGun;
+        currentGun.gameObject.SetActive(true);
     }
 }

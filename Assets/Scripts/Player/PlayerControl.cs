@@ -4,6 +4,7 @@ public class PlayerControl : MonoBehaviour, IHealthController
 {
     private bool isAiming = false;
     private bool isWalking = false;
+    private bool inElevator = false;
     private float oppositeDir = 0f;
     [SerializeField]
     private GameObject skeleton = null;
@@ -49,8 +50,23 @@ public class PlayerControl : MonoBehaviour, IHealthController
         skeleton.transform.rotation = Quaternion.Euler(0, rotate ? -90 : 90, 0);
     }
 
+    public void RotateSkeleton(float yRot)
+    {
+        skeleton.transform.rotation = Quaternion.Euler(0, yRot, 0);
+    }
+
     public Vector3 getSkeletonDirection()
     {
         return skeleton.transform.forward;
+    }
+
+    public void SetInElevator(bool elev)
+    {
+        inElevator = elev;
+    }
+
+    public bool IsInElevator()
+    {
+        return inElevator;
     }
 }

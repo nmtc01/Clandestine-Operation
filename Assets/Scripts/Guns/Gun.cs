@@ -5,8 +5,6 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private float damage = 10f;
     [SerializeField]
-    private float range = 100f;
-    [SerializeField]
     private float shootForce = 30f;
     [SerializeField]
     private GameObject bulletSpawner = null;
@@ -18,12 +16,12 @@ public class Gun : MonoBehaviour
 
     private Vector3 shootDirection;
 
-    private void Start()
+    public virtual void Start()
     {
         shootDirection = bulletSpawner.transform.forward;
     }
 
-    public void Shoot()
+    public virtual void Shoot()
     {
         GameObject instBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
         instBullet.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce, ForceMode.Impulse);

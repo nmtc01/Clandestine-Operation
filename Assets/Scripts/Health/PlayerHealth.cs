@@ -14,6 +14,12 @@ public class PlayerHealth : Health
         SetHealth();
     }
 
+    public override void Kill()
+    {
+        base.Kill();
+        SetHealth();
+    }
+
     public override void Damage(float damage)
     {
         base.Damage(damage);
