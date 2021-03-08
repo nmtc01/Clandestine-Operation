@@ -56,10 +56,10 @@ public class Bullet : MonoBehaviour
             } 
             else if(collision.gameObject.CompareTag("HeadBoss"))
             {
-                Health enemyHealth = collision.gameObject.GetComponent<Health>();
+                BossHead enemyHead = collision.gameObject.GetComponent<BossHead>();
                 
                 // Damage enemy - caused by player shooting
-                enemyHealth?.Damage(damage*2);
+                enemyHead?.DamageHead(damage*2);
 
                 Score.IncreaseScore(ScoreValues.enemyShot);
             } 
