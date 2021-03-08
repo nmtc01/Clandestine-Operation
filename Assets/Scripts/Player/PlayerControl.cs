@@ -60,6 +60,11 @@ public class PlayerControl : MonoBehaviour, IHealthController
         skeleton.transform.forward = direction;
     }
 
+    public void RotateSkeleton(float yRot)
+    {
+        skeleton.transform.rotation = Quaternion.Euler(0, yRot, 0);
+    }
+
     public Vector3 getSkeletonDirection()
     {
         return skeleton.transform.forward;
