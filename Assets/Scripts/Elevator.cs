@@ -47,8 +47,6 @@ public class Elevator : MonoBehaviour
             default:
                 break;
         }
-
-        playerMovement = Player.GetInstance().GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -59,7 +57,7 @@ public class Elevator : MonoBehaviour
             // Player enter door, changes state, player exits other door
             SetButtonsActive(false);
 
-            playerMovement.WalkToElevatorDoor(CurrentDoor().position, this);
+            Player.GetInstanceMovement().WalkToElevatorDoor(CurrentDoor().position, this);
             canInteract = false;
             moving = true;
         }
