@@ -32,6 +32,9 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         currentGun = defaultGun;
+        
+        // Set Gun UI
+        ((PlayerGun)currentGun).SetPlayerGunUI();
 
         aimingIgnoredColliders = ~aimingIgnoredColliders;
     }
@@ -144,15 +147,20 @@ public class PlayerShoot : MonoBehaviour
         }
 
         currentGun = gun;
+
+        gun.SetPlayerGunUI();
         gun.transform.parent = gunPosition.transform;
         gun.SetHandPosition();
     }
 
     public void ResetGun()
     {
-        Destroy(currentGun);
+        Destroy(currentGun.gameObject);
         currentGun = defaultGun;
         currentGun.gameObject.SetActive(true);
+
+        // Reset Player Gun UI
+        ((PlayerGun)currentGun).SetPlayerGunUI();
     }
 
     private Vector3 AimCrosshair()

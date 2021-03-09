@@ -18,11 +18,17 @@ public class PlayerGun : Gun
     [SerializeField]
     private Vector3 gunLocalPosition = Vector3.zero;
 
+    #region Gun UI
+    [SerializeField]
+    private string imagePath = "";
+    #endregion
+
     public override void Start()
     {
         base.Start();
 
         clipCurrentSize = clipMaxSize;
+        PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
     }
 
     // Update is called once per frame
@@ -50,6 +56,8 @@ public class PlayerGun : Gun
         timeSinceLastShot = 0;
         clipCurrentSize--;
 
+        PlayerGunUI.instance.SetClipCurrentSize(clipCurrentSize);
+
         if (clipCurrentSize == 0)
             HandleEmptyClip();
     }
@@ -65,6 +73,7 @@ public class PlayerGun : Gun
         yield return new WaitForSeconds(reloadingTime);
 
         clipCurrentSize = clipMaxSize;
+        PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
         isReloading = false;
         yield return null;
     }
@@ -74,5 +83,18 @@ public class PlayerGun : Gun
         gameObject.layer = LayerMask.NameToLayer("Player");
         transform.localPosition = gunLocalPosition;
         transform.localRotation = Quaternion.identity;
+    }
+
+    public virtual void SetPlayerGunUI()
+    {
+        SetUIImage();
+        PlayerGunUI.instance.InitSlider();
+        PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
+    }
+
+    protected void SetUIImage()
+    {
+        Sprite spr = Resources.Load<Sprite>(imagePath);
+        PlayerGunUI.instance.SetImage(spr);
     }
 }
