@@ -9,7 +9,7 @@ public class PlayerGunUI : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null && instance != gameObject)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
