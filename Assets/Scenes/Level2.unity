@@ -4217,7 +4217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2671246643466253370, guid: b10783b8de17c04449a4a8f81c34c84c, type: 3}
       propertyPath: nextLevelName
-      value: BossLevel
+      value: Level3
       objectReference: {fileID: 0}
     - target: {fileID: 2671246643532017407, guid: b10783b8de17c04449a4a8f81c34c84c, type: 3}
       propertyPath: m_LocalScale.x

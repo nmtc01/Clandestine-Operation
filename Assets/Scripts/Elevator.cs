@@ -29,8 +29,6 @@ public class Elevator : MonoBehaviour
     private bool canInteract = false;
     private bool moving = false;
 
-    private PlayerMovement playerMovement = null;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -76,13 +74,13 @@ public class Elevator : MonoBehaviour
 
         currentFloor = currentFloor == 0 ? 1 : 0;
 
-        playerMovement.UpdatePlayerPosOnElevator(CurrentDoor().position);
+        Player.GetInstanceMovement().UpdatePlayerPosOnElevator(CurrentDoor().position);
 
         ChangeDoorState(CurrentDoor());
 
         yield return new WaitForSeconds(1);
 
-        playerMovement.WalkFromElevatorDoor(CurrentDoor().position, this);
+        Player.GetInstanceMovement().WalkFromElevatorDoor(CurrentDoor().position, this);
 
         yield return null;
     }
