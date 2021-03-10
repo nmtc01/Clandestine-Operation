@@ -22,9 +22,20 @@ public class GameOver : MonoBehaviour
 
     public static void RestartLevel(string levelName)
     {
+        ResetTimer();
+        SceneManager.LoadScene(levelName);
+    }
+
+    public static void MainMenu()
+    {
+        ResetTimer();
+        SceneManager.LoadScene("Menu");
+    }
+
+    private static void ResetTimer()
+    {
         instance.StopAllCoroutines();
         Time.timeScale = 1f;
-        SceneManager.LoadScene(levelName);
     }
 
     public static void ShowGameOverScreen()

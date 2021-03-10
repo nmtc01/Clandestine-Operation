@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 04c4b849fc8edfa48aad20ca10bd28ed, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -263,7 +263,6 @@ MonoBehaviour:
   minXValue: -35
   maxXValue: 79
   target: {fileID: 1659568421}
-  offset: {x: 0, y: 3, z: 0}
 --- !u!81 &32434246
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2494,6 +2493,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1110179169, guid: c0550b189d7635c44b5bda241741568f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110179169, guid: c0550b189d7635c44b5bda241741568f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6899870437351667240, guid: c0550b189d7635c44b5bda241741568f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
