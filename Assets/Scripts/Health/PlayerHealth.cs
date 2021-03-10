@@ -1,17 +1,11 @@
-using UnityEngine;
-using UnityEngine.UI;
-
 public class PlayerHealth : Health
 {
-    [SerializeField]
-    private Slider slider = null;
-
     protected override void Start()
     {
         base.Start();
 
-        slider.maxValue = maxHealth;
-        SetHealth();
+        PlayerHealthUI.instance.SetMaxValue(maxHealth);
+        currentHealth = PlayerHealthUI.instance.GetValue();
     }
 
     public override void Kill()
@@ -36,6 +30,6 @@ public class PlayerHealth : Health
 
     private void SetHealth()
     {
-        slider.value = currentHealth;
+        PlayerHealthUI.instance.SetValue(currentHealth);
     }
 }
