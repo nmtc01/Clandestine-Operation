@@ -7,4 +7,12 @@ public class EnemyHealth : Health
         currentHealth = maxHealth;
         healthUIController.SetValue(currentHealth);
     }
+
+
+    public override void Kill()
+    {
+        base.Kill();
+
+        Destroy(healthUIController.gameObject);
+    }
 }

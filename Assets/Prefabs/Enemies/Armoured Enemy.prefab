@@ -849,7 +849,7 @@ RectTransform:
   m_GameObject: {fileID: 2853995259958277697}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.024999997, y: 0.0049999994, z: 1}
+  m_LocalScale: {x: 0.011, y: 0.002, z: 1}
   m_Children:
   - {fileID: 7224970067202889475}
   m_Father: {fileID: 9063236139909914451}
@@ -857,7 +857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 39.183327, y: -6.596665}
+  m_AnchoredPosition: {x: 0, y: 4.868003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3738473392979334589
@@ -3430,7 +3430,7 @@ GameObject:
   - component: {fileID: 9063236139909914479}
   - component: {fileID: 1308658899534295033}
   m_Layer: 8
-  m_Name: Armoured Enemy 1
+  m_Name: Armoured Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
