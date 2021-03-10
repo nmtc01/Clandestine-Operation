@@ -1640,7 +1640,7 @@ MonoBehaviour:
   aimMaxLength: 15
   aimingIgnoredColliders:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 68
   aimingLine: {fileID: 485027037}
   crosshair: {fileID: 7957388659029321141}
 --- !u!114 &2163246038567115229
