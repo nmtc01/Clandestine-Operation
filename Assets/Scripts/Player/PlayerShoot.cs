@@ -19,7 +19,6 @@ public class PlayerShoot : MonoBehaviour
 
     [SerializeField]
     private float aimMaxLength = 15f;
-    private bool isAiming = false;
     [SerializeField]
     private LayerMask aimingIgnoredColliders = 0;
     [SerializeField]
@@ -43,11 +42,14 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         PlayerControl playerControl = Player.GetInstanceControl();
-
+         
         // Can't aim and shoot if entering on elevator
-        if (playerControl.IsInElevator()) return;
+        if (playerControl.IsInElevator())
+        {
+            return;
+        }
 
-        isAiming = Input.GetButton("Aim");
+        bool isAiming = Input.GetButton("Aim");
 
         playerControl.SetIsAiming(isAiming);
         currentGun.SetCanShoot(isAiming);
@@ -56,26 +58,26 @@ public class PlayerShoot : MonoBehaviour
     private void LateUpdate()
     {
         PlayerControl playerControl = Player.GetInstanceControl();
-        if (isAiming && !playerControl.IsCovering())
+        if (playerControl.IsAiming() && !playerControl.IsCovering())
         {
             RotateSpine();
             SetAimingLinePositions();
         }
-        else if (isAiming && playerControl.IsCovering())
+        else if (playerControl.IsAiming() && playerControl.IsCovering())
         {
             Vector3 crosshairPos = AimCrosshair();
             RotateSpineCrosshair(crosshairPos);
             SetAimingCrossHairLinePositions(crosshairPos);
         }
-        else if (playerControl.IsCovering())
-        {
-            ResetRotationSpineCrosshair();
-            ResetAimingLine();
-            crosshair.SetActive(false);
-        }
-        else
-        {
-            spine.transform.localRotation = Quaternion.Euler(initialRotation);
+        else {
+            if (playerControl.IsCovering())
+            {
+                ResetRotationSpineCrosshair();
+            }
+            else 
+            { 
+                spine.transform.localRotation = Quaternion.Euler(initialRotation);
+            }
             ResetAimingLine();
             crosshair.SetActive(false);
         }
