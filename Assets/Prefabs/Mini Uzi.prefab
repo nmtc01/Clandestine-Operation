@@ -114,6 +114,8 @@ MonoBehaviour:
   clipMaxSize: 20
   reloadingTime: 2
   gunLocalPosition: {x: 0.209, y: 0.043, z: 0.005}
+  imagePath: Guns/MiniUZI
+  maxAmmo: 100
 --- !u!1 &3731423897937368818
 GameObject:
   m_ObjectHideFlags: 0

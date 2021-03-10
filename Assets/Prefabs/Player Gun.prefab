@@ -169,10 +169,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  range: 100
   shootForce: 40
   bulletSpawner: {fileID: 3372942263619773856}
   bullet: {fileID: 5891633959458352717, guid: b4164b23fa055764c87440da9ecabd48, type: 3}
+  shotCooldown: 0.15
+  clipMaxSize: 10
+  reloadingTime: 1
+  gunLocalPosition: {x: 0, y: 0, z: 0}
+  imagePath: Guns/Gun
 --- !u!1 &2488167658165377190
 GameObject:
   m_ObjectHideFlags: 0
