@@ -160,8 +160,8 @@ public class EnemyController : MonoBehaviour, IHealthController
     {
         if (dead) 
         {
-            DestroyEnemyPhysics();
             if (alertedBefore) TimerCountDown.DecrementEnemiesAlerted();
+            DestroyEnemyPhysics();
 
             Score.IncreaseScore(ScoreValues.enemyKill);
         }
