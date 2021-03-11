@@ -132,7 +132,7 @@ public class PlayerShoot : MonoBehaviour
         currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
     }
 
-    private void ResetAimingLine()
+    public void ResetAimingLine()
     {
         aimingLine.gameObject.SetActive(false);
     }

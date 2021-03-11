@@ -42,7 +42,9 @@ public class GameOver : MonoBehaviour
     {
         instance.gameObject.SetActive(true);
         Player.GetInstanceMovement().enabled = false;
-        Player.GetInstanceShoot().enabled = false;
+        PlayerShoot playerShoot = Player.GetInstanceShoot();
+        playerShoot.ResetAimingLine();
+        playerShoot.enabled = false;
         instance.StartCoroutine(instance.Stop());
     }
 
