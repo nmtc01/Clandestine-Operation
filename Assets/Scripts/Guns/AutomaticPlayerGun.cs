@@ -31,10 +31,8 @@ public class AutomaticPlayerGun : PlayerGun
 
         if(maxAmmo <= 0)
         {
-            PlayerShoot playerShoot = Player.GetInstance().GetComponent<PlayerShoot>();
-            
             // Resets the current player gun and destroys this gun
-            playerShoot.ResetGun();
+            Player.GetInstanceShoot().ResetGun();
         } 
         else
         {

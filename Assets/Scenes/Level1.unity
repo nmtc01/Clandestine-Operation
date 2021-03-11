@@ -188,7 +188,6 @@ MonoBehaviour:
   minXValue: -37.8
   maxXValue: 58
   target: {fileID: 1659568421}
-  offset: {x: 0, y: 3, z: 0}
 --- !u!81 &32434246
 AudioListener:
   m_ObjectHideFlags: 0
@@ -8716,6 +8715,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -21.296108
       objectReference: {fileID: 0}
+    - target: {fileID: 6883466990845954215, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7071219209418643170, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.58482504
@@ -16738,6 +16741,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 128451168, guid: c0550b189d7635c44b5bda241741568f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 29.900024
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110179169, guid: c0550b189d7635c44b5bda241741568f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110179169, guid: c0550b189d7635c44b5bda241741568f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178086475, guid: c0550b189d7635c44b5bda241741568f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6899870437351667240, guid: c0550b189d7635c44b5bda241741568f, type: 3}
       propertyPath: m_Pivot.x
       value: 0

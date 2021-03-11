@@ -18,6 +18,8 @@ public class PlayerHealth : Health
     {
         base.Kill();
         SetHealth();
+
+        GameOver.ShowGameOverScreen();
     }
 
     public override void Damage(float damage)
