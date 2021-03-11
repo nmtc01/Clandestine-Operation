@@ -120,6 +120,11 @@ public class TimerCountDown : MonoBehaviour
         }
     }
 
+    public static void ResetEnemiesAlerted()
+    {
+        enemiesAlerted = 0;
+    }
+
     private void StopTimer()
     {
         StopCoroutine(timer);

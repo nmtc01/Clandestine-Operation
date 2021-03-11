@@ -36,6 +36,7 @@ public class GameOver : MonoBehaviour
     {
         instance.StopAllCoroutines();
         Time.timeScale = 1f;
+        TimerCountDown.ResetEnemiesAlerted();
     }
 
     public static void ShowGameOverScreen()
@@ -43,6 +44,7 @@ public class GameOver : MonoBehaviour
         instance.gameObject.SetActive(true);
         Player.GetInstanceMovement().enabled = false;
         Player.GetInstanceShoot().enabled = false;
+        ResetTimer();
         instance.StartCoroutine(instance.Stop());
     }
 
