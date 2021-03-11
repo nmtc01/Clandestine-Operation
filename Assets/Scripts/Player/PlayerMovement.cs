@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerControl playerControl = Player.GetInstanceControl();
         playerControl.SetInElevator(true);
         playerControl.SetIsWalking(true);
+        playerControl.SetIsAiming(false);
 
         StartCoroutine(MoveToElevatorDoor(doorPosition, elevator));
     }
