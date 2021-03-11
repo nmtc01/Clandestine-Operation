@@ -7,7 +7,7 @@ public class RedButton : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("PlayerBullet"))
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("PlayerBullet") && !TimerCountDown.IsCounting())
         {
             doors.OpenDoors();
         }
