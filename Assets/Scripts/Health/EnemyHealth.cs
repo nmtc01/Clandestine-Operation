@@ -1,12 +1,18 @@
-public class BossHealth : Health
+public class EnemyHealth : Health
 {
-    // Extend methods to detect middle of the health bar
-
     protected override void Start()
     {
         base.Start();
 
         currentHealth = maxHealth;
         healthUIController.SetValue(currentHealth);
+    }
+
+
+    public override void Kill()
+    {
+        base.Kill();
+
+        Destroy(healthUIController.gameObject);
     }
 }
