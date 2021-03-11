@@ -23,6 +23,8 @@ public class PlayerGun : Gun
     private string imagePath = "";
     #endregion
 
+    private bool isCurrentGun = false;
+
     public override void Start()
     {
         base.Start();
@@ -35,7 +37,7 @@ public class PlayerGun : Gun
     void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-        if (canShoot && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
+        if (isCurrentGun && Player.GetInstanceControl().IsAiming() && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
         {
             Shoot();
         }
@@ -62,6 +64,13 @@ public class PlayerGun : Gun
             HandleEmptyClip();
     }
 
+    public void SetCurrentGun(bool currentGun)
+    {
+        isCurrentGun = currentGun;
+
+        if (currentGun) SetPlayerGunUI();
+    }
+
     protected virtual void HandleEmptyClip()
     {
         StartCoroutine(Reload());
@@ -85,7 +94,7 @@ public class PlayerGun : Gun
         transform.localRotation = Quaternion.identity;
     }
 
-    public virtual void SetPlayerGunUI()
+    protected virtual void SetPlayerGunUI()
     {
         SetUIImage();
         PlayerGunUI.instance.InitSlider();
