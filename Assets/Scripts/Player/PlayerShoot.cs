@@ -49,7 +49,7 @@ public class PlayerShoot : MonoBehaviour
             return;
         }
 
-        bool isAiming = Input.GetButton("Aim");
+        bool isAiming = Input.GetButton("Aim") && playerControl.IsAlive();
 
         playerControl.SetIsAiming(isAiming);
         currentGun.SetCanShoot(isAiming);
@@ -200,4 +200,5 @@ public class PlayerShoot : MonoBehaviour
     {
         Player.GetInstanceControl().RotateSkeleton(new Vector3(1,0,0));
     }
+
 }
