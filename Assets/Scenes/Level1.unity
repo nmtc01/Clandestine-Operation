@@ -1143,6 +1143,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62750213}
   m_Mesh: {fileID: 477024775436859506, guid: 3c9396e938d0d7a49943c9b05fa034c8, type: 3}
+--- !u!114 &93047218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 264805493744038900, guid: b10783b8de17c04449a4a8f81c34c84c, type: 3}
+  m_PrefabInstance: {fileID: 1872151945}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4363dd8e93dc1847bacd93c7ce15337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &102896217
 GameObject:
   m_ObjectHideFlags: 0
@@ -11289,6 +11300,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3013828970190128153, guid: b10783b8de17c04449a4a8f81c34c84c, type: 3}
+      propertyPath: doors
+      value: 
+      objectReference: {fileID: 93047218}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b10783b8de17c04449a4a8f81c34c84c, type: 3}
 --- !u!4 &1872151946 stripped

@@ -8516,7 +8516,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left_Wall
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5736359293794026793, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
 --- !u!4 &1682967815 stripped
 Transform:
