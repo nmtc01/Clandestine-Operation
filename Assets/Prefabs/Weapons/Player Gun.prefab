@@ -178,7 +178,7 @@ MonoBehaviour:
   clipMaxSize: 10
   reloadingTime: 1
   gunLocalPosition: {x: 0, y: 0, z: 0}
-  imagePath: Guns/Gun
+  imagePath: Images/Guns/Gun
   reloadAudioClip: {fileID: 8300000, guid: 706686eeae9ebaa42878cc68260f5f62, type: 3}
 --- !u!82 &7021895791991666469
 AudioSource:

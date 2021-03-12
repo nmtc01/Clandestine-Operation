@@ -116,7 +116,7 @@ MonoBehaviour:
   clipMaxSize: 20
   reloadingTime: 2
   gunLocalPosition: {x: 0.209, y: 0.043, z: 0.005}
-  imagePath: Guns/MiniUZI
+  imagePath: Images/Guns/MiniUZI
   reloadAudioClip: {fileID: 8300000, guid: 1ab31758dc2a66441ad699816f3045bd, type: 3}
   maxAmmo: 100
 --- !u!82 &-4178502932346997484

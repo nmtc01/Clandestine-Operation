@@ -2944,6 +2944,14 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 567596399}
+    - target: {fileID: 2163246038567115229, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: healClipPath
+      value: Sounds/Heal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163246038567115229, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: deathClipPath
+      value: Sounds/Death
+      objectReference: {fileID: 0}
     - target: {fileID: 2207671131422373206, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9810469
@@ -3023,6 +3031,10 @@ PrefabInstance:
     - target: {fileID: 2259379041844476343, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -6.0696654
+      objectReference: {fileID: 0}
+    - target: {fileID: 2433647240542301530, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: imagePath
+      value: Images/Guns/Gun
       objectReference: {fileID: 0}
     - target: {fileID: 2433647240542301530, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: shootForce
