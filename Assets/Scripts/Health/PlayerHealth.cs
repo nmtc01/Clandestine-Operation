@@ -1,5 +1,9 @@
+using UnityEngine;
+
 public class PlayerHealth : Health
 {
+    private bool playedDeathSound = false;
+
     protected override void Start()
     {
         healthUIController = PlayerHealthUI.instance;
@@ -11,7 +15,13 @@ public class PlayerHealth : Health
     public override void Kill()
     {
         base.Kill();
-
+        
         GameOver.ShowGameOverScreen();
+
+        if (!playedDeathSound)
+        {
+            playedDeathSound = true;
+            GetComponent<AudioSource>().Play();        
+        }
     }
 }
