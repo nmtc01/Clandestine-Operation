@@ -43,7 +43,7 @@ public class AutomaticPlayerGun : PlayerGun
         }
     }
 
-    public override void SetPlayerGunUI()
+    protected override void SetPlayerGunUI()
     {
         SetUIImage();
         PlayerGunUI.instance.InitSlider(maxAmmo, currentAmmo);

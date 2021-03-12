@@ -12,8 +12,6 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject bullet = null;
 
-    protected bool canShoot = false;
-
     private Vector3 shootDirection;
 
     public virtual void Start()
@@ -29,11 +27,6 @@ public class Gun : MonoBehaviour
         Bullet blt = instBullet.GetComponent<Bullet>();
         blt.SetDamage(damage);
         blt.SetLayer(LayerMask.LayerToName(gameObject.layer));
-    }
-
-    public void SetCanShoot(bool shoot)
-    {
-        canShoot = shoot;
     }
 
     public void SetShootingDirection(Vector3 direction)
