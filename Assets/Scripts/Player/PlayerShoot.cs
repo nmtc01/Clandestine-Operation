@@ -33,7 +33,7 @@ public class PlayerShoot : MonoBehaviour
         currentGun = defaultGun;
         
         // Set Gun UI
-        ((PlayerGun)currentGun).SetPlayerGunUI();
+        ((PlayerGun)currentGun).SetCurrentGun(true);
 
         aimingIgnoredColliders = ~aimingIgnoredColliders;
     }
@@ -52,7 +52,6 @@ public class PlayerShoot : MonoBehaviour
         bool isAiming = Input.GetButton("Aim") && playerControl.IsAlive();
 
         playerControl.SetIsAiming(isAiming);
-        currentGun.SetCanShoot(isAiming);
     }
 
     private void LateUpdate()
@@ -141,6 +140,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if(currentGun == defaultGun)
         {
+            ((PlayerGun)currentGun).SetCurrentGun(false);
             currentGun.gameObject.SetActive(false);
         } 
         else
@@ -149,8 +149,7 @@ public class PlayerShoot : MonoBehaviour
         }
 
         currentGun = gun;
-
-        gun.SetPlayerGunUI();
+        gun.SetCurrentGun(true);
         gun.transform.parent = gunPosition.transform;
         gun.SetHandPosition();
     }
@@ -162,7 +161,7 @@ public class PlayerShoot : MonoBehaviour
         currentGun.gameObject.SetActive(true);
 
         // Reset Player Gun UI
-        ((PlayerGun)currentGun).SetPlayerGunUI();
+        ((PlayerGun)currentGun).SetCurrentGun(true);
     }
 
     private Vector3 AimCrosshair()

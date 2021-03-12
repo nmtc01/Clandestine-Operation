@@ -23,19 +23,30 @@ public class PlayerGun : Gun
     private string imagePath = "";
     #endregion
 
+    private bool isCurrentGun = false;
+
     public override void Start()
     {
         base.Start();
 
         clipCurrentSize = clipMaxSize;
-        PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
+
+        if(isCurrentGun)
+            PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isCurrentGun) return; // These operations can only be executed if the gun is the current player gun
+
+        if(!isReloading && Input.GetButtonDown("Reload"))
+        {
+            HandleReload();
+        }
+
         timeSinceLastShot += Time.deltaTime;
-        if (canShoot && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
+        if (Player.GetInstanceControl().IsAiming() && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
         {
             Shoot();
         }
@@ -59,10 +70,17 @@ public class PlayerGun : Gun
         PlayerGunUI.instance.SetClipCurrentSize(clipCurrentSize);
 
         if (clipCurrentSize == 0)
-            HandleEmptyClip();
+            HandleReload();
     }
 
-    protected virtual void HandleEmptyClip()
+    public void SetCurrentGun(bool currentGun)
+    {
+        isCurrentGun = currentGun;
+
+        if (currentGun) SetPlayerGunUI();
+    }
+
+    protected virtual void HandleReload()
     {
         StartCoroutine(Reload());
     }
@@ -85,7 +103,7 @@ public class PlayerGun : Gun
         transform.localRotation = Quaternion.identity;
     }
 
-    public virtual void SetPlayerGunUI()
+    protected virtual void SetPlayerGunUI()
     {
         SetUIImage();
         PlayerGunUI.instance.InitSlider();

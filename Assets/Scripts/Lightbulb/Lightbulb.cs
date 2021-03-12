@@ -9,6 +9,13 @@ public class Lightbulb : MonoBehaviour
     [SerializeField]
     private float lightbulbDamage = 10f;
 
+    private Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private GameObject newCrackedLb = null;
 
     private void OnCollisionEnter(Collision collision)
@@ -29,6 +36,8 @@ public class Lightbulb : MonoBehaviour
     {
         gameObject.transform.localPosition = initialPosition;
         gameObject.SetActive(true);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         Destroy(newCrackedLb);
     }
 }

@@ -361,8 +361,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643069916296552229}
-  m_LocalRotation: {x: -0.04276338, y: -0.013305423, z: 0.02864753, w: 0.9985858}
-  m_LocalPosition: {x: 0.22580653, y: -3.6468532, z: 0.23952979}
+  m_LocalRotation: {x: 0.084808126, y: 0.0009796522, z: -0.011570966, w: 0.99632967}
+  m_LocalPosition: {x: -0.06600618, y: -3.372999, z: -0.76299894}
   m_LocalScale: {x: 0.83333343, y: 0.8333332, z: 0.83333313}
   m_Children:
   - {fileID: 3749602509385548923}
@@ -371,8 +371,8 @@ Transform:
   - {fileID: 6117693385133660793}
   - {fileID: 8004055814186455967}
   - {fileID: 565123819647996822}
-  m_Father: {fileID: 653322226066435337}
-  m_RootOrder: 1
+  m_Father: {fileID: 187830842158875763}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 9.731, y: -0.001, z: -1.331}
 --- !u!114 &1643069916296552226
 MonoBehaviour:
@@ -1460,6 +1460,7 @@ GameObject:
   - component: {fileID: 653322226066435337}
   - component: {fileID: 5525340137608422712}
   - component: {fileID: 7896348035859788020}
+  - component: {fileID: 8170000641372876998}
   m_Layer: 8
   m_Name: mixamorig:Head
   m_TagString: Head
@@ -1479,9 +1480,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2326212823058065895}
-  - {fileID: 2127541593933923743}
   m_Father: {fileID: 187830842158875763}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5525340137608422712
 MonoBehaviour:
@@ -1509,6 +1509,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.38056055, y: 0.5548099, z: 0.4632392}
   m_Center: {x: 0.0079293465, y: 0.32191336, z: 0.07536579}
+--- !u!54 &8170000641372876998
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589276924076464901}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!1 &4696803206374464014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2891,6 +2907,7 @@ Transform:
   m_LocalPosition: {x: -0.048, y: 0.289, z: 0.022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2127541593933923743}
   - {fileID: 653322226066435337}
   m_Father: {fileID: 6765480794599884814}
   m_RootOrder: 1

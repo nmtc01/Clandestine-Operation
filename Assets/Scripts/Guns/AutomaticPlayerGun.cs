@@ -25,9 +25,9 @@ public class AutomaticPlayerGun : PlayerGun
         base.Shoot();
     }
 
-    protected override void HandleEmptyClip()
+    protected override void HandleReload()
     {
-        maxAmmo -= clipMaxSize;
+        maxAmmo = maxAmmo - clipMaxSize + clipCurrentSize;
 
         if(maxAmmo <= 0)
         {
@@ -37,13 +37,12 @@ public class AutomaticPlayerGun : PlayerGun
         else
         {
             if(maxAmmo < clipMaxSize) clipMaxSize = maxAmmo;
-            PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
 
             StartCoroutine(Reload());
         }
     }
 
-    public override void SetPlayerGunUI()
+    protected override void SetPlayerGunUI()
     {
         SetUIImage();
         PlayerGunUI.instance.InitSlider(maxAmmo, currentAmmo);
