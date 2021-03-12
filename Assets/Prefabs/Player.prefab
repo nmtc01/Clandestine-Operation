@@ -1658,6 +1658,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthUIController: {fileID: 0}
+  deathClipPath: Sounds/Death
+  healClipPath: Sounds/Heal
 --- !u!114 &6092826266106646900
 MonoBehaviour:
   m_ObjectHideFlags: 0
