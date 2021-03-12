@@ -12,6 +12,16 @@ public class AutomaticPlayerGun : PlayerGun
         currentAmmo = maxAmmo;
     }
 
+    protected override void Update()
+    {
+        base.Update();
+
+        if (timeSinceLastShot > shotCooldown && !gunIsShooting && !isReloading) 
+        {
+            audioSource.Stop();
+        }
+    }
+
     protected override bool GunCanShoot()
     {
         return Input.GetButton("Fire");
@@ -48,5 +58,4 @@ public class AutomaticPlayerGun : PlayerGun
         PlayerGunUI.instance.InitSlider(maxAmmo, currentAmmo);
         PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
     }
-
 }

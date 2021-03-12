@@ -1389,6 +1389,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 897809566}
     m_Modifications:
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: m_Name
       value: Armoured Enemy 1 (2)
@@ -2398,6 +2406,14 @@ PrefabInstance:
       propertyPath: maxShield
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: m_Name
       value: Armoured Enemy (2)
@@ -3012,6 +3028,10 @@ PrefabInstance:
       propertyPath: shootForce
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 2433647240542301530, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: shootAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7825fd3a65e47d84fb6a6a177b82642f, type: 3}
     - target: {fileID: 2714334569199954970, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 27.32647
@@ -3612,6 +3632,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5.7031803
       objectReference: {fileID: 0}
+    - target: {fileID: 6918609932951297229, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7825fd3a65e47d84fb6a6a177b82642f, type: 3}
     - target: {fileID: 7071219209418643170, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.58482504
@@ -6438,6 +6462,14 @@ PrefabInstance:
       propertyPath: maxShield
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: m_Name
       value: Armoured Enemy (1)
@@ -7746,6 +7778,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 897809566}
     m_Modifications:
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: m_Name
       value: Armoured Enemy 1
@@ -11789,6 +11829,14 @@ PrefabInstance:
     - target: {fileID: 1643069916296552226, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: maxShield
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825648859031254239, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9063236139909914449, guid: c8e50ce4d45a3a54ea44baea3aa6dcf9, type: 3}
       propertyPath: m_Name

@@ -14,13 +14,23 @@ public class Gun : MonoBehaviour
 
     private Vector3 shootDirection;
 
+    [SerializeField]
+    protected AudioClip shootAudioClip = null;
+    protected AudioSource audioSource;
+
     public virtual void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = shootAudioClip;
+
         shootDirection = bulletSpawner.transform.forward;
     }
 
     public virtual void Shoot()
     {
+        //audioSource.Stop();
+        audioSource.Play(); // Play shoot sound
+
         GameObject instBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
         instBullet.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce, ForceMode.Impulse);
 
