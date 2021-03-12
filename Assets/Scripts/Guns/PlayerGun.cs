@@ -38,8 +38,15 @@ public class PlayerGun : Gun
     // Update is called once per frame
     void Update()
     {
+        if (!isCurrentGun) return; // These operations can only be executed if the gun is the current player gun
+
+        if(!isReloading && Input.GetButtonDown("Reload"))
+        {
+            HandleReload();
+        }
+
         timeSinceLastShot += Time.deltaTime;
-        if (isCurrentGun && Player.GetInstanceControl().IsAiming() && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
+        if (Player.GetInstanceControl().IsAiming() && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
         {
             Shoot();
         }
@@ -63,7 +70,7 @@ public class PlayerGun : Gun
         PlayerGunUI.instance.SetClipCurrentSize(clipCurrentSize);
 
         if (clipCurrentSize == 0)
-            HandleEmptyClip();
+            HandleReload();
     }
 
     public void SetCurrentGun(bool currentGun)
@@ -73,7 +80,7 @@ public class PlayerGun : Gun
         if (currentGun) SetPlayerGunUI();
     }
 
-    protected virtual void HandleEmptyClip()
+    protected virtual void HandleReload()
     {
         StartCoroutine(Reload());
     }
