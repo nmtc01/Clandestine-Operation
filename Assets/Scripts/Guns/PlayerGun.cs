@@ -30,7 +30,9 @@ public class PlayerGun : Gun
         base.Start();
 
         clipCurrentSize = clipMaxSize;
-        PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
+
+        if(isCurrentGun)
+            PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
     }
 
     // Update is called once per frame
