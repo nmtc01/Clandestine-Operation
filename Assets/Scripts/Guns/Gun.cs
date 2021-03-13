@@ -12,28 +12,31 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject bullet = null;
 
-    protected bool canShoot = false;
-
     private Vector3 shootDirection;
+
+    [SerializeField]
+    protected AudioClip shootAudioClip = null;
+    protected AudioSource audioSource;
 
     public virtual void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = shootAudioClip;
+
         shootDirection = bulletSpawner.transform.forward;
     }
 
     public virtual void Shoot()
     {
+        //audioSource.Stop();
+        audioSource.Play(); // Play shoot sound
+
         GameObject instBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
         instBullet.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce, ForceMode.Impulse);
 
         Bullet blt = instBullet.GetComponent<Bullet>();
         blt.SetDamage(damage);
         blt.SetLayer(LayerMask.LayerToName(gameObject.layer));
-    }
-
-    public void SetCanShoot(bool shoot)
-    {
-        canShoot = shoot;
     }
 
     public void SetShootingDirection(Vector3 direction)

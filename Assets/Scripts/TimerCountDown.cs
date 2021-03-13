@@ -36,9 +36,12 @@ public class TimerCountDown : MonoBehaviour
 
     private IEnumerator timer = null;
 
+    private AudioSource audioSource = null;
+
     void Start()
     {
         textDisplay = GetComponent<TMP_Text>();
+        audioSource = GetComponent<AudioSource>();
 
         secondsLeft = time;
         textDisplay.text = "";
@@ -107,6 +110,8 @@ public class TimerCountDown : MonoBehaviour
 
     public static void IncrementEnemiesAlerted()
     {
+        if (enemiesAlerted == 0) instance.audioSource.Play();
+
         enemiesAlerted++;
     }
 
@@ -117,7 +122,13 @@ public class TimerCountDown : MonoBehaviour
         {
             instance.StopTimer();
             StopCounting();
+            instance.audioSource.Stop();
         }
+    }
+
+    public static void ResetEnemiesAlerted()
+    {
+        enemiesAlerted = 0;
     }
 
     private void StopTimer()

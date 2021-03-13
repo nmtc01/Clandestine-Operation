@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     [SerializeField]
     private BoxCollider headCollider = null;
+    private bool isAiming = false;
 
     #region FOV Variables
 
@@ -36,10 +37,13 @@ public class EnemyController : MonoBehaviour, IHealthController
     private Gun gun = null;
     private IEnumerator shootingBehaviour = null;
     [SerializeField]
-    private float timeToShoot = 1f, timeBetweenShots = 1.5f; 
+    private float timeToShoot = 1f, timeBetweenShots = 1.5f;
     #endregion
 
+    #region Enemy Alert 
     private bool alertedBefore = false;
+    private AudioSource audioSource;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -48,15 +52,17 @@ public class EnemyController : MonoBehaviour, IHealthController
         animator = GetComponent<Animator>();
         SetAgentNewDestination();
         shootingBehaviour = AimAndShoot();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called once per frame
+    void FixedUpdate()
     {
         // Walk Animation
         SetIsWalking(canWalk);
         
-        if(FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, lookRadius))
+        if((!Player.GetInstanceControl().IsInvisible() || alertedBefore) && FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, lookRadius))
         {
             // Starts timer countdown
             if (!alertedBefore)
@@ -64,6 +70,7 @@ public class EnemyController : MonoBehaviour, IHealthController
                 TimerCountDown.StartCounting();
                 TimerCountDown.IncrementEnemiesAlerted();
                 alertedBefore = true;
+                audioSource.Play();
             }
 
             // Stopping agent from moving
@@ -73,7 +80,7 @@ public class EnemyController : MonoBehaviour, IHealthController
             // Enemy looks to the player
             SetIsAiming(true);
             Vector3 direction = (Player.GetInstance().transform.position - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
             FaceTarget(lookRotation);
 
             gun.SetShootingDirection(direction);
@@ -146,19 +153,30 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     public void SetIsAiming(bool aiming)
     {
+        isAiming = aiming;
         animator.SetBool("isAiming", aiming);
+    }
+
+    public bool IsAiming()
+    {
+        return isAiming;
     }
 
     public void SetIsDead(bool dead)
     {
         if (dead) 
         {
-            DestroyEnemyPhysics();
             if (alertedBefore) TimerCountDown.DecrementEnemiesAlerted();
+            DestroyEnemyPhysics();
 
             Score.IncreaseScore(ScoreValues.enemyKill);
         }
         animator.SetBool("isDead", dead);
+    }
+
+    public void SetKillPlayer(bool kill)
+    {
+        animator.SetBool("foundPlayer", kill);
     }
     #endregion
 

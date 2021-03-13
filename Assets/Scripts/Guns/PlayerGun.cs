@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerGun : Gun
 {
     [SerializeField]
-    private float shotCooldown = .15f;
-    private float timeSinceLastShot = 0f;
+    protected float shotCooldown = .15f;
+    protected float timeSinceLastShot = 0f;
 
     [SerializeField]
     protected int clipMaxSize = 10;
@@ -13,23 +13,46 @@ public class PlayerGun : Gun
 
     [SerializeField]
     private float reloadingTime = 1f;
-    private bool isReloading = false;
+    protected bool isReloading = false;
 
     [SerializeField]
     private Vector3 gunLocalPosition = Vector3.zero;
+
+    #region Gun UI
+    [SerializeField]
+    private string imagePath = "";
+    #endregion
+
+    [SerializeField]
+    private AudioClip reloadAudioClip = null;
+
+    private bool isCurrentGun = false;
+    protected bool gunIsShooting = false;
 
     public override void Start()
     {
         base.Start();
 
         clipCurrentSize = clipMaxSize;
+
+        if(isCurrentGun)
+            PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
+        if (!isCurrentGun) return; // These operations can only be executed if the gun is the current player gun
+
+        if(!isReloading && Input.GetButtonDown("Reload"))
+        {
+            HandleReload();
+        }
+
         timeSinceLastShot += Time.deltaTime;
-        if (canShoot && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
+        gunIsShooting = Player.GetInstanceControl().IsAiming() && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot();
+        
+        if(gunIsShooting)
         {
             Shoot();
         }
@@ -50,22 +73,43 @@ public class PlayerGun : Gun
         timeSinceLastShot = 0;
         clipCurrentSize--;
 
+        PlayerGunUI.instance.SetClipCurrentSize(clipCurrentSize);
+
         if (clipCurrentSize == 0)
-            HandleEmptyClip();
+            HandleReload();
     }
 
-    protected virtual void HandleEmptyClip()
+    public void SetCurrentGun(bool currentGun)
+    {
+        isCurrentGun = currentGun;
+
+        if (currentGun)
+        {
+            SetPlayerGunUI();
+        }
+    }
+
+    protected virtual void HandleReload()
     {
         StartCoroutine(Reload());
     }
 
     protected IEnumerator Reload()
     {
+        // Plays the reload clip
+        audioSource.Stop();
+        audioSource.clip = reloadAudioClip;
+        audioSource.Play();
+
         isReloading = true;
         yield return new WaitForSeconds(reloadingTime);
 
         clipCurrentSize = clipMaxSize;
+        PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
         isReloading = false;
+
+        // Resets the default clip
+        audioSource.clip = shootAudioClip;
         yield return null;
     }
 
@@ -74,5 +118,18 @@ public class PlayerGun : Gun
         gameObject.layer = LayerMask.NameToLayer("Player");
         transform.localPosition = gunLocalPosition;
         transform.localRotation = Quaternion.identity;
+    }
+
+    protected virtual void SetPlayerGunUI()
+    {
+        SetUIImage();
+        PlayerGunUI.instance.InitSlider();
+        PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
+    }
+
+    protected void SetUIImage()
+    {
+        Sprite spr = Resources.Load<Sprite>(imagePath);
+        PlayerGunUI.instance.SetImage(spr);
     }
 }

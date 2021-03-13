@@ -4,21 +4,45 @@ public class AutomaticPlayerGun : PlayerGun
 {
     [SerializeField]
     private int maxAmmo = 100;
+    private int currentAmmo;
+
+    public override void Start()
+    {
+        base.Start();
+        currentAmmo = maxAmmo;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (timeSinceLastShot > shotCooldown && !gunIsShooting && !isReloading) 
+        {
+            audioSource.Stop();
+        }
+    }
 
     protected override bool GunCanShoot()
     {
         return Input.GetButton("Fire");
     }
 
-    protected override void HandleEmptyClip()
+    public override void Shoot()
     {
-        maxAmmo -= clipMaxSize;
+        currentAmmo--;
+        PlayerGunUI.instance.SetSliderValue(currentAmmo);
+        
+        base.Shoot();
+    }
+
+    protected override void HandleReload()
+    {
+        maxAmmo = maxAmmo - clipMaxSize + clipCurrentSize;
 
         if(maxAmmo <= 0)
         {
-            PlayerShoot playerShoot = Player.GetInstance().GetComponent<PlayerShoot>();
-            playerShoot.ResetGun();
-            Destroy(gameObject);
+            // Resets the current player gun and destroys this gun
+            Player.GetInstanceShoot().ResetGun();
         } 
         else
         {
@@ -26,5 +50,12 @@ public class AutomaticPlayerGun : PlayerGun
 
             StartCoroutine(Reload());
         }
+    }
+
+    protected override void SetPlayerGunUI()
+    {
+        SetUIImage();
+        PlayerGunUI.instance.InitSlider(maxAmmo, currentAmmo);
+        PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
     }
 }

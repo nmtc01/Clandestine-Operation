@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour, IHealthController
 {
     private bool isAiming = false;
-    private bool isWalking = false;
     private bool inElevator = false;
-    private float oppositeDir = 0f;
+    private bool isCovering = false;
+    private bool isAlive = true;
+
     [SerializeField]
     private GameObject skeleton = null;
     [SerializeField]
@@ -30,24 +31,33 @@ public class PlayerControl : MonoBehaviour, IHealthController
 
     public void SetIsWalking(bool walking)
     {
-        isWalking = walking;
         animator.SetBool("isWalking", walking);
     }
 
     public void SetOppositeDir(float oppositeDir)
     {
-        this.oppositeDir = oppositeDir;
         animator.SetFloat("oppositeDir", oppositeDir, 0.1f, Time.deltaTime);
     }
 
     public void SetIsDead(bool dead)
     {
         animator.SetBool("isDead", dead);
+        isAlive = false;
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
     }
 
     public void RotateSkeleton(bool rotate) 
     {
         skeleton.transform.rotation = Quaternion.Euler(0, rotate ? -90 : 90, 0);
+    }
+
+    public void RotateSkeleton(Vector3 direction) 
+    {
+        skeleton.transform.forward = direction;
     }
 
     public void RotateSkeleton(float yRot)
@@ -68,5 +78,29 @@ public class PlayerControl : MonoBehaviour, IHealthController
     public bool IsInElevator()
     {
         return inElevator;
+    }
+
+    public void SetIsCovering(bool covering)
+    {
+        isCovering = covering;
+        animator.SetBool("isCovering", covering);
+    }
+
+    public bool IsCovering()
+    {
+        return isCovering;
+    }
+
+    public bool IsInvisible()
+    {
+        return isCovering && !isAiming;
+    }
+
+    public void SetIsFallingBack(bool falling)
+    {
+        isAlive = false;
+        animator.SetBool("isFallingBack", falling);
+        Health health = GetComponent<Health>();
+        health.Kill();
     }
 }

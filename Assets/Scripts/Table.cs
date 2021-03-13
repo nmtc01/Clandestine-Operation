@@ -14,9 +14,7 @@ public class Table : MonoBehaviour
     {
         if(hasObject && canGrabGun && Input.GetButtonDown("Interact"))
         {
-            PlayerShoot playerShoot = Player.GetInstance().GetComponent<PlayerShoot>();
-
-            playerShoot.SetNewGun(gun);
+            Player.GetInstanceShoot().SetNewGun(gun);
 
             key.SetActive(false);
             hasObject = false;

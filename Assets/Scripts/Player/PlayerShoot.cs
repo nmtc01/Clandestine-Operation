@@ -11,8 +11,6 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private Vector3 initialRotation = Vector3.zero;
 
-    private PlayerControl playerControl;
-
     [SerializeField]
     private Gun defaultGun = null;
     private Gun currentGun;
@@ -21,18 +19,21 @@ public class PlayerShoot : MonoBehaviour
 
     [SerializeField]
     private float aimMaxLength = 15f;
-    private bool isAiming = false;
     [SerializeField]
     private LayerMask aimingIgnoredColliders = 0;
     [SerializeField]
     private LineRenderer aimingLine = null;
     const float spineHeight = 0.075f;
+    [SerializeField]
+    private GameObject crosshair = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerControl = GetComponent<PlayerControl>();
         currentGun = defaultGun;
+        
+        // Set Gun UI
+        ((PlayerGun)currentGun).SetCurrentGun(true);
 
         aimingIgnoredColliders = ~aimingIgnoredColliders;
     }
@@ -40,26 +41,44 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerControl playerControl = Player.GetInstanceControl();
+         
         // Can't aim and shoot if entering on elevator
-        if (playerControl.IsInElevator()) return;
+        if (playerControl.IsInElevator())
+        {
+            return;
+        }
 
-        isAiming = Input.GetButton("Aim");
+        bool isAiming = Input.GetButton("Aim") && playerControl.IsAlive();
 
         playerControl.SetIsAiming(isAiming);
-        currentGun.SetCanShoot(isAiming);
     }
 
     private void LateUpdate()
     {
-        if (isAiming)
+        PlayerControl playerControl = Player.GetInstanceControl();
+        if (playerControl.IsAiming() && !playerControl.IsCovering())
         {
             RotateSpine();
             SetAimingLinePositions();
         }
-        else
+        else if (playerControl.IsAiming() && playerControl.IsCovering())
         {
-            spine.transform.localRotation = Quaternion.Euler(initialRotation);
+            Vector3 crosshairPos = AimCrosshair();
+            RotateSpineCrosshair(crosshairPos);
+            SetAimingCrossHairLinePositions(crosshairPos);
+        }
+        else {
+            if (playerControl.IsCovering())
+            {
+                ResetRotationSpineCrosshair();
+            }
+            else 
+            { 
+                spine.transform.localRotation = Quaternion.Euler(initialRotation);
+            }
             ResetAimingLine();
+            crosshair.SetActive(false);
         }
     }
 
@@ -70,13 +89,13 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, playerControl.getSkeletonDirection()), -1f, 1f));
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, Player.GetInstanceControl().getSkeletonDirection()), -1f, 1f));
 
         if (vpMousePos.x < vpSpinePos.x)
         {
             rot %= 180;
         }
-        playerControl.RotateSkeleton(vpMousePos.x < vpSpinePos.x);
+        Player.GetInstanceControl().RotateSkeleton(vpMousePos.x < vpSpinePos.x);
 
         if (rot >= maxRotation) rot = maxRotation;
 
@@ -121,6 +140,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if(currentGun == defaultGun)
         {
+            ((PlayerGun)currentGun).SetCurrentGun(false);
             currentGun.gameObject.SetActive(false);
         } 
         else
@@ -129,14 +149,59 @@ public class PlayerShoot : MonoBehaviour
         }
 
         currentGun = gun;
+        gun.SetCurrentGun(true);
         gun.transform.parent = gunPosition.transform;
         gun.SetHandPosition();
     }
 
     public void ResetGun()
     {
-        Destroy(currentGun);
+        Destroy(currentGun.gameObject);
         currentGun = defaultGun;
         currentGun.gameObject.SetActive(true);
+
+        // Reset Player Gun UI
+        ((PlayerGun)currentGun).SetCurrentGun(true);
+    }
+
+    private Vector3 AimCrosshair()
+    {
+        crosshair.SetActive(true);
+        Ray vpMousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Vector3 crosshairPos;
+        if (Physics.Raycast(vpMousePos, out hit, 10, aimingIgnoredColliders))
+            crosshairPos = hit.point;
+        else crosshairPos = vpMousePos.origin + vpMousePos.direction * 10;
+        crosshair.transform.position = crosshairPos;
+        
+        return crosshairPos;
+    }
+
+    private void SetAimingCrossHairLinePositions(Vector3 crosshairPos)
+    {
+        Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
+        Vector3 startPoint = bulletSpawnerTransform.position;
+
+        aimingLine.gameObject.SetActive(true);
+        aimingLine.SetPosition(0, startPoint);
+        aimingLine.SetPosition(1, crosshairPos);
+
+        currentGun.SetShootingDirection((crosshairPos - bulletSpawnerTransform.position).normalized);
+    }
+
+    private void RotateSpineCrosshair(Vector3 crosshairPos)
+    {
+        Vector3 direction = crosshairPos - spine.transform.position;
+        Player.GetInstanceControl().RotateSkeleton(direction);
+    }
+    private void ResetRotationSpineCrosshair()
+    {
+        Player.GetInstanceControl().RotateSkeleton(new Vector3(1,0,0));
+    }
+
+    private void OnDisable()
+    {
+        ResetAimingLine();
     }
 }
