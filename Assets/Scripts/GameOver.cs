@@ -29,6 +29,7 @@ public class GameOver : MonoBehaviour
     public static void MainMenu()
     {
         ResetTimer();
+        GameManager.DestroyObject();
         SceneManager.LoadScene("Menu");
     }
 

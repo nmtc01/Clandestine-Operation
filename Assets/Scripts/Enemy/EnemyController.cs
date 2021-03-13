@@ -37,10 +37,13 @@ public class EnemyController : MonoBehaviour, IHealthController
     private Gun gun = null;
     private IEnumerator shootingBehaviour = null;
     [SerializeField]
-    private float timeToShoot = 1f, timeBetweenShots = 1.5f; 
+    private float timeToShoot = 1f, timeBetweenShots = 1.5f;
     #endregion
 
+    #region Enemy Alert 
     private bool alertedBefore = false;
+    private AudioSource audioSource;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +52,8 @@ public class EnemyController : MonoBehaviour, IHealthController
         animator = GetComponent<Animator>();
         SetAgentNewDestination();
         shootingBehaviour = AimAndShoot();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // FixedUpdate is called once per frame
@@ -65,6 +70,7 @@ public class EnemyController : MonoBehaviour, IHealthController
                 TimerCountDown.StartCounting();
                 TimerCountDown.IncrementEnemiesAlerted();
                 alertedBefore = true;
+                audioSource.Play();
             }
 
             // Stopping agent from moving

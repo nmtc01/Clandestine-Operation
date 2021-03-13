@@ -59,5 +59,12 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4c2b83a14cb588a469d5ef6bdb2cc2d2, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 5441419128282580646, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4664198932357901168, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+    - {fileID: 3012833983855326606, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+    - {fileID: 2791927868203962773, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}

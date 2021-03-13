@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerGun : Gun
 {
     [SerializeField]
-    private float shotCooldown = .15f;
-    private float timeSinceLastShot = 0f;
+    protected float shotCooldown = .15f;
+    protected float timeSinceLastShot = 0f;
 
     [SerializeField]
     protected int clipMaxSize = 10;
@@ -13,7 +13,7 @@ public class PlayerGun : Gun
 
     [SerializeField]
     private float reloadingTime = 1f;
-    private bool isReloading = false;
+    protected bool isReloading = false;
 
     [SerializeField]
     private Vector3 gunLocalPosition = Vector3.zero;
@@ -23,7 +23,11 @@ public class PlayerGun : Gun
     private string imagePath = "";
     #endregion
 
+    [SerializeField]
+    private AudioClip reloadAudioClip = null;
+
     private bool isCurrentGun = false;
+    protected bool gunIsShooting = false;
 
     public override void Start()
     {
@@ -36,7 +40,7 @@ public class PlayerGun : Gun
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (!isCurrentGun) return; // These operations can only be executed if the gun is the current player gun
 
@@ -46,7 +50,9 @@ public class PlayerGun : Gun
         }
 
         timeSinceLastShot += Time.deltaTime;
-        if (Player.GetInstanceControl().IsAiming() && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot())
+        gunIsShooting = Player.GetInstanceControl().IsAiming() && timeSinceLastShot >= shotCooldown && !isReloading && GunCanShoot();
+        
+        if(gunIsShooting)
         {
             Shoot();
         }
@@ -77,7 +83,10 @@ public class PlayerGun : Gun
     {
         isCurrentGun = currentGun;
 
-        if (currentGun) SetPlayerGunUI();
+        if (currentGun)
+        {
+            SetPlayerGunUI();
+        }
     }
 
     protected virtual void HandleReload()
@@ -87,12 +96,20 @@ public class PlayerGun : Gun
 
     protected IEnumerator Reload()
     {
+        // Plays the reload clip
+        audioSource.Stop();
+        audioSource.clip = reloadAudioClip;
+        audioSource.Play();
+
         isReloading = true;
         yield return new WaitForSeconds(reloadingTime);
 
         clipCurrentSize = clipMaxSize;
         PlayerGunUI.instance.SetClipProperties(clipMaxSize, clipCurrentSize);
         isReloading = false;
+
+        // Resets the default clip
+        audioSource.clip = shootAudioClip;
         yield return null;
     }
 

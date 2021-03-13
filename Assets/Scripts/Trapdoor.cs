@@ -4,11 +4,13 @@ using UnityEngine;
 public class Trapdoor : MonoBehaviour
 {
     private Animator animator;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(TrapdoorAnimation());
     }
 
@@ -18,6 +20,8 @@ public class Trapdoor : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(4f, 5.5f));
             animator.SetTrigger("open");
+            audioSource.Play();
+
             yield return new WaitForSeconds(.5f);
             animator.SetTrigger("close");
         }
