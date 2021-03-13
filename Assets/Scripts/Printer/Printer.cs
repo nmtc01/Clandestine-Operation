@@ -4,6 +4,8 @@ using UnityEngine;
 public class Printer : MonoBehaviour
 {
     private Animator animator;
+    private AudioSource audioSource;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -19,6 +21,7 @@ public class Printer : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(Spawn());
     }
 
@@ -27,6 +30,7 @@ public class Printer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(2f, 5.0f));
+            audioSource.Play();
             animator.SetTrigger("launch");
         }
     }

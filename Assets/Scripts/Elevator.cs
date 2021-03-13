@@ -29,10 +29,14 @@ public class Elevator : MonoBehaviour
     private bool canInteract = false;
     private bool moving = false;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        switch(currentFloor)
+        audioSource = GetComponent<AudioSource>();
+
+        switch (currentFloor)
         {
             case 0:
                 SetDoorState(downDoor, ElevatorDoorState.OPEN_DOOR);
@@ -45,6 +49,8 @@ public class Elevator : MonoBehaviour
             default:
                 break;
         }
+
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -87,7 +93,9 @@ public class Elevator : MonoBehaviour
 
     private void ChangeDoorState(ElevatorDoor door)
     {
-        if(door.state == ElevatorDoorState.CLOSE_DOOR)
+        audioSource.Play();
+
+        if (door.state == ElevatorDoorState.CLOSE_DOOR)
         {
             SetDoorState(door, ElevatorDoorState.OPEN_DOOR);
         }
