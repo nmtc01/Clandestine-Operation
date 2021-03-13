@@ -4,7 +4,7 @@ public class Cover : MonoBehaviour
 {
     [SerializeField]
     private GameObject key = null;
-    private float range = 4f;
+    private float range = 3f;
     private float slack = 3f;
     private bool isCovering = false;
     
@@ -13,7 +13,7 @@ public class Cover : MonoBehaviour
     [SerializeField]
     private GameObject crosshair = null;
     [SerializeField]
-    private GameObject fourthWall = null;
+    private static GameObject fourthWall = null;
 
     // Update is called once per frame
     void Update()
