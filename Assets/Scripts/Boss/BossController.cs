@@ -40,4 +40,9 @@ public class BossController : MonoBehaviour
     {
         animator.SetTrigger("turn_right");
     }
+
+    public void GrabGun(bool grabbing)
+    {
+        animator.SetBool("grabbing_gun", grabbing);
+    }
 }
