@@ -95,12 +95,4 @@ public class PlayerControl : MonoBehaviour, IHealthController
     {
         return isCovering && !isAiming;
     }
-
-    public void SetIsFallingBack(bool falling)
-    {
-        isAlive = false;
-        animator.SetBool("isFallingBack", falling);
-        Health health = GetComponent<Health>();
-        health.Kill();
-    }
 }
