@@ -38,6 +38,11 @@ public class Score : MonoBehaviour
         instance.IncreaseInstanceScore(inc);
     }
 
+    public float GetScore()
+    {
+        return score_value;
+    }
+
     private void IncreaseInstanceScore(float inc)
     {
         score_value += inc;
