@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour, IHealthController
         // Walk Animation
         SetIsWalking(canWalk);
         
-        if(!Player.GetInstanceControl().IsInvisible() && FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, lookRadius))
+        if((!Player.GetInstanceControl().IsInvisible() || alertedBefore) && FOVDetection.InFOV(transform, Player.GetInstance().transform, maxAngle, lookRadius))
         {
             // Starts timer countdown
             if (!alertedBefore)
@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour, IHealthController
             // Enemy looks to the player
             SetIsAiming(true);
             Vector3 direction = (Player.GetInstance().transform.position - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
             FaceTarget(lookRotation);
 
             gun.SetShootingDirection(direction);
