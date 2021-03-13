@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Head
   - HeadBoss
+  - GameOver
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - FourthWall
   - Water
   - UI
   - PlayerBullet
