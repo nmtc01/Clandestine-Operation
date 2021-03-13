@@ -239,7 +239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 32434248}
   - component: {fileID: 32434247}
-  - component: {fileID: 32434246}
   - component: {fileID: 32434245}
   m_Layer: 0
   m_Name: Main Camera
@@ -263,14 +262,6 @@ MonoBehaviour:
   minXValue: -35
   maxXValue: 79
   target: {fileID: 1659568421}
---- !u!81 &32434246
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32434244}
-  m_Enabled: 1
 --- !u!20 &32434247
 Camera:
   m_ObjectHideFlags: 0
