@@ -1,0 +1,29 @@
+using UnityEngine;
+
+public class CameraFollowBoss : MonoBehaviour
+{
+    [SerializeField]
+    private float minXValue = -100f, maxXValue = 100f;
+
+    public Transform target;
+    private Vector3 offset;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        offset = new Vector3(0, 4, 0);
+    }
+
+    private void LateUpdate() 
+    {
+        Follow();
+    }
+
+    private void Follow()
+    {
+        Vector3 targetPosition = target.transform.position + offset;
+        targetPosition.x = Mathf.Lerp(this.transform.position.x,Mathf.Clamp(targetPosition.x, minXValue, maxXValue), Time.deltaTime);
+        targetPosition.z = offset.z;
+        transform.position = targetPosition;
+    }
+}
