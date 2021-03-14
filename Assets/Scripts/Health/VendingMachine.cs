@@ -11,7 +11,7 @@ public class VendingMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Player.GetInstance().transform.position - this.transform.position).magnitude < range && active)
+        if ((Player.GetArmatureTransform().position - this.transform.position).magnitude < range && active)
         {
             key.SetActive(true);
             if (Input.GetButtonDown("Interact"))
