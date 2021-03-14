@@ -1564,7 +1564,6 @@ GameObject:
   - component: {fileID: 3666549597828597965}
   - component: {fileID: 2163246038567115229}
   - component: {fileID: 6092826266106646900}
-  - component: {fileID: 3666549597828597954}
   - component: {fileID: 2775341933900644807}
   - component: {fileID: 1486408119307394209}
   - component: {fileID: 3942397216505219521}
@@ -1676,20 +1675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d2c4e6b24195041af8f3db4df2af4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &3666549597828597954
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3666549597828597966}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 2.75
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.6, z: 0}
 --- !u!54 &2775341933900644807
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3116,6 +3101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4979070858190865130}
   - component: {fileID: 6883466990845954215}
+  - component: {fileID: 6017901628678248439}
   m_Layer: 7
   m_Name: Armature
   m_TagString: Untagged
@@ -3157,6 +3143,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &6017901628678248439
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883466990845954208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2.75
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.6, z: 0}
 --- !u!1 &6910878915960159857
 GameObject:
   m_ObjectHideFlags: 0
@@ -4235,6 +4235,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
+--- !u!4 &2897149865802846813 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2973959476250147253, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
+  m_PrefabInstance: {fileID: 103897350714698728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2433647240542301530 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2357374174929225394, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
@@ -4246,8 +4251,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea69c7b104b29724181c9c9fae6b930f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2897149865802846813 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2973959476250147253, guid: 7a1f19947d6ec004a876d892e49b7455, type: 3}
-  m_PrefabInstance: {fileID: 103897350714698728}
-  m_PrefabAsset: {fileID: 0}

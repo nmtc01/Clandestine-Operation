@@ -36,6 +36,8 @@ public class PlayerHealth : Health
             PlayClip(deathClip);
 
             hearthBeatAudioSource.Stop();
+
+            Player.EnablePhysics(true);
         }
     }
 

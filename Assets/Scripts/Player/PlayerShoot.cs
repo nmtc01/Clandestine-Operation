@@ -64,6 +64,7 @@ public class PlayerShoot : MonoBehaviour
         }
         else if (playerControl.IsAiming() && playerControl.IsCovering())
         {
+            Player.EnablePhysics(true);
             Vector3 crosshairPos = AimCrosshair();
             RotateSpineCrosshair(crosshairPos);
             SetAimingCrossHairLinePositions(crosshairPos);
@@ -71,6 +72,7 @@ public class PlayerShoot : MonoBehaviour
         else {
             if (playerControl.IsCovering())
             {
+                Player.EnablePhysics(false);
                 ResetRotationSpineCrosshair();
             }
             else 
