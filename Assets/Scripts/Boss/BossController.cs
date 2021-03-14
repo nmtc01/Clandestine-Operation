@@ -13,7 +13,9 @@ public class BossController : MonoBehaviour
     private bool wasInFOV = false;
     private IEnumerator shootingBehaviour = null;
     [SerializeField]
-    private float timeToShoot = 1f, timeBetweenShots = 1.5f;
+    private float timeToShoot = 1f, timeToReload = 2f;
+    [SerializeField]
+    private GameObject healthUI = null;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +69,13 @@ public class BossController : MonoBehaviour
     public void GrabGun(bool grabbing)
     {
         animator.SetBool("grabbing_gun", grabbing);
+        healthUI.SetActive(true);
         canShoot = grabbing;
+    }
+
+    public bool CanShoot()
+    {
+        return canShoot;
     }
 
     private void FaceTarget(Quaternion lookRotation)
@@ -82,7 +90,7 @@ public class BossController : MonoBehaviour
         while(true)
         {
             gun.Shoot();
-            yield return new WaitForSeconds(timeBetweenShots);
+            yield return new WaitForSeconds(timeToReload);
         }
     }
 }

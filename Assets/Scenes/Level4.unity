@@ -485,7 +485,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1936,7 +1936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &786897419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2641,13 +2641,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
 --- !u!114 &1033865863 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2631863088103420162, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8612869225172180202, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
   m_PrefabInstance: {fileID: 1033865862}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27b48781d06d254bab4b53981f25316, type: 3}
+  m_Script: {fileID: 11500000, guid: b1a64a51fab2bc348a8e86240bb4d3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1066156871
@@ -3209,6 +3209,10 @@ PrefabInstance:
       propertyPath: gun
       value: 
       objectReference: {fileID: 1033865863}
+    - target: {fileID: 6720835883365628431, guid: a85771758ab940b4185441a118871c09, type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 786897418}
     - target: {fileID: 6746059310750924353, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -59.62261
@@ -3440,6 +3444,10 @@ PrefabInstance:
     - target: {fileID: 8662588387496587096, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.000037109417
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832307572650432640, guid: a85771758ab940b4185441a118871c09, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8832307572650432640, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: healthUIController
@@ -5034,7 +5042,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -2509,8 +2509,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7651031971023017863}
-  - component: {fileID: 2631863088103420162}
   - component: {fileID: 6253716267342729701}
+  - component: {fileID: 8612869225172180202}
   m_Layer: 0
   m_Name: Minigun
   m_TagString: Untagged
@@ -2534,23 +2534,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2631863088103420162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5194511912134481004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27b48781d06d254bab4b53981f25316, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  shootForce: 30
-  bulletSpawner: {fileID: 7102820832873674402}
-  bullet: {fileID: 5891633959458352717, guid: b4164b23fa055764c87440da9ecabd48, type: 3}
-  shootAudioClip: {fileID: 0}
 --- !u!82 &6253716267342729701
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2647,6 +2630,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8612869225172180202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194511912134481004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a64a51fab2bc348a8e86240bb4d3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  shootForce: 30
+  bulletSpawner: {fileID: 7102820832873674402}
+  bullet: {fileID: 5891633959458352717, guid: b4164b23fa055764c87440da9ecabd48, type: 3}
+  shootAudioClip: {fileID: 8300000, guid: 0b0ba0876423b2c459f89dc09b34f4bb, type: 3}
+  shotCooldown: 0.15
+  clipMaxSize: 10
+  reloadingTime: 1
+  gunLocalPosition: {x: 0, y: 0, z: 0}
+  reloadAudioClip: {fileID: 8300000, guid: 1ab31758dc2a66441ad699816f3045bd, type: 3}
 --- !u!1 &5833522143720623642
 GameObject:
   m_ObjectHideFlags: 0
