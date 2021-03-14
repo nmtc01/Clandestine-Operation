@@ -9,11 +9,11 @@ public class BossController : MonoBehaviour
     private bool canShoot = false;
 
     [SerializeField]
-    private Gun gun = null;
+    private BossGun gun = null;
     private bool wasInFOV = false;
     private IEnumerator shootingBehaviour = null;
     [SerializeField]
-    private float timeToShoot = 1f, timeToReload = 2f;
+    private float timeToShoot = 1f, timeBetweenShots = 0.1f;
     [SerializeField]
     private GameObject healthUI = null;
 
@@ -90,7 +90,7 @@ public class BossController : MonoBehaviour
         while(true)
         {
             gun.Shoot();
-            yield return new WaitForSeconds(timeToReload);
+            yield return new WaitForSeconds(timeBetweenShots);
         }
     }
 }

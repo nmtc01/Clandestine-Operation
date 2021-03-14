@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class BossGun : Gun
 {
-    [SerializeField]
-    protected float shotCooldown = 10f;
     protected float timeSinceLastShot = 0f;
 
     [SerializeField]
@@ -12,7 +10,7 @@ public class BossGun : Gun
     protected int clipCurrentSize;
 
     [SerializeField]
-    private float reloadingTime = 0.1f;
+    private float reloadingTime = 10f;
     protected bool isReloading = false;
 
     [SerializeField]
@@ -21,7 +19,7 @@ public class BossGun : Gun
     [SerializeField]
     private AudioClip reloadAudioClip = null;
 
-    protected bool gunIsShooting = false;
+    private bool firstTimeShooting = true;
 
     public override void Start()
     {
@@ -30,21 +28,15 @@ public class BossGun : Gun
         clipCurrentSize = clipMaxSize;
     }
 
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-        timeSinceLastShot += Time.deltaTime;
-        gunIsShooting = timeSinceLastShot >= shotCooldown && !isReloading && BossController.GetInstance().CanShoot();
-        
-        if(gunIsShooting)
-        {
-            Shoot();
-        }
-    }
-
     public override void Shoot()
     {
-        base.Shoot();
+        if (isReloading) return;
+        if (firstTimeShooting) 
+        {
+            audioSource.Play();
+            firstTimeShooting = false;
+        }
+        base.ShootBullet();
 
         timeSinceLastShot = 0;
         clipCurrentSize--;
@@ -53,26 +45,29 @@ public class BossGun : Gun
             HandleReload();
     }
 
-    protected virtual void HandleReload()
+    protected void HandleReload()
     {
         StartCoroutine(Reload());
     }
 
     protected IEnumerator Reload()
     {
+        isReloading = true;
+
         // Plays the reload clip
         audioSource.Stop();
         audioSource.clip = reloadAudioClip;
         audioSource.Play();
 
-        isReloading = true;
         yield return new WaitForSeconds(reloadingTime);
 
         clipCurrentSize = clipMaxSize;
         isReloading = false;
 
         // Resets the default clip
+        audioSource.Stop();
         audioSource.clip = shootAudioClip;
+        firstTimeShooting = true;
         yield return null;
     }
 }

@@ -2557,6 +2557,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6253716267342729701, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253716267342729701, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6988021896991480593, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -2624,6 +2632,10 @@ PrefabInstance:
     - target: {fileID: 8391092908816420005, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612869225172180202, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
+      propertyPath: reloadingTime
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8879572126984780144, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
       propertyPath: m_Layer
