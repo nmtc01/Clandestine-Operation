@@ -2008,6 +2008,7 @@ MonoBehaviour:
   playerSkeleton: {fileID: 1856978024}
   crosshair: {fileID: 2147023702}
   fourthWall: {fileID: 357503541}
+  healthUI: {fileID: 0}
 --- !u!4 &262242028
 Transform:
   m_ObjectHideFlags: 0
@@ -2990,7 +2991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &357503542
 Transform:
   m_ObjectHideFlags: 0
@@ -5706,6 +5707,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 128451168, guid: c0550b189d7635c44b5bda241741568f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 29.900024
+      objectReference: {fileID: 0}
     - target: {fileID: 1110179169, guid: c0550b189d7635c44b5bda241741568f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10769,7 +10774,8 @@ MonoBehaviour:
   key: {fileID: 967508841}
   playerSkeleton: {fileID: 1856978024}
   crosshair: {fileID: 2147023702}
-  fourthWall: {fileID: 0}
+  fourthWall: {fileID: 357503541}
+  healthUI: {fileID: 0}
 --- !u!1 &997284298
 GameObject:
   m_ObjectHideFlags: 0
@@ -13792,6 +13798,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957388659029321141, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

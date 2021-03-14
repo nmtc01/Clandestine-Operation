@@ -7567,6 +7567,7 @@ MonoBehaviour:
   key: {fileID: 476306305}
   playerSkeleton: {fileID: 1998774167}
   crosshair: {fileID: 1998774168}
+  fourthWall: {fileID: 1205715895}
   healthUI: {fileID: 1063159423}
 --- !u!54 &2811908578853146482
 Rigidbody:
@@ -8317,6 +8318,7 @@ MonoBehaviour:
   key: {fileID: 1723180804}
   playerSkeleton: {fileID: 1998774167}
   crosshair: {fileID: 1998774168}
+  fourthWall: {fileID: 1205715895}
   healthUI: {fileID: 837171754}
 --- !u!54 &5396352176409536928
 Rigidbody:
@@ -8398,6 +8400,7 @@ MonoBehaviour:
   key: {fileID: 1668361117}
   playerSkeleton: {fileID: 1998774167}
   crosshair: {fileID: 1998774168}
+  fourthWall: {fileID: 1205715895}
   healthUI: {fileID: 1392551057}
 --- !u!54 &5398647941615608996
 Rigidbody:
@@ -8970,6 +8973,7 @@ MonoBehaviour:
   key: {fileID: 469477254}
   playerSkeleton: {fileID: 1998774167}
   crosshair: {fileID: 1998774168}
+  fourthWall: {fileID: 1205715895}
   healthUI: {fileID: 946869378}
 --- !u!54 &7196702377691071552
 Rigidbody:

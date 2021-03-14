@@ -13,7 +13,7 @@ public class Cover : MonoBehaviour, IHealthController
     [SerializeField]
     private GameObject crosshair = null;
     [SerializeField]
-    private static GameObject fourthWall = null;
+    private GameObject fourthWall = null;
     [SerializeField]
     private GameObject healthUI = null;
 
@@ -67,7 +67,6 @@ public class Cover : MonoBehaviour, IHealthController
 
     void Deactivate()
     {
-        if (fourthWall) fourthWall.SetActive(false);
         if (crosshair) crosshair.SetActive(false);
         if (key) key.SetActive(false);
     }
