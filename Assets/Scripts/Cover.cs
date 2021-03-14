@@ -39,23 +39,31 @@ public class Cover : MonoBehaviour
                 if (playerSkeleton && playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1 * playerSkeleton.transform.right;
 
                 // Change player colliders to fit new position
-                handlePlayerColliders();
+                HandlePlayerColliders();
             }
         }
         else Deactivate();
     }
 
-    void handlePlayerColliders()
+    private void HandlePlayerColliders()
     {
         GameObject player = Player.GetInstance();
 
         // Freeze positions
         Rigidbody rigidbody = player.GetComponent<Rigidbody>();
-        if(isCovering) rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-        else rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        if (isCovering)
+        {
+            Player.EnablePhysics(false);
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            Player.EnablePhysics(true);
+            rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        }
     }
 
-    void Deactivate()
+    private void Deactivate()
     {
         if (fourthWall) fourthWall.SetActive(false);
         if (crosshair) crosshair.SetActive(false);
