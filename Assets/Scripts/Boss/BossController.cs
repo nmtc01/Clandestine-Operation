@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossController : MonoBehaviour
+public class BossController : MonoBehaviour, IHealthController
 {
     private static BossController instance = null;
     private Animator animator;
@@ -16,6 +16,7 @@ public class BossController : MonoBehaviour
     private float timeToShoot = 1f, timeBetweenShots = 0.1f;
     [SerializeField]
     private GameObject healthUI = null;
+    private bool isAlive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -93,5 +94,10 @@ public class BossController : MonoBehaviour
             gun.Shoot();
             yield return new WaitForSeconds(timeBetweenShots);
         }
+    }
+
+    public void SetIsDead(bool dead)
+    {
+        isAlive = dead;
     }
 }
