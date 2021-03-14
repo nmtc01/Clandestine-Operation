@@ -22,7 +22,11 @@ public class CameraFollowBoss : MonoBehaviour
         if (Mathf.Abs(target.position.x - this.transform.position.x) <= range)
         {
             BossController.GetInstance().Turn();
-            BossController.GetInstance().GrabGun(true); //TODO take this from here and place somewhere else
+            if (Input.GetButton("Return"))
+            {
+                this.transform.gameObject.SetActive(false);
+                BossController.GetInstance().GrabGun(true); 
+            }
         }
     }
 

@@ -6,17 +6,40 @@ public class BossController : MonoBehaviour
 {
     private static BossController instance = null;
     private Animator animator;
+    private bool canShoot = false;
+
+    [SerializeField]
+    private Gun gun = null;
+    private bool wasInFOV = false;
+    private IEnumerator shootingBehaviour = null;
+    [SerializeField]
+    private float timeToShoot = 1f, timeBetweenShots = 1.5f;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        shootingBehaviour = AimAndShoot();
     }
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called once per frame
+    void FixedUpdate()
     {
-        
+        if (canShoot)
+        {
+            // Enemy looks to the player
+            Vector3 direction = (Player.GetInstance().transform.position - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
+            FaceTarget(lookRotation);
+
+            gun.SetShootingDirection(direction);
+            if (!wasInFOV)
+            {
+                StopAllCoroutines();
+                StartCoroutine(shootingBehaviour);
+            }
+            wasInFOV = true;
+        }
     }
 
     private void Awake()
@@ -44,5 +67,22 @@ public class BossController : MonoBehaviour
     public void GrabGun(bool grabbing)
     {
         animator.SetBool("grabbing_gun", grabbing);
+        canShoot = grabbing;
+    }
+
+    private void FaceTarget(Quaternion lookRotation)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
+    }
+
+    private IEnumerator AimAndShoot()
+    {
+        yield return new WaitForSeconds(timeToShoot);
+
+        while(true)
+        {
+            gun.Shoot();
+            yield return new WaitForSeconds(timeBetweenShots);
+        }
     }
 }
