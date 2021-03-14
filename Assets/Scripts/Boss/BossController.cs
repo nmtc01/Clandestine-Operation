@@ -70,6 +70,7 @@ public class BossController : MonoBehaviour
     {
         animator.SetBool("grabbing_gun", grabbing);
         healthUI.SetActive(true);
+        gun.transform.SetParent(transform);
         canShoot = grabbing;
     }
 

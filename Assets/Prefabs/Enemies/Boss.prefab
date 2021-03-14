@@ -756,6 +756,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9498d6cc3d1ba524a827b5440bf3ea36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 0}
+  timeToShoot: 1
+  timeBetweenShots: 0.1
+  healthUI: {fileID: 0}
 --- !u!1 &2285007440378682841
 GameObject:
   m_ObjectHideFlags: 0

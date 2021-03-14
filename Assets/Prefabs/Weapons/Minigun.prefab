@@ -2647,9 +2647,8 @@ MonoBehaviour:
   bulletSpawner: {fileID: 7102820832873674402}
   bullet: {fileID: 5891633959458352717, guid: b4164b23fa055764c87440da9ecabd48, type: 3}
   shootAudioClip: {fileID: 8300000, guid: 0b0ba0876423b2c459f89dc09b34f4bb, type: 3}
-  shotCooldown: 0.15
-  clipMaxSize: 10
-  reloadingTime: 1
+  clipMaxSize: 25
+  reloadingTime: 5
   gunLocalPosition: {x: 0, y: 0, z: 0}
   reloadAudioClip: {fileID: 8300000, guid: 1ab31758dc2a66441ad699816f3045bd, type: 3}
 --- !u!1 &5833522143720623642

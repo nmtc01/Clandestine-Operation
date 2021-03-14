@@ -73,6 +73,13 @@ public class Bullet : MonoBehaviour
                 Score.IncreaseScore(ScoreValues.enemyShot);
             }
         }
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Cover"))
+        {
+            Health coverHealth = collision.gameObject.GetComponent<Health>();
+
+            // Damage cover - caused by enemy shooting
+            coverHealth?.Damage(damage);
+        }
 
         // Destroy Bullet
         Destroy(gameObject);

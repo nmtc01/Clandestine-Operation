@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Cover : MonoBehaviour
+public class Cover : MonoBehaviour, IHealthController
 {
     [SerializeField]
     private GameObject key = null;
@@ -14,6 +14,8 @@ public class Cover : MonoBehaviour
     private GameObject crosshair = null;
     [SerializeField]
     private static GameObject fourthWall = null;
+    [SerializeField]
+    private GameObject healthUI = null;
 
     // Update is called once per frame
     void Update()
@@ -27,19 +29,7 @@ public class Cover : MonoBehaviour
             // Interact
             if (Input.GetButtonDown("Interact"))
             {
-                isCovering = !isCovering;
-
-                // Activate covering features
-                if (fourthWall) fourthWall.SetActive(isCovering);
-                Player.GetInstanceControl().SetIsCovering(isCovering);
-                if (crosshair) crosshair.SetActive(isCovering);
-
-                // Change player position and rotation
-                player.position = new Vector3(transform.position.x - slack, player.position.y, player.position.z);
-                if (playerSkeleton && playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1 * playerSkeleton.transform.right;
-
-                // Change player colliders to fit new position
-                handlePlayerColliders();
+                Interact();
             }
         }
         else Deactivate();
@@ -55,10 +45,35 @@ public class Cover : MonoBehaviour
         else rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
     }
 
+    void Interact()
+    {
+        isCovering = !isCovering;
+
+        // Activate covering features
+        if (fourthWall) fourthWall.SetActive(isCovering);
+        Player.GetInstanceControl().SetIsCovering(isCovering);
+        if (crosshair) crosshair.SetActive(isCovering);
+        if (healthUI) healthUI.SetActive(isCovering);
+
+        // Change player position and rotation
+        Transform player = Player.GetInstance().transform;
+        player.position = new Vector3(transform.position.x - slack, player.position.y, player.position.z);
+        if (playerSkeleton && playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1 * playerSkeleton.transform.right;
+
+        // Change player colliders to fit new position
+        handlePlayerColliders();
+    }
+
+
     void Deactivate()
     {
         if (fourthWall) fourthWall.SetActive(false);
         if (crosshair) crosshair.SetActive(false);
         if (key) key.SetActive(false);
+    }
+
+    public void SetIsDead(bool dead)
+    {
+        if(isCovering && dead) Interact();
     }
 }

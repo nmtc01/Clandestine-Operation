@@ -6,11 +6,11 @@ public class BossGun : Gun
     protected float timeSinceLastShot = 0f;
 
     [SerializeField]
-    protected int clipMaxSize = 100;
+    protected int clipMaxSize = 25;
     protected int clipCurrentSize;
 
     [SerializeField]
-    private float reloadingTime = 10f;
+    private float reloadingTime = 5f;
     protected bool isReloading = false;
 
     [SerializeField]
