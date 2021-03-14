@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     private static PlayerControl control = null;
     private static PlayerMovement movement = null;
     private static PlayerShoot shoot = null;
+    private static PlayerHealth health = null;
 
     public static GameObject GetInstance()
     {
@@ -27,6 +28,11 @@ public class Player : MonoBehaviour
         return shoot;
     }
 
+    public static PlayerHealth GetInstanceHealth()
+    {
+        return health;
+    }
+
     private void Awake()
     {
         if(instance != null && instance != gameObject)
@@ -39,6 +45,7 @@ public class Player : MonoBehaviour
             control = instance.GetComponent<PlayerControl>();
             movement = instance.GetComponent<PlayerMovement>();
             shoot = instance.GetComponent<PlayerShoot>();
+            health = instance.GetComponent<PlayerHealth>();
         }
     }
 }

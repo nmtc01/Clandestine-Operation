@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class TimerCountDown : MonoBehaviour
@@ -47,7 +46,7 @@ public class TimerCountDown : MonoBehaviour
         textDisplay.text = "";
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (startCounting && timer == null)//!takingAway && secondsLeft > 0 && startCounting)
         {
@@ -83,6 +82,9 @@ public class TimerCountDown : MonoBehaviour
         }
 
         UpdateText();
+
+        Player.GetInstanceHealth().Kill();
+
         yield return null;
     }
     private void UpdateText()
