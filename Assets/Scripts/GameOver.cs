@@ -59,8 +59,7 @@ public class GameOver : MonoBehaviour
 
     private void UpdateFinalScore()
     {
-        Score score = Score.GetInstance();
-        finalScoreText.text = score.GetScore().ToString();
+        finalScoreText.text = Score.GetFinalScore().ToString();
     }
 
     private IEnumerator Stop()
