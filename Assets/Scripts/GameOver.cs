@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,9 @@ public class GameOver : MonoBehaviour
         instance.gameObject.SetActive(false);
     }
     #endregion
+
+    [SerializeField]
+    private TMP_Text finalScoreText = null;
 
     public static void RestartLevel(string levelName)
     {
@@ -48,8 +52,15 @@ public class GameOver : MonoBehaviour
         instance.gameObject.SetActive(true);
         Player.GetInstanceMovement().enabled = false;
         Player.GetInstanceShoot().enabled = false;
-        ResetTimer();
+        instance.UpdateFinalScore();
+
         instance.StartCoroutine(instance.Stop());
+    }
+
+    private void UpdateFinalScore()
+    {
+        Score score = Score.GetInstance();
+        finalScoreText.text = score.GetScore().ToString();
     }
 
     private IEnumerator Stop()
