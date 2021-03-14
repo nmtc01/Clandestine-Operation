@@ -44,7 +44,7 @@ public class PlayerGun : Gun
     {
         if (!isCurrentGun) return; // These operations can only be executed if the gun is the current player gun
 
-        if(!isReloading && Input.GetButtonDown("Reload"))
+        if(!isReloading && clipCurrentSize < clipMaxSize && Input.GetButtonDown("Reload"))
         {
             HandleReload();
         }

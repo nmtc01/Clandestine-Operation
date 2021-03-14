@@ -203,5 +203,6 @@ public class PlayerShoot : MonoBehaviour
     private void OnDisable()
     {
         ResetAimingLine();
+        currentGun.enabled = false;
     }
 }

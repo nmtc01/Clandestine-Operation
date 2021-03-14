@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class TimerCountDown : MonoBehaviour
@@ -47,25 +46,6 @@ public class TimerCountDown : MonoBehaviour
         textDisplay.text = "";
     }
 
-    void Update()
-    {
-        if (startCounting && timer == null)//!takingAway && secondsLeft > 0 && startCounting)
-        {
-            timer = TimerTake();
-            StartCoroutine(timer);
-        }
-    }
-
-    public static void StartCounting()
-    {
-        instance.SetCounting(true);
-    }
-
-    public static void StopCounting()
-    {
-        instance.SetCounting(false);
-    }
-
     private void SetCounting(bool count)
     {
         startCounting = count;
@@ -83,6 +63,9 @@ public class TimerCountDown : MonoBehaviour
         }
 
         UpdateText();
+
+        Player.GetInstanceHealth().Kill();
+
         yield return null;
     }
     private void UpdateText()
@@ -110,8 +93,10 @@ public class TimerCountDown : MonoBehaviour
 
     public static void IncrementEnemiesAlerted()
     {
-        if (enemiesAlerted == 0) instance.audioSource.Play();
-
+        if (enemiesAlerted == 0)
+        {
+            instance.StartTimer();
+        }
         enemiesAlerted++;
     }
 
@@ -121,8 +106,6 @@ public class TimerCountDown : MonoBehaviour
         if (enemiesAlerted == 0)
         {
             instance.StopTimer();
-            StopCounting();
-            instance.audioSource.Stop();
         }
     }
 
@@ -134,7 +117,17 @@ public class TimerCountDown : MonoBehaviour
     private void StopTimer()
     {
         StopCoroutine(timer);
+        instance.SetCounting(false);
         timer = null;
         textDisplay.text = "";
+        instance.audioSource.Stop();
+    }
+
+    private void StartTimer()
+    {
+        timer = TimerTake();
+        StartCoroutine(timer);
+        instance.audioSource.Play();
+        instance.SetCounting(true);
     }
 }

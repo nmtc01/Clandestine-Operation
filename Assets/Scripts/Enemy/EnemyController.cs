@@ -67,7 +67,6 @@ public class EnemyController : MonoBehaviour, IHealthController
             // Starts timer countdown
             if (!alertedBefore)
             {
-                TimerCountDown.StartCounting();
                 TimerCountDown.IncrementEnemiesAlerted();
                 alertedBefore = true;
                 audioSource.Play();
