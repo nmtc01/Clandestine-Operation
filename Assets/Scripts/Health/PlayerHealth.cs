@@ -37,7 +37,8 @@ public class PlayerHealth : Health
 
             hearthBeatAudioSource.Stop();
 
-            Player.EnablePhysics(true);
+            Player.EnablePhysics(false);
+            CameraFollow.StopFollowingPlayer();
         }
     }
 

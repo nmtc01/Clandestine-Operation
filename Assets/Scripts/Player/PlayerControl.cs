@@ -94,7 +94,6 @@ public class PlayerControl : MonoBehaviour, IHealthController
     {
         isAlive = false;
         animator.SetBool("isFallingBack", falling);
-        Health health = GetComponent<Health>();
-        health.Kill();
+        Player.GetInstanceHealth().Kill();
     }
 }

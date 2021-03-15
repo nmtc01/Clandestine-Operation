@@ -31,7 +31,7 @@ public class Trapdoor : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            other.GetComponent<Health>().Kill();
+            Player.GetInstanceHealth().Kill();
         }
     }
 
