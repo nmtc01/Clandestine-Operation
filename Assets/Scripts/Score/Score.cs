@@ -26,6 +26,7 @@ public class Score : MonoBehaviour
 
     private TMP_Text score_value_text;
     private float score_value = 0f;
+    private bool canIncreaseScore = true;
 
     private void Start()
     {
@@ -38,8 +39,16 @@ public class Score : MonoBehaviour
         instance.IncreaseInstanceScore(inc);
     }
 
+    public static float GetFinalScore()
+    {
+        instance.canIncreaseScore = false;
+        return instance.score_value;
+    }
+
     private void IncreaseInstanceScore(float inc)
     {
+        if (!canIncreaseScore) return;
+
         score_value += inc;
 
         if (score_value < 0) score_value = 0;

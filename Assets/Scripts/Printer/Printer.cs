@@ -10,8 +10,7 @@ public class Printer : MonoBehaviour
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Health health = Player.GetInstance().GetComponent<Health>();
-            health.Kill();
+            Player.GetInstanceHealth().Kill();
             StopAllCoroutines();
             animator.SetFloat("stop", 0f);
         }

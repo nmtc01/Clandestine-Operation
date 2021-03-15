@@ -34,6 +34,7 @@ public class CameraFollow : MonoBehaviour
     {
         offset = new Vector3(0, 4, -10);
         coveringOffset = new Vector3(4, 0.8f, -10);
+        canFollow = true;
 
         ResetXValues();
     }
@@ -99,4 +100,8 @@ public class CameraFollow : MonoBehaviour
         instance.ResetXValues();
     }
 
+    public static void StopFollowingPlayer()
+    {
+        canFollow = false;
+    }
 }

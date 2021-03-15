@@ -35,17 +35,25 @@ public class Cover : MonoBehaviour, IHealthController
         else Deactivate();
     }
 
-    void handlePlayerColliders()
+    private void HandlePlayerColliders()
     {
         GameObject player = Player.GetInstance();
 
         // Freeze positions
         Rigidbody rigidbody = player.GetComponent<Rigidbody>();
-        if(isCovering) rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-        else rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        if (isCovering)
+        {
+            Player.EnablePhysics(false);
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+        else
+        {
+            Player.EnablePhysics(true);
+            rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        }
     }
 
-    void Interact()
+    private void Interact()
     {
         isCovering = !isCovering;
 
@@ -61,11 +69,11 @@ public class Cover : MonoBehaviour, IHealthController
         if (playerSkeleton && playerSkeleton.transform.right.z > 0) playerSkeleton.transform.right = -1 * playerSkeleton.transform.right;
 
         // Change player colliders to fit new position
-        handlePlayerColliders();
+        HandlePlayerColliders();
     }
 
 
-    void Deactivate()
+    private void Deactivate()
     {
         if (crosshair) crosshair.SetActive(false);
         if (key) key.SetActive(false);

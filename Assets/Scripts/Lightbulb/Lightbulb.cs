@@ -25,8 +25,7 @@ public class Lightbulb : MonoBehaviour
 
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Health health = Player.GetInstance().GetComponent<Health>();
-            health.Damage(lightbulbDamage);
+            Player.GetInstanceHealth().Damage(lightbulbDamage);
         }
 
         LightbulbController.GetInstance().ShatteredLightbulb(this);

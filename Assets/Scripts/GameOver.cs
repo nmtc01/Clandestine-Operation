@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,19 +11,24 @@ public class GameOver : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
         else
         {
             instance = this;
+            DontDestroyOnLoad(transform.parent.gameObject);
         }
         instance.gameObject.SetActive(false);
     }
     #endregion
 
+    [SerializeField]
+    private TMP_Text finalScoreText = null;
+
     public static void RestartLevel(string levelName)
     {
         ResetTimer();
+        Destroy(instance.transform.parent.gameObject);
         SceneManager.LoadScene(levelName);
     }
 
@@ -30,6 +36,7 @@ public class GameOver : MonoBehaviour
     {
         ResetTimer();
         GameManager.DestroyObject();
+        Destroy(instance.transform.parent.gameObject);
         SceneManager.LoadScene("Menu");
     }
 
@@ -45,14 +52,20 @@ public class GameOver : MonoBehaviour
         instance.gameObject.SetActive(true);
         Player.GetInstanceMovement().enabled = false;
         Player.GetInstanceShoot().enabled = false;
-        ResetTimer();
+        instance.UpdateFinalScore();
+
         instance.StartCoroutine(instance.Stop());
+    }
+
+    private void UpdateFinalScore()
+    {
+        finalScoreText.text = Score.GetFinalScore().ToString();
     }
 
     private IEnumerator Stop()
     {
         float stopingTime = 2f;
-        for(float t = 0f; t <= stopingTime; t += Time.deltaTime)
+        for (float t = 0f; t <= stopingTime; t += Time.deltaTime)
         {
             Time.timeScale = Mathf.Lerp(1f, 0f, t / stopingTime);
             yield return null;

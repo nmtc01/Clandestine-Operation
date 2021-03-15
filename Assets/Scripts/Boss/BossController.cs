@@ -31,7 +31,7 @@ public class BossController : MonoBehaviour, IHealthController
         if (canShoot)
         {
             // Enemy looks to the player
-            Vector3 direction = (Player.GetInstance().transform.position - transform.position).normalized;
+            Vector3 direction = (Player.GetArmatureTransform().position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(-1*direction.x, direction.y, -1*direction.z));
             FaceTarget(lookRotation);
 

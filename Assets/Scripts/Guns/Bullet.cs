@@ -27,10 +27,8 @@ public class Bullet : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Health playerHealth = collision.gameObject.GetComponent<Health>();
-
             // Damage player - caused by enemy shooting
-            playerHealth?.Damage(damage);
+            Player.GetInstanceHealth()?.Damage(damage);
 
             Score.IncreaseScore(ScoreValues.playerShot);
         }

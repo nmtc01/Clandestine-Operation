@@ -11,12 +11,6 @@ public class PlayerControl : MonoBehaviour, IHealthController
     private GameObject skeleton = null;
     [SerializeField]
     private Animator animator;
-    
-    void Update()
-    {
-        if (TimerCountDown.IsFinished())
-            SetIsDead(true);
-    }
 
     public bool IsAiming()
     {
