@@ -8688,11 +8688,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3440194901686101635, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
   m_PrefabInstance: {fileID: 1998774165}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1998774168 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7957388659029321141, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
-  m_PrefabInstance: {fileID: 1998774165}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2051553974
 GameObject:
   m_ObjectHideFlags: 0
@@ -9618,7 +9613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5396352176409536926}
   m_LocalRotation: {x: -0.50000006, y: -0.4999999, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 27.81, y: 2.53, z: 0.898}
+  m_LocalPosition: {x: 29.671, y: 2.53, z: 0.37}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 1723180805}
@@ -10054,7 +10049,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 476306305}
   playerSkeleton: {fileID: 1998774167}
-  crosshair: {fileID: 1998774168}
   fourthWall: {fileID: 903020616}
   healthUI: {fileID: 1063159423}
 --- !u!54 &2811908578853146482
@@ -10805,7 +10799,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 1723180804}
   playerSkeleton: {fileID: 1998774167}
-  crosshair: {fileID: 1998774168}
   fourthWall: {fileID: 903020616}
   healthUI: {fileID: 837171754}
 --- !u!54 &5396352176409536928
@@ -10887,7 +10880,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 1668361117}
   playerSkeleton: {fileID: 1998774167}
-  crosshair: {fileID: 1998774168}
   fourthWall: {fileID: 903020616}
   healthUI: {fileID: 1392551057}
 --- !u!54 &5398647941615608996
@@ -10917,8 +10909,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.023550922, y: 0.015404791, z: 0.04944124}
-  m_Center: {x: 0.000032212734, y: -0.0030908508, z: 0.0008445072}
+  m_Size: {x: 0.023550922, y: 0.010461568, z: 0.04944124}
+  m_Center: {x: 0.000032212734, y: -0.0006192392, z: 0.0008445072}
 --- !u!114 &5398647941615608998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11460,7 +11452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 469477254}
   playerSkeleton: {fileID: 1998774167}
-  crosshair: {fileID: 1998774168}
   fourthWall: {fileID: 903020616}
   healthUI: {fileID: 946869378}
 --- !u!54 &7196702377691071552
@@ -11634,7 +11625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7196702377691071550}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 14.63, y: 2.533608, z: 0.2230207}
+  m_LocalPosition: {x: 14.48, y: 2.533608, z: 0.2230207}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 469477255}

@@ -4,7 +4,7 @@ public class Cover : MonoBehaviour, IHealthController
 {
     [SerializeField]
     private GameObject key = null;
-    private float range = 3f;
+    private float range = 3.2f;
     private float slack = 3f;
     private bool isCovering = false;
     
