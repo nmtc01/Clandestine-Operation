@@ -175,7 +175,7 @@ public class PlayerShoot : MonoBehaviour
         Vector3 crosshairPos;
         if (Physics.Raycast(vpMousePos, out hit, coverAimingLineRange, aimingIgnoredColliders))
             crosshairPos = hit.point;
-        else crosshairPos = vpMousePos.origin + vpMousePos.direction * 10;
+        else crosshairPos = vpMousePos.origin + vpMousePos.direction * coverAimingLineRange;
         crosshair.transform.position = crosshairPos;
         
         return crosshairPos;
