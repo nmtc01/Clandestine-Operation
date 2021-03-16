@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour, IHealthController
 {
     private bool isAiming = false;
-    private bool inElevator = false;
+    private bool inTransition = false;
     private bool isCovering = false;
     private bool isAlive = true;
 
@@ -64,14 +64,14 @@ public class PlayerControl : MonoBehaviour, IHealthController
         return skeleton.transform.forward;
     }
 
-    public void SetInElevator(bool elev)
+    public void SetInTransition(bool trans)
     {
-        inElevator = elev;
+        inTransition = trans;
     }
 
-    public bool IsInElevator()
+    public bool IsInTransition()
     {
-        return inElevator;
+        return inTransition;
     }
 
     public void SetIsCovering(bool covering)
@@ -88,5 +88,12 @@ public class PlayerControl : MonoBehaviour, IHealthController
     public bool IsInvisible()
     {
         return isCovering && !isAiming;
+    }
+
+    public void ResetPlayerMovements()
+    {
+        SetIsAiming(false);
+        SetIsCovering(false);
+        SetIsWalking(false);
     }
 }

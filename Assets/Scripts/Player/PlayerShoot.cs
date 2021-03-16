@@ -26,6 +26,7 @@ public class PlayerShoot : MonoBehaviour
     const float spineHeight = 0.075f;
     [SerializeField]
     private GameObject crosshair = null;
+    private float coverAimingLineRange = 30f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +44,8 @@ public class PlayerShoot : MonoBehaviour
     {
         PlayerControl playerControl = Player.GetInstanceControl();
          
-        // Can't aim and shoot if entering on elevator
-        if (playerControl.IsInElevator())
+        // Can't aim and shoot if in a cinematic transition
+        if (playerControl.IsInTransition())
         {
             return;
         }
@@ -172,9 +173,9 @@ public class PlayerShoot : MonoBehaviour
         Ray vpMousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Vector3 crosshairPos;
-        if (Physics.Raycast(vpMousePos, out hit, 10, aimingIgnoredColliders))
+        if (Physics.Raycast(vpMousePos, out hit, coverAimingLineRange, aimingIgnoredColliders))
             crosshairPos = hit.point;
-        else crosshairPos = vpMousePos.origin + vpMousePos.direction * 10;
+        else crosshairPos = vpMousePos.origin + vpMousePos.direction * coverAimingLineRange;
         crosshair.transform.position = crosshairPos;
         
         return crosshairPos;

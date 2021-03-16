@@ -2006,8 +2006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 945473308}
   playerSkeleton: {fileID: 1856978024}
-  crosshair: {fileID: 2147023702}
-  fourthWall: {fileID: 357503541}
   healthUI: {fileID: 0}
 --- !u!4 &262242028
 Transform:
@@ -2985,13 +2983,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 357503542}
+  - component: {fileID: 357503543}
   m_Layer: 3
   m_Name: Fourth Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &357503542
 Transform:
   m_ObjectHideFlags: 0
@@ -3010,6 +3009,18 @@ Transform:
   m_Father: {fileID: 957924283}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &357503543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357503541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2a28c4500597d469afa6c3bcf7b2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &358121985
 GameObject:
   m_ObjectHideFlags: 0
@@ -10773,8 +10784,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 967508841}
   playerSkeleton: {fileID: 1856978024}
-  crosshair: {fileID: 2147023702}
-  fourthWall: {fileID: 357503541}
   healthUI: {fileID: 0}
 --- !u!1 &997284298
 GameObject:
@@ -13748,10 +13757,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3666549597828597965, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
-      propertyPath: aimingIgnoredColliders.m_Bits
-      value: 196
-      objectReference: {fileID: 0}
     - target: {fileID: 3666549597828597966, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_Name
       value: Player
@@ -13798,10 +13803,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7957388659029321141, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -18783,8 +18784,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141592770}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2147023702 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7957388659029321141, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
-  m_PrefabInstance: {fileID: 1605121568}
-  m_PrefabAsset: {fileID: 0}

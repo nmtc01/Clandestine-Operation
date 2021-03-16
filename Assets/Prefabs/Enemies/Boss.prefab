@@ -742,7 +742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a896f8280445048b3b0cf7c2ec2a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 700
   healthUIController: {fileID: 0}
 --- !u!114 &6720835883365628431
 MonoBehaviour:
