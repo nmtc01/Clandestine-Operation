@@ -26,6 +26,7 @@ public class PlayerShoot : MonoBehaviour
     const float spineHeight = 0.075f;
     [SerializeField]
     private GameObject crosshair = null;
+    private float coverAimingLineRange = 30f;
 
     // Start is called before the first frame update
     void Start()
@@ -172,7 +173,7 @@ public class PlayerShoot : MonoBehaviour
         Ray vpMousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Vector3 crosshairPos;
-        if (Physics.Raycast(vpMousePos, out hit, 10, aimingIgnoredColliders))
+        if (Physics.Raycast(vpMousePos, out hit, coverAimingLineRange, aimingIgnoredColliders))
             crosshairPos = hit.point;
         else crosshairPos = vpMousePos.origin + vpMousePos.direction * 10;
         crosshair.transform.position = crosshairPos;

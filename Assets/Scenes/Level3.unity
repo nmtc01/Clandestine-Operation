@@ -2006,7 +2006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 945473308}
   playerSkeleton: {fileID: 1856978024}
-  crosshair: {fileID: 2147023702}
   fourthWall: {fileID: 357503541}
   healthUI: {fileID: 0}
 --- !u!4 &262242028
@@ -10773,7 +10772,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 967508841}
   playerSkeleton: {fileID: 1856978024}
-  crosshair: {fileID: 2147023702}
   fourthWall: {fileID: 357503541}
   healthUI: {fileID: 0}
 --- !u!1 &997284298
@@ -13748,10 +13746,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3666549597828597965, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
-      propertyPath: aimingIgnoredColliders.m_Bits
-      value: 196
-      objectReference: {fileID: 0}
     - target: {fileID: 3666549597828597966, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_Name
       value: Player
@@ -13798,10 +13792,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4155102554719294068, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7957388659029321141, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -18783,8 +18773,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141592770}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2147023702 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7957388659029321141, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
-  m_PrefabInstance: {fileID: 1605121568}
-  m_PrefabAsset: {fileID: 0}

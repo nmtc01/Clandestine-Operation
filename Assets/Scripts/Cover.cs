@@ -11,8 +11,6 @@ public class Cover : MonoBehaviour, IHealthController
     [SerializeField]
     private GameObject playerSkeleton = null;
     [SerializeField]
-    private GameObject crosshair = null;
-    [SerializeField]
     private GameObject fourthWall = null;
     [SerializeField]
     private GameObject healthUI = null;
@@ -60,7 +58,6 @@ public class Cover : MonoBehaviour, IHealthController
         // Activate covering features
         if (fourthWall) fourthWall.SetActive(isCovering);
         Player.GetInstanceControl().SetIsCovering(isCovering);
-        if (crosshair) crosshair.SetActive(isCovering);
         if (healthUI) healthUI.SetActive(isCovering);
 
         // Change player position and rotation
@@ -75,7 +72,6 @@ public class Cover : MonoBehaviour, IHealthController
 
     private void Deactivate()
     {
-        if (crosshair) crosshair.SetActive(false);
         if (key) key.SetActive(false);
     }
 

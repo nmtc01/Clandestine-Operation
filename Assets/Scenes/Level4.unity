@@ -8626,7 +8626,7 @@ PrefabInstance:
       objectReference: {fileID: 1155797236}
     - target: {fileID: 3666549597828597965, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: aimingIgnoredColliders.m_Bits
-      value: 1092
+      value: 1220
       objectReference: {fileID: 0}
     - target: {fileID: 3666549597828597966, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_Name
