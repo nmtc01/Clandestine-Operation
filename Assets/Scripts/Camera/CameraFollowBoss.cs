@@ -28,6 +28,8 @@ public class CameraFollowBoss : MonoBehaviour
                 BossController.GetInstance().GrabGun(true); 
                 GameObject fourthWall = FourthWall.GetInstance();
                 if (fourthWall) fourthWall.SetActive(false);
+                PlayerControl playerControl = Player.GetInstanceControl();
+                playerControl.SetInTransition(false);
             }
         }
     }

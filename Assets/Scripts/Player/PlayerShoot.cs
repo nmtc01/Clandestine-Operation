@@ -44,8 +44,8 @@ public class PlayerShoot : MonoBehaviour
     {
         PlayerControl playerControl = Player.GetInstanceControl();
          
-        // Can't aim and shoot if entering on elevator
-        if (playerControl.IsInElevator())
+        // Can't aim and shoot if in a cinematic transition
+        if (playerControl.IsInTransition())
         {
             return;
         }

@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Can't walk with player input if entering on elevator or if is covering
-        if (Player.GetInstanceControl().IsInElevator() || Player.GetInstanceControl().IsCovering() || !Player.GetInstanceControl().IsAlive()) return;
+        // Can't walk with player input if in a cinematic transition or if is covering
+        if (Player.GetInstanceControl().IsInTransition() || Player.GetInstanceControl().IsCovering() || !Player.GetInstanceControl().IsAlive()) return;
 
         Move();
     }
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     public void WalkToElevatorDoor(Vector3 doorPosition, Elevator elevator)
     {
         PlayerControl playerControl = Player.GetInstanceControl();
-        playerControl.SetInElevator(true);
+        playerControl.SetInTransition(true);
         playerControl.SetIsWalking(true);
         playerControl.SetIsAiming(false);
 
@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
         PlayerControl playerControl = Player.GetInstanceControl();
         playerControl.SetIsWalking(false);
-        playerControl.SetInElevator(false);
+        playerControl.SetInTransition(false);
         elevator.PlayerCanInteract();
         yield return null;
     }
