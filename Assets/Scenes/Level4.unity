@@ -4404,6 +4404,10 @@ PrefabInstance:
       propertyPath: reloadingTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8612869225172180202, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
+      propertyPath: reloadAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9841a7544670dd74084d2f4ef53bcae6, type: 3}
     - target: {fileID: 8879572126984780144, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
       propertyPath: m_Layer
       value: 8

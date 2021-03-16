@@ -57,6 +57,7 @@ public class BossGun : Gun
         // Plays the reload clip
         audioSource.Stop();
         audioSource.clip = reloadAudioClip;
+        audioSource.loop = false;
         audioSource.Play();
 
         yield return new WaitForSeconds(reloadingTime);
@@ -67,6 +68,7 @@ public class BossGun : Gun
         // Resets the default clip
         audioSource.Stop();
         audioSource.clip = shootAudioClip;
+        audioSource.loop = true;
         firstTimeShooting = true;
         yield return null;
     }
