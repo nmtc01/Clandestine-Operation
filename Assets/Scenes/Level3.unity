@@ -2006,7 +2006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 945473308}
   playerSkeleton: {fileID: 1856978024}
-  fourthWall: {fileID: 357503541}
   healthUI: {fileID: 0}
 --- !u!4 &262242028
 Transform:
@@ -2984,13 +2983,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 357503542}
+  - component: {fileID: 357503543}
   m_Layer: 3
   m_Name: Fourth Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &357503542
 Transform:
   m_ObjectHideFlags: 0
@@ -3009,6 +3009,18 @@ Transform:
   m_Father: {fileID: 957924283}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &357503543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357503541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2a28c4500597d469afa6c3bcf7b2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &358121985
 GameObject:
   m_ObjectHideFlags: 0
@@ -10772,7 +10784,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 967508841}
   playerSkeleton: {fileID: 1856978024}
-  fourthWall: {fileID: 357503541}
   healthUI: {fileID: 0}
 --- !u!1 &997284298
 GameObject:

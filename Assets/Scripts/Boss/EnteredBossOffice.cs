@@ -11,6 +11,8 @@ public class EnteredBossOffice : MonoBehaviour
         {
             firstTime = false;
             secondaryCamera.SetActive(true);
+            GameObject fourthWall = FourthWall.GetInstance();
+            if (fourthWall) fourthWall.SetActive(true);
         }
     }
 }

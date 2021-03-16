@@ -19,13 +19,15 @@ public class CameraFollowBoss : MonoBehaviour
     {
         Follow();
 
-        if (Mathf.Abs(target.position.x - this.transform.position.x) <= range)
+        if (Mathf.Abs(target.position.x - transform.position.x) <= range)
         {
             BossController.GetInstance().Turn();
             if (Input.GetButton("Return"))
             {
-                this.transform.gameObject.SetActive(false);
+                transform.gameObject.SetActive(false);
                 BossController.GetInstance().GrabGun(true); 
+                GameObject fourthWall = FourthWall.GetInstance();
+                if (fourthWall) fourthWall.SetActive(false);
             }
         }
     }
@@ -33,7 +35,7 @@ public class CameraFollowBoss : MonoBehaviour
     private void Follow()
     {
         Vector3 targetPosition = target.transform.position + offset;
-        targetPosition.x = Mathf.Lerp(this.transform.position.x,Mathf.Clamp(targetPosition.x, minXValue, maxXValue), Time.deltaTime*0.3f);
+        targetPosition.x = Mathf.Lerp(transform.position.x,Mathf.Clamp(targetPosition.x, minXValue, maxXValue), Time.deltaTime*0.3f);
         targetPosition.z = offset.z;
         transform.position = targetPosition;
     }

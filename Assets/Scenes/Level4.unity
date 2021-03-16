@@ -3534,13 +3534,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 903020617}
+  - component: {fileID: 903020618}
   m_Layer: 3
   m_Name: Fourth Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &903020617
 Transform:
   m_ObjectHideFlags: 0
@@ -3559,6 +3560,18 @@ Transform:
   m_Father: {fileID: 1577744465}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &903020618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903020616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee2a28c4500597d469afa6c3bcf7b2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &903122135
 GameObject:
   m_ObjectHideFlags: 0
@@ -10049,7 +10062,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 476306305}
   playerSkeleton: {fileID: 1998774167}
-  fourthWall: {fileID: 903020616}
   healthUI: {fileID: 1063159423}
 --- !u!54 &2811908578853146482
 Rigidbody:
@@ -10799,7 +10811,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 1723180804}
   playerSkeleton: {fileID: 1998774167}
-  fourthWall: {fileID: 903020616}
   healthUI: {fileID: 837171754}
 --- !u!54 &5396352176409536928
 Rigidbody:
@@ -10880,7 +10891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 1668361117}
   playerSkeleton: {fileID: 1998774167}
-  fourthWall: {fileID: 903020616}
   healthUI: {fileID: 1392551057}
 --- !u!54 &5398647941615608996
 Rigidbody:
@@ -11452,7 +11462,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 469477254}
   playerSkeleton: {fileID: 1998774167}
-  fourthWall: {fileID: 903020616}
   healthUI: {fileID: 946869378}
 --- !u!54 &7196702377691071552
 Rigidbody:

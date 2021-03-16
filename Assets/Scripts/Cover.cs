@@ -11,8 +11,6 @@ public class Cover : MonoBehaviour, IHealthController
     [SerializeField]
     private GameObject playerSkeleton = null;
     [SerializeField]
-    private GameObject fourthWall = null;
-    [SerializeField]
     private GameObject healthUI = null;
 
     // Update is called once per frame
@@ -56,6 +54,7 @@ public class Cover : MonoBehaviour, IHealthController
         isCovering = !isCovering;
 
         // Activate covering features
+        GameObject fourthWall = FourthWall.GetInstance();
         if (fourthWall) fourthWall.SetActive(isCovering);
         Player.GetInstanceControl().SetIsCovering(isCovering);
         if (healthUI) healthUI.SetActive(isCovering);
