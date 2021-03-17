@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private float timeBeforeDestroying = 5f;
+    private float timeBeforeDestroying = 1.5f;
 
     private float damage = 0f;
 
@@ -63,10 +63,10 @@ public class Bullet : MonoBehaviour
             } 
             else
             {
-                Health enemyHealth = collision.gameObject.GetComponent<Health>();
+                EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
 
                 // Damage enemy - caused by player shooting
-                enemyHealth?.Damage(damage);
+                enemyController?.DamageEnemy(damage);
 
                 Score.IncreaseScore(ScoreValues.enemyShot);
             }
