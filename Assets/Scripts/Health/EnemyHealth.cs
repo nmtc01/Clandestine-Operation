@@ -8,7 +8,6 @@ public class EnemyHealth : Health
         healthUIController.SetValue(currentHealth);
     }
 
-
     public override void Kill()
     {
         base.Kill();

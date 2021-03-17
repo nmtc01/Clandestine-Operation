@@ -10,7 +10,10 @@ public class Armour : MonoBehaviour
     private bool active = true;
 
     [SerializeField]
-    private GameObject armour;
+    private GameObject armour = null;
+
+    [SerializeField]
+    private EnemyController enemyController = null;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -28,6 +31,8 @@ public class Armour : MonoBehaviour
     public virtual void Damage(float damage)
     {
         currentShield -= damage;
+
+        enemyController.AlertEnemy();
 
         if (currentShield <= 0) DestroyShield();
     }

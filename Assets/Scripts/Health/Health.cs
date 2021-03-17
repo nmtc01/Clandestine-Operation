@@ -45,7 +45,6 @@ public abstract class Health : MonoBehaviour
         SetHealth();
     }
 
-
     private void SetHealth()
     {
         healthUIController.SetValue(currentHealth);
