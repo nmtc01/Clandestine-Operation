@@ -71,10 +71,14 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         animator.SetTrigger("turn_right");
     }
 
+    private void ShowUI()
+    {
+        healthUI.SetActive(true);
+    }
+
     public void GrabGun(bool grabbing)
     {
         animator.SetBool("grabbing_gun", grabbing);
-        healthUI.SetActive(true);
         gun.transform.SetParent(transform);
         canShoot = grabbing;
     }
