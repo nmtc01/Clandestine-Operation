@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45128316, g: 0.50012714, b: 0.56884736, a: 1}
+  m_IndirectSpecularColor: {r: 0.45128304, g: 0.5001273, b: 0.56884706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4746,7 +4746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: {fileID: 2095234492}
   playerSkeleton: {fileID: 351991529}
-  crosshair: {fileID: 446418096}
+  healthUI: {fileID: 0}
 --- !u!4 &5134946307965684816
 Transform:
   m_ObjectHideFlags: 0
