@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossController : MonoBehaviour, IHealthController
+public class BossController : MonoBehaviour, IHealthController, IEnemyController
 {
     private static BossController instance = null;
     private Animator animator;
@@ -17,12 +17,16 @@ public class BossController : MonoBehaviour, IHealthController
     [SerializeField]
     private GameObject healthUI = null;
     private bool isAlive = true;
+    
+    private Health health;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         shootingBehaviour = AimAndShoot();
+
+        health = GetComponent<Health>();
     }
 
     // FixedUpdate is called once per frame
@@ -99,5 +103,11 @@ public class BossController : MonoBehaviour, IHealthController
     public void SetIsDead(bool dead)
     {
         isAlive = dead;
+    }
+
+    public void DamageEnemy(float damage)
+    {
+        // Damage boss - caused by player shooting
+        health.Damage(damage);
     }
 }

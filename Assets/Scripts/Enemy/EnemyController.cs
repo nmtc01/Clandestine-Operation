@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour, IHealthController
+public class EnemyController : MonoBehaviour, IHealthController, IEnemyController
 {
     #region Walking Variables
     [SerializeField]
