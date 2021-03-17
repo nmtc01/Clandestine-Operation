@@ -70,11 +70,7 @@ public class EnemyController : MonoBehaviour, IHealthController
         
         if((!Player.GetInstanceControl().IsInvisible() && FOVDetection.InFOV(transform, Player.GetArmatureTransform(), maxAngle, lookRadius)) || alertedBefore)
         {
-            // Starts timer countdown
-            if (!alertedBefore)
-            {
-                Alert();
-            }
+            AlertEnemy();
 
             // Stopping agent from moving
             canWalk = false;
@@ -116,6 +112,12 @@ public class EnemyController : MonoBehaviour, IHealthController
         TimerCountDown.IncrementEnemiesAlerted();
         alertedBefore = true;
         audioSource.Play();
+    }
+
+    public void AlertEnemy()
+    {
+        if (!alertedBefore && !isDead)
+            Alert();
     }
 
     private IEnumerator WaitOnPosition()
@@ -204,8 +206,7 @@ public class EnemyController : MonoBehaviour, IHealthController
     {
         // Damage enemy - caused by player shooting
         health.Damage(damage);
-        
-        if(!alertedBefore && !isDead)
-            Alert();
+
+        AlertEnemy();
     }
 }

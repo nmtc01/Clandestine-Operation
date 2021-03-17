@@ -1254,6 +1254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxShield: 100
   armour: {fileID: 1643069916296552229}
+  enemyController: {fileID: 9063236139909914450}
 --- !u!1 &4696803206374464014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2913,6 +2914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxShield: 100
   armour: {fileID: 5664042198007349194}
+  enemyController: {fileID: 9063236139909914450}
 --- !u!82 &-5688213929649758285
 AudioSource:
   m_ObjectHideFlags: 0
