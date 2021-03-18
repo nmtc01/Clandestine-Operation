@@ -196,7 +196,8 @@ public class PlayerShoot : MonoBehaviour
     private void RotateSpineCrosshair(Vector3 crosshairPos)
     {
         Vector3 direction = crosshairPos - spine.transform.position;
-        Player.GetInstanceControl().RotateSkeleton(direction);
+        //Player.GetInstanceControl().RotateSkeleton(direction);
+        spine.transform.LookAt(crosshairPos);
     }
     private void ResetRotationSpineCrosshair()
     {
