@@ -93,7 +93,6 @@ public class PlayerControl : MonoBehaviour, IHealthController
     public void ResetPlayerMovements()
     {
         SetIsAiming(false);
-        SetIsCovering(false);
         SetIsWalking(false);
     }
 }

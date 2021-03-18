@@ -20,6 +20,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     [SerializeField]
     private CameraFollowBoss secondaryCamera = null;
     private bool secondaryCameraActive = false;
+    private bool firstTimeTurn = true;
     
     private Health health;
 
@@ -53,7 +54,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
 
         if (secondaryCamera.IsInRange() && secondaryCameraActive)
         {
-            Turn();
+            if (firstTimeTurn)
+            {
+                firstTimeTurn = false;
+                Turn();
+            }
             if (Input.GetButton("Return"))
             {
                 DeactivateBossCamera();
@@ -140,5 +145,6 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         secondaryCamera.DeactivateCamera();
         secondaryCameraActive = false;
         GrabGun(true);
+        wasInFOV = false;
     }
 }
