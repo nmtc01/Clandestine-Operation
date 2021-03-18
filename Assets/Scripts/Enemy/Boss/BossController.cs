@@ -17,6 +17,9 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     [SerializeField]
     private GameObject healthUI = null;
     private bool isAlive = true;
+    [SerializeField]
+    private CameraFollowBoss secondaryCamera = null;
+    private bool secondaryCameraActive = false;
     
     private Health health;
 
@@ -46,6 +49,15 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
                 StartCoroutine(shootingBehaviour);
             }
             wasInFOV = true;
+        }
+
+        if (secondaryCamera.IsInRange() && secondaryCameraActive)
+        {
+            Turn();
+            if (Input.GetButton("Return"))
+            {
+                DeactivateBossCamera();
+            }
         }
     }
 
@@ -113,5 +125,20 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     {
         // Damage boss - caused by player shooting
         health.Damage(damage);
+    }
+
+    public void ActivateBossCamera()
+    {
+        GrabGun(false);
+        StopAllCoroutines();
+        secondaryCameraActive = true;
+        secondaryCamera.ActivateCamera();
+    }
+
+    public void DeactivateBossCamera()
+    {
+        secondaryCamera.DeactivateCamera();
+        secondaryCameraActive = false;
+        GrabGun(true);
     }
 }
