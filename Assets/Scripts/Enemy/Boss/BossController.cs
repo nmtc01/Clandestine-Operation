@@ -21,6 +21,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     private CameraFollowBoss secondaryCamera = null;
     private bool secondaryCameraActive = false;
     private bool firstTimeTurn = true;
+    private bool firstTimeGrabbingGun = true;
     
     private Health health;
 
@@ -96,7 +97,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     public void GrabGun(bool grabbing)
     {
         animator.SetBool("grabbing_gun", grabbing);
-        gun.transform.SetParent(transform);
+        if (firstTimeGrabbingGun)
+        {
+            firstTimeGrabbingGun = false;
+            gun.transform.SetParent(transform);
+        }
         canShoot = grabbing;
     }
 
@@ -136,6 +141,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     {
         GrabGun(false);
         StopAllCoroutines();
+        gun.StopAudio();
         secondaryCameraActive = true;
         secondaryCamera.ActivateCamera();
     }
@@ -146,5 +152,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         secondaryCameraActive = false;
         GrabGun(true);
         wasInFOV = false;
+        gun.DefaultAudio();
+        gun.PlayAudio();
     }
 }

@@ -40,10 +40,10 @@ public class CameraFollowBoss : MonoBehaviour
 
     public void DeactivateCamera()
     {
-        GameObject fourthWall = FourthWall.GetInstance();
-        if (fourthWall) fourthWall.SetActive(false);
-        Player.GetInstanceControl().SetInTransition(false);
         transform.gameObject.SetActive(false);
+        GameObject fourthWall = FourthWall.GetInstance();
+        if (fourthWall && !Player.GetInstanceControl().IsCovering()) fourthWall.SetActive(false);
+        Player.GetInstanceControl().SetInTransition(false);
     }
 
     public bool IsInRange()

@@ -55,21 +55,42 @@ public class BossGun : Gun
         isReloading = true;
 
         // Plays the reload clip
-        audioSource.Stop();
-        audioSource.clip = reloadAudioClip;
-        audioSource.loop = false;
-        audioSource.Play();
+        ReloadAudio();
 
         yield return new WaitForSeconds(reloadingTime);
 
         clipCurrentSize = clipMaxSize;
         isReloading = false;
 
-        // Resets the default clip
-        audioSource.Stop();
-        audioSource.clip = shootAudioClip;
-        audioSource.loop = true;
+        DefaultAudio();
         firstTimeShooting = true;
         yield return null;
+    }
+
+    private void ReloadAudio()
+    {
+        // Plays the reload clip
+        StopAudio();
+        audioSource.clip = reloadAudioClip;
+        audioSource.loop = false;
+        PlayAudio();
+    }
+
+    public void DefaultAudio()
+    {
+        // Resets the default clip
+        StopAudio();
+        audioSource.clip = shootAudioClip;
+        audioSource.loop = true;
+    }
+
+    public void StopAudio()
+    {
+        audioSource.Stop();
+    }
+
+    public void PlayAudio()
+    {
+        audioSource.Play();
     }
 }
