@@ -66,6 +66,7 @@ public class PlayerShoot : MonoBehaviour
         {
             RotateSpine();
             SetAimingLinePositions();
+            crosshair.SetActive(false);
         }
         else if (playerControl.IsAiming() && playerControl.IsCovering())
         {
