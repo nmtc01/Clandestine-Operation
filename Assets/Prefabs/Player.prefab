@@ -1636,6 +1636,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spine: {fileID: 7192360885785296595}
   maxRotation: 45
+  minVPCrshrX: 0.2
+  maxVPCrshrX: 0.8
+  minVPCrshrY: 0.2
+  maxVPCrshrY: 0.8
   initialRotation: {x: 0, y: 0, z: 0}
   defaultGun: {fileID: 2433647240542301530}
   gunPosition: {fileID: 3440194900652112314}

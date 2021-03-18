@@ -7,6 +7,10 @@ public class PlayerShoot : MonoBehaviour
 
     [SerializeField]
     private float maxRotation = 45f;
+    [SerializeField]
+    private float minVPCrshrX = .2f, maxVPCrshrX = .8f;
+    [SerializeField]
+    private float minVPCrshrY = .2f, maxVPCrshrY = .8f;
 
     [SerializeField]
     private Vector3 initialRotation = Vector3.zero;
@@ -32,7 +36,7 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         currentGun = defaultGun;
-        
+
         // Set Gun UI
         ((PlayerGun)currentGun).SetCurrentGun(true);
 
@@ -43,7 +47,7 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         PlayerControl playerControl = Player.GetInstanceControl();
-         
+
         // Can't aim and shoot if in a cinematic transition
         if (playerControl.IsInTransition())
         {
@@ -70,14 +74,15 @@ public class PlayerShoot : MonoBehaviour
             RotateSpineCrosshair(crosshairPos);
             SetAimingCrossHairLinePositions(crosshairPos);
         }
-        else {
+        else
+        {
             if (playerControl.IsCovering())
             {
                 Player.EnablePhysics(false);
                 ResetRotationSpineCrosshair();
             }
-            else 
-            { 
+            else
+            {
                 spine.transform.localRotation = Quaternion.Euler(initialRotation);
             }
             ResetAimingLine();
@@ -141,11 +146,11 @@ public class PlayerShoot : MonoBehaviour
 
     public void SetNewGun(PlayerGun gun)
     {
-        if(currentGun == defaultGun)
+        if (currentGun == defaultGun)
         {
             ((PlayerGun)currentGun).SetCurrentGun(false);
             currentGun.gameObject.SetActive(false);
-        } 
+        }
         else
         {
             Destroy(currentGun);
@@ -170,14 +175,25 @@ public class PlayerShoot : MonoBehaviour
     private Vector3 AimCrosshair()
     {
         crosshair.SetActive(true);
-        Ray vpMousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Vector2 vpMousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        vpMousePos.x = Mathf.Clamp(vpMousePos.x, minVPCrshrX, maxVPCrshrX);
+        vpMousePos.y = Mathf.Clamp(vpMousePos.y, minVPCrshrY, maxVPCrshrY);
+
+        Ray ray = Camera.main.ViewportPointToRay(vpMousePos);
         RaycastHit hit;
         Vector3 crosshairPos;
-        if (Physics.Raycast(vpMousePos, out hit, coverAimingLineRange, aimingIgnoredColliders))
+        if (Physics.Raycast(ray, out hit, coverAimingLineRange, aimingIgnoredColliders))
+        {
             crosshairPos = hit.point;
-        else crosshairPos = vpMousePos.origin + vpMousePos.direction * coverAimingLineRange;
-        crosshair.transform.position = crosshairPos;
+        }
+        else
+        {
+            crosshairPos = ray.origin + ray.direction * coverAimingLineRange;
+        }
         
+        crosshair.transform.position = crosshairPos;
+
         return crosshairPos;
     }
 
@@ -195,13 +211,12 @@ public class PlayerShoot : MonoBehaviour
 
     private void RotateSpineCrosshair(Vector3 crosshairPos)
     {
-        Vector3 direction = crosshairPos - spine.transform.position;
-        //Player.GetInstanceControl().RotateSkeleton(direction);
         spine.transform.LookAt(crosshairPos);
     }
+
     private void ResetRotationSpineCrosshair()
     {
-        Player.GetInstanceControl().RotateSkeleton(new Vector3(1,0,0));
+        Player.GetInstanceControl().RotateSkeleton(new Vector3(1, 0, 0));
     }
 
     private void OnDisable()
