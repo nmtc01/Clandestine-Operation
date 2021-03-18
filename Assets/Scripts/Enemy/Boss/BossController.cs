@@ -129,6 +129,9 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     public void SetIsDead(bool dead)
     {
         isAlive = dead;
+        animator.SetBool("is_dead", dead);
+        if (dead)
+            DestroyBossPhysics();
     }
 
     public void DamageEnemy(float damage)
@@ -154,5 +157,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         wasInFOV = false;
         gun.DefaultAudio();
         gun.PlayAudio();
+    }
+
+    private void DestroyBossPhysics()
+    {
+        GetComponent<Collider>().enabled = false;
+        StopAllCoroutines();
     }
 }
