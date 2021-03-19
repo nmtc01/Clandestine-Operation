@@ -18,20 +18,6 @@ public class CameraFollowBoss : MonoBehaviour
     private void LateUpdate() 
     {
         Follow();
-
-        if (Mathf.Abs(target.position.x - transform.position.x) <= range)
-        {
-            BossController.GetInstance().Turn();
-            if (Input.GetButton("Return"))
-            {
-                transform.gameObject.SetActive(false);
-                BossController.GetInstance().GrabGun(true); 
-                GameObject fourthWall = FourthWall.GetInstance();
-                if (fourthWall) fourthWall.SetActive(false);
-                PlayerControl playerControl = Player.GetInstanceControl();
-                playerControl.SetInTransition(false);
-            }
-        }
     }
 
     private void Follow()
@@ -40,5 +26,28 @@ public class CameraFollowBoss : MonoBehaviour
         targetPosition.x = Mathf.Lerp(transform.position.x,Mathf.Clamp(targetPosition.x, minXValue, maxXValue), Time.deltaTime*0.3f);
         targetPosition.z = offset.z;
         transform.position = targetPosition;
+    }
+
+    public void ActivateCamera()
+    {
+        GameObject fourthWall = FourthWall.GetInstance();
+        if (fourthWall) fourthWall.SetActive(true);
+        PlayerControl playerControl = Player.GetInstanceControl();
+        playerControl.SetInTransition(true);
+        playerControl.ResetPlayerMovements();
+        transform.gameObject.SetActive(true);
+    }
+
+    public void DeactivateCamera()
+    {
+        transform.gameObject.SetActive(false);
+        GameObject fourthWall = FourthWall.GetInstance();
+        if (fourthWall && !Player.GetInstanceControl().IsCovering()) fourthWall.SetActive(false);
+        Player.GetInstanceControl().SetInTransition(false);
+    }
+
+    public bool IsInRange()
+    {
+        return Mathf.Abs(target.position.x - transform.position.x) <= range;
     }
 }

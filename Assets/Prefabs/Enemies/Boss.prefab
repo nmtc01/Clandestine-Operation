@@ -669,8 +669,8 @@ GameObject:
   - component: {fileID: 1566041908868933409}
   - component: {fileID: 2229390105551945114}
   - component: {fileID: 3998303612493045638}
-  - component: {fileID: 8832307572650432640}
   - component: {fileID: 6720835883365628431}
+  - component: {fileID: 2130330538764619278}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
@@ -730,20 +730,6 @@ CapsuleCollider:
   m_Height: 1.9685628
   m_Direction: 1
   m_Center: {x: -0.04625828, y: 0.84412485, z: 0.09039957}
---- !u!114 &8832307572650432640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2229390105551945115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a896f8280445048b3b0cf7c2ec2a18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 700
-  healthUIController: {fileID: 0}
 --- !u!114 &6720835883365628431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,6 +746,21 @@ MonoBehaviour:
   timeToShoot: 1
   timeBetweenShots: 0.1
   healthUI: {fileID: 0}
+  secondaryCamera: {fileID: 0}
+--- !u!114 &2130330538764619278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229390105551945115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0d06d2407e71a43a80716b17859bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 700
+  healthUIController: {fileID: 0}
 --- !u!1 &2285007440378682841
 GameObject:
   m_ObjectHideFlags: 0

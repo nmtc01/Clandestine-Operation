@@ -17,6 +17,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     [SerializeField]
     private GameObject healthUI = null;
     private bool isAlive = true;
+    [SerializeField]
+    private CameraFollowBoss secondaryCamera = null;
+    private bool secondaryCameraActive = false;
+    private bool firstTimeTurn = true;
+    private bool firstTimeGrabbingGun = true;
     
     private Health health;
 
@@ -46,6 +51,19 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
                 StartCoroutine(shootingBehaviour);
             }
             wasInFOV = true;
+        }
+
+        if (secondaryCamera.IsInRange() && secondaryCameraActive)
+        {
+            if (firstTimeTurn)
+            {
+                firstTimeTurn = false;
+                Turn();
+            }
+            if (Input.GetButton("Return"))
+            {
+                DeactivateBossCamera();
+            }
         }
     }
 
@@ -79,7 +97,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     public void GrabGun(bool grabbing)
     {
         animator.SetBool("grabbing_gun", grabbing);
-        gun.transform.SetParent(transform);
+        if (firstTimeGrabbingGun)
+        {
+            firstTimeGrabbingGun = false;
+            gun.transform.SetParent(transform);
+        }
         canShoot = grabbing;
     }
 
@@ -107,11 +129,39 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     public void SetIsDead(bool dead)
     {
         isAlive = dead;
+        animator.SetBool("is_dead", dead);
+        if (dead)
+            DestroyBossPhysics();
     }
 
     public void DamageEnemy(float damage)
     {
         // Damage boss - caused by player shooting
         health.Damage(damage);
+    }
+
+    public void ActivateBossCamera()
+    {
+        GrabGun(false);
+        StopAllCoroutines();
+        gun.StopAudio();
+        secondaryCameraActive = true;
+        secondaryCamera.ActivateCamera();
+    }
+
+    public void DeactivateBossCamera()
+    {
+        secondaryCamera.DeactivateCamera();
+        secondaryCameraActive = false;
+        GrabGun(true);
+        wasInFOV = false;
+        gun.DefaultAudio();
+        gun.PlayAudio();
+    }
+
+    private void DestroyBossPhysics()
+    {
+        GetComponent<Collider>().enabled = false;
+        StopAllCoroutines();
     }
 }

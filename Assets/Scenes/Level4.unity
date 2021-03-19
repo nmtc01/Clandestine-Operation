@@ -2944,7 +2944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6953630251899190183, guid: 5efe625eb84225242b37083ced1ccca7, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6953630251899190183, guid: 5efe625eb84225242b37083ced1ccca7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4404,7 +4404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651031971023017863, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7651031971023017863, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4796,6 +4796,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 22.674385
       objectReference: {fileID: 0}
+    - target: {fileID: 2130330538764619278, guid: a85771758ab940b4185441a118871c09, type: 3}
+      propertyPath: healthUIController
+      value: 
+      objectReference: {fileID: 786897420}
     - target: {fileID: 2229390105551945115, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -5161,9 +5165,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1033865863}
     - target: {fileID: 6720835883365628431, guid: a85771758ab940b4185441a118871c09, type: 3}
+      propertyPath: spot
+      value: 
+      objectReference: {fileID: 2093798841}
+    - target: {fileID: 6720835883365628431, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: healthUI
       value: 
       objectReference: {fileID: 786897418}
+    - target: {fileID: 6720835883365628431, guid: a85771758ab940b4185441a118871c09, type: 3}
+      propertyPath: secondaryCamera
+      value: 
+      objectReference: {fileID: 1011235694}
     - target: {fileID: 6746059310750924353, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -59.62261
@@ -9103,7 +9115,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2117457758
 GameObject:
@@ -10692,7 +10704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b08ec0cfd940e4993bd2dec9c2733f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondaryCamera: {fileID: 1011235690}
   spot: {fileID: 2093798841}
 --- !u!4 &3107727125892493990
 Transform:
