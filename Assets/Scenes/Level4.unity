@@ -10091,6 +10091,7 @@ GameObject:
   - component: {fileID: 2671246643827058695}
   - component: {fileID: 2671246643827058697}
   - component: {fileID: 2671246643827058694}
+  - component: {fileID: 2671246643827058693}
   m_Layer: 0
   m_Name: Right_Wall
   m_TagString: Untagged
@@ -10098,6 +10099,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
   m_IsActive: 1
+--- !u!65 &2671246643827058693
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2671246643827058692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.99999994, z: 1}
+  m_Center: {x: 0.000000059604645, y: -0.000000059604645, z: 0}
 --- !u!23 &2671246643827058694
 MeshRenderer:
   m_ObjectHideFlags: 0

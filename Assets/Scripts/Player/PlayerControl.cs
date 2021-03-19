@@ -59,7 +59,7 @@ public class PlayerControl : MonoBehaviour, IHealthController
         skeleton.transform.rotation = Quaternion.Euler(0, yRot, 0);
     }
 
-    public Vector3 getSkeletonDirection()
+    public Vector3 GetSkeletonDirection()
     {
         return skeleton.transform.forward;
     }
