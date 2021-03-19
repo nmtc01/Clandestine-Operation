@@ -11,6 +11,8 @@ public class PlayerShoot : MonoBehaviour
     private float minVPCrshrX = .2f, maxVPCrshrX = .8f;
     [SerializeField]
     private float minVPCrshrY = .2f, maxVPCrshrY = .8f;
+    [SerializeField]
+    private float minLegRotY = 80f, maxLegRotY = 100f;
 
     [SerializeField]
     private Vector3 initialRotation = Vector3.zero;
@@ -98,7 +100,7 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, Player.GetInstanceControl().getSkeletonDirection()), -1f, 1f));
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, Player.GetInstanceControl().GetSkeletonDirection()), -1f, 1f));
 
         if (vpMousePos.x < vpSpinePos.x)
         {
@@ -212,6 +214,10 @@ public class PlayerShoot : MonoBehaviour
 
     private void RotateSpineCrosshair(Vector3 crosshairPos)
     {
+        float dirY = Mathf.Clamp(Quaternion.LookRotation((crosshairPos - Player.GetArmatureTransform().position)).eulerAngles.y, minLegRotY, maxLegRotY);
+
+        Player.GetInstanceControl().RotateSkeleton(dirY);
+
         spine.transform.LookAt(crosshairPos);
     }
 

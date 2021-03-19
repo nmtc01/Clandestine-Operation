@@ -1640,6 +1640,8 @@ MonoBehaviour:
   maxVPCrshrX: 0.75
   minVPCrshrY: 0.2
   maxVPCrshrY: 0.8
+  minLegRotY: 70
+  maxLegRotY: 100
   initialRotation: {x: 0, y: 0, z: 0}
   defaultGun: {fileID: 2433647240542301530}
   gunPosition: {fileID: 3440194900652112314}

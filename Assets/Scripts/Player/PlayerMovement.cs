@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 // Player is aiming
                 // Player moving while aiming in opposite directions
-                if (movement * Player.GetInstanceControl().getSkeletonDirection().x < 0) 
+                if (movement * Player.GetInstanceControl().GetSkeletonDirection().x < 0) 
                 {
                     camDelta = -1;
                     Player.GetInstanceControl().SetOppositeDir(1f);
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         //Quaternion lookToDoor = Quaternion.Euler(0, -90, 0);
         float maxTimeToRotate = .2f;
         PlayerControl playerControl = Player.GetInstanceControl();
-        float initY = playerControl.getSkeletonDirection().y;
+        float initY = playerControl.GetSkeletonDirection().y;
         for (float t = 0; t <= maxTimeToRotate; t += Time.deltaTime)
         {
             playerControl.RotateSkeleton(Mathf.Lerp(initY, 0, t / maxTimeToRotate));
