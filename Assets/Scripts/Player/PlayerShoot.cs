@@ -8,7 +8,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private float maxRotation = 45f;
     [SerializeField]
-    private float minVPCrshrX = .2f, maxVPCrshrX = .8f;
+    private float minVPCrshrX = .25f, maxVPCrshrX = .75f;
     [SerializeField]
     private float minVPCrshrY = .2f, maxVPCrshrY = .8f;
     [SerializeField]
@@ -64,18 +64,21 @@ public class PlayerShoot : MonoBehaviour
     private void LateUpdate()
     {
         PlayerControl playerControl = Player.GetInstanceControl();
-        if (playerControl.IsAiming() && !playerControl.IsCovering())
+        if (playerControl.IsAiming())
         {
-            RotateSpine();
-            SetAimingLinePositions();
-            crosshair.SetActive(false);
-        }
-        else if (playerControl.IsAiming() && playerControl.IsCovering())
-        {
-            Player.EnablePhysics(true);
-            Vector3 crosshairPos = AimCrosshair();
-            RotateSpineCrosshair(crosshairPos);
-            SetAimingCrossHairLinePositions(crosshairPos);
+            if(playerControl.IsCovering())
+            {
+                Player.EnablePhysics(true);
+                Vector3 crosshairPos = AimCrosshair();
+                RotateSpineCrosshair(crosshairPos);
+                SetAimingCrossHairLinePositions(crosshairPos);
+            } 
+            else
+            {
+                RotateSpine();
+                SetAimingLinePositions();
+                crosshair.SetActive(false);
+            }
         }
         else
         {
@@ -119,27 +122,34 @@ public class PlayerShoot : MonoBehaviour
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
 
-        Vector3 endWorldPoint;
-
-        RaycastHit hit;
 
         Vector2 rayDirection = bulletSpawnerTransform.forward;
         Vector2 startPoint = bulletSpawnerTransform.position;
 
-        if (Physics.Raycast(startPoint, rayDirection, out hit, aimMaxLength, aimingIgnoredColliders))
-        {
-            endWorldPoint = hit.point;
-        }
-        else
-        {
-            endWorldPoint = bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength;
-        }
+        Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), aimMaxLength);
 
+        DrawAimingLine(startPoint, endWorldPoint, (endWorldPoint - bulletSpawnerTransform.position).normalized);
+    }
+
+    private void DrawAimingLine(Vector3 startPoint, Vector3 endPoint, Vector3 shootingDirection)
+    {
         aimingLine.gameObject.SetActive(true);
         aimingLine.SetPosition(0, startPoint);
-        aimingLine.SetPosition(1, endWorldPoint);
+        aimingLine.SetPosition(1, endPoint);
 
-        currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
+        currentGun.SetShootingDirection(shootingDirection);
+    }
+
+    private Vector3 GetAimingLineFinalPos(Ray ray, float maxLength)
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, aimMaxLength, aimingIgnoredColliders))
+        {
+            return hit.point;
+        }
+
+        return ray.origin + ray.direction * aimMaxLength;
     }
 
     private void ResetAimingLine()
@@ -184,16 +194,8 @@ public class PlayerShoot : MonoBehaviour
         vpMousePos.y = Mathf.Clamp(vpMousePos.y, minVPCrshrY, maxVPCrshrY);
 
         Ray ray = Camera.main.ViewportPointToRay(vpMousePos);
-        RaycastHit hit;
-        Vector3 crosshairPos;
-        if (Physics.Raycast(ray, out hit, coverAimingLineRange, aimingIgnoredColliders))
-        {
-            crosshairPos = hit.point;
-        }
-        else
-        {
-            crosshairPos = ray.origin + ray.direction * coverAimingLineRange;
-        }
+        
+        Vector3 crosshairPos = GetAimingLineFinalPos(ray, coverAimingLineRange);
         
         crosshair.transform.position = crosshairPos;
 
@@ -203,13 +205,8 @@ public class PlayerShoot : MonoBehaviour
     private void SetAimingCrossHairLinePositions(Vector3 crosshairPos)
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
-        Vector3 startPoint = bulletSpawnerTransform.position;
 
-        aimingLine.gameObject.SetActive(true);
-        aimingLine.SetPosition(0, startPoint);
-        aimingLine.SetPosition(1, crosshairPos);
-
-        currentGun.SetShootingDirection((crosshairPos - bulletSpawnerTransform.position).normalized);
+        DrawAimingLine(bulletSpawnerTransform.position, crosshairPos, (crosshairPos - bulletSpawnerTransform.position).normalized);
     }
 
     private void RotateSpineCrosshair(Vector3 crosshairPos)
