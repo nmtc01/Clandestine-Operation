@@ -124,7 +124,7 @@ public class PlayerShoot : MonoBehaviour
 
 
         Vector2 rayDirection = bulletSpawnerTransform.forward;
-        Vector2 startPoint = bulletSpawnerTransform.position;
+        Vector3 startPoint = bulletSpawnerTransform.position;
 
         Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), aimMaxLength);
 
