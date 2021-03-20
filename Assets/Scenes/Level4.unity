@@ -2415,6 +2415,7 @@ MonoBehaviour:
   - 'Boss: Ok, ok, I give up! You''re too strong. I''ll release your friends.'
   typingSpeed: 0.02
   dialogBox: {fileID: 1646188434}
+  key: {fileID: 2110172885}
 --- !u!1 &604308633
 GameObject:
   m_ObjectHideFlags: 0

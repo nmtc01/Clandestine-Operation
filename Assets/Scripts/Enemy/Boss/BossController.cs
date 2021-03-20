@@ -16,7 +16,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     private float timeToShoot = 1f, timeBetweenShots = 0.1f;
     [SerializeField]
     private GameObject healthUI = null;
-    private bool isAlive = true;
+    public bool isAlive = true;
     [SerializeField]
     private CameraFollowBoss secondaryCamera = null;
     [SerializeField]
@@ -38,7 +38,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     // FixedUpdate is called once per frame
     void FixedUpdate()
     {
-        if (canShoot)
+        if (canShoot && isAlive)
         {
             // Enemy looks to the player
             Vector3 direction = (Player.GetArmatureTransform().position - transform.position).normalized;
@@ -61,6 +61,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
             {
                 firstTimeTurn = false;
                 Turn();
+                ShowUI();
             }
 
             if (Input.GetButton("Return"))
@@ -71,6 +72,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
                 {
                     firstTimeTurn = false;
                     Turn();
+                    ShowUI();
                 } 
             }
         }
@@ -137,10 +139,13 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
 
     public void SetIsDead(bool dead)
     {
-        isAlive = dead;
+        isAlive = !dead;
         animator.SetBool("is_dead", dead);
         if (dead)
+        {
+            canShoot = false;
             DestroyBossPhysics();
+        }
     }
 
     public void DamageEnemy(float damage)

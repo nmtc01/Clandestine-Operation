@@ -20,6 +20,8 @@ public class BossSpeech : MonoBehaviour
     private bool endedFirstSentence = false;
     [SerializeField]
     private GameObject dialogBox = null;
+    [SerializeField]
+    private GameObject key = null;
     enum State
     {
         Idle,
@@ -42,6 +44,7 @@ public class BossSpeech : MonoBehaviour
             textDisplay.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        index++;
     }
 
     private int GetNewIndex()
@@ -50,8 +53,8 @@ public class BossSpeech : MonoBehaviour
         {
             case State.Idle: return 0;
             case State.Beginning: return beginningSize;
-            case State.Middle: return middleSize;
-            case State.End: return endSize;
+            case State.Middle: return beginningSize + middleSize;
+            case State.End: return beginningSize + middleSize + endSize;
             default: return 0;
         }
     }
@@ -90,15 +93,16 @@ public class BossSpeech : MonoBehaviour
             NextSpeech();
             yield return new WaitForSeconds(cinematicPause);
             if(!endedFirstSentence) endedFirstSentence = true;
+            if (i == size - 1) key.SetActive(true); 
             yield return new WaitForSeconds(cinematicPause);
         }
     }
 
     private void NextSpeech()
     {
-        if (index < speeches.Length - 1) {
+        if (index < speeches.Length - 1)
+        {
             StartCoroutine(Type());
-            index++;
         }
     }
 
@@ -109,6 +113,7 @@ public class BossSpeech : MonoBehaviour
             canStartTalk = false;
             state++;
             dialogBox.SetActive(true);
+            key.SetActive(false);
             HandleSpeechOrder();
         }
     }
@@ -121,6 +126,7 @@ public class BossSpeech : MonoBehaviour
         index = GetNewIndex();
         endedFirstSentence = true;
         dialogBox.SetActive(false);
+        key.SetActive(false);
     }
 
     public bool EndedFirstSentence()
