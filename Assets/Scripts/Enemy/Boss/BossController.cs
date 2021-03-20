@@ -57,7 +57,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         if (secondaryCamera.IsInRange() && secondaryCameraActive)
         {
             speech.ActivateDialogManager();
-            if (firstTimeTurn)
+            if (firstTimeTurn && speech.EndedFirstSentence())
             {
                 firstTimeTurn = false;
                 Turn();
@@ -67,6 +67,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
             {
                 DeactivateBossCamera();
                 speech.DeactivateDialogManager();
+                if (firstTimeTurn)
+                {
+                    firstTimeTurn = false;
+                    Turn();
+                } 
             }
         }
     }
@@ -88,7 +93,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         return instance;
     }
 
-    public void Turn()
+    private void Turn()
     {
         animator.SetTrigger("turn_right");
     }

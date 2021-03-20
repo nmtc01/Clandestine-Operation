@@ -2413,7 +2413,7 @@ MonoBehaviour:
   - 'Boss: You''re stronger than the last time we faced each other!'
   - 'Boss: But I won''t give up easily!'
   - 'Boss: Ok, ok, I give up! You''re too strong. I''ll release your friends.'
-  typingSpeed: 0.05
+  typingSpeed: 0.02
   cinematicPause: 5
 --- !u!1 &604308633
 GameObject:

@@ -11,13 +11,14 @@ public class BossSpeech : MonoBehaviour
     private string[] speeches = null;
     private int index;
     [SerializeField]
-    private float typingSpeed = 0.05f;
+    private float typingSpeed = 0.02f;
     private bool canStartTalk = true;
     [SerializeField]
     private float cinematicPause = 5f;
     private const int beginningSize = 3;
     private const int middleSize = 2;
     private const int endSize = 1;
+    private bool endedFirstSentence = false;
     enum State
     {
         Idle,
@@ -87,6 +88,7 @@ public class BossSpeech : MonoBehaviour
             textDisplay.text = "";
             NextSpeech();
             yield return new WaitForSeconds(cinematicPause);
+            endedFirstSentence = true;
         }
     }
 
@@ -114,5 +116,11 @@ public class BossSpeech : MonoBehaviour
         canStartTalk = true;
         StopAllCoroutines();
         index = GetNewIndex();
+        endedFirstSentence = true;
+    }
+
+    public bool EndedFirstSentence()
+    {
+        return endedFirstSentence;
     }
 }
