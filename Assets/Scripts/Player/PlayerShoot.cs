@@ -33,6 +33,8 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private GameObject crosshair = null;
     private float coverAimingLineRange = 30f;
+    [SerializeField]
+    private float boxCastYSize = .1f, boxCastZSize = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -122,13 +124,12 @@ public class PlayerShoot : MonoBehaviour
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
 
-
         Vector2 rayDirection = bulletSpawnerTransform.forward;
         Vector3 startPoint = bulletSpawnerTransform.position;
 
-        Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), aimMaxLength);
+        Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), aimMaxLength, false);
 
-        DrawAimingLine(startPoint, endWorldPoint, (endWorldPoint - bulletSpawnerTransform.position).normalized);
+        DrawAimingLine(startPoint, endWorldPoint, (endWorldPoint - startPoint).normalized);
     }
 
     private void DrawAimingLine(Vector3 startPoint, Vector3 endPoint, Vector3 shootingDirection)
@@ -140,16 +141,26 @@ public class PlayerShoot : MonoBehaviour
         currentGun.SetShootingDirection(shootingDirection);
     }
 
-    private Vector3 GetAimingLineFinalPos(Ray ray, float maxLength)
+    private Vector3 GetAimingLineFinalPos(Ray ray, float maxLength, bool raycast = false)
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, aimMaxLength, aimingIgnoredColliders))
+        if (GetTarget(ray, maxLength, raycast, out hit))
         {
             return hit.point;
         }
 
         return ray.origin + ray.direction * aimMaxLength;
+    }
+
+    private bool GetTarget(Ray ray, float maxLength, bool raycast, out RaycastHit hit)
+    {
+        if(raycast)
+        {
+            return Physics.Raycast(ray, out hit, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
+        }
+
+        return Physics.BoxCast(ray.origin, new Vector3(1, boxCastYSize, boxCastZSize), ray.direction, out hit, Quaternion.identity, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
     }
 
     private void ResetAimingLine()
@@ -195,7 +206,7 @@ public class PlayerShoot : MonoBehaviour
 
         Ray ray = Camera.main.ViewportPointToRay(vpMousePos);
         
-        Vector3 crosshairPos = GetAimingLineFinalPos(ray, coverAimingLineRange);
+        Vector3 crosshairPos = GetAimingLineFinalPos(ray, coverAimingLineRange, true);
         
         crosshair.transform.position = crosshairPos;
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 293517439762641581}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: mag release_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6474773093431541935}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BulletSpwaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 2502245020231060867}
   - component: {fileID: 8540879833592069329}
   - component: {fileID: -4178502932346997484}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mini Uzi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7368263690156963194}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: mag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8065993165616975943}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2911704916682767894}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bullets_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6775973246370520349}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7095962132079185817}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8494099836549209848}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bolt_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8620768761151910277}
   - component: {fileID: 7682174347209426527}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1413960402209068218}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3110352951758279469}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3241418997359281363}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: charginghandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2483677532175923958}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: selector_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -637,7 +637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7146872175817112636}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -668,7 +668,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7214031051866835412}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bullet_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6764426491455927943}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: mag release
   m_TagString: Untagged
   m_Icon: {fileID: 0}
