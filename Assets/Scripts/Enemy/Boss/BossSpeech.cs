@@ -100,7 +100,7 @@ public class BossSpeech : MonoBehaviour
 
     private void NextSpeech()
     {
-        if (index < speeches.Length - 1)
+        if (index < speeches.Length)
         {
             StartCoroutine(Type());
         }
