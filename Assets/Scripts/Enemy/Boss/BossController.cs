@@ -19,10 +19,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     private bool isAlive = true;
     [SerializeField]
     private CameraFollowBoss secondaryCamera = null;
+    [SerializeField]
+    private BossSpeech speech = null;
     private bool secondaryCameraActive = false;
     private bool firstTimeTurn = true;
     private bool firstTimeGrabbingGun = true;
-    
     private Health health;
 
     // Start is called before the first frame update
@@ -55,14 +56,17 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
 
         if (secondaryCamera.IsInRange() && secondaryCameraActive)
         {
+            speech.ActivateDialogManager();
             if (firstTimeTurn)
             {
                 firstTimeTurn = false;
                 Turn();
             }
+
             if (Input.GetButton("Return"))
             {
                 DeactivateBossCamera();
+                speech.DeactivateDialogManager();
             }
         }
     }
