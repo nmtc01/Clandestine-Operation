@@ -13,12 +13,13 @@ public class BossSpeech : MonoBehaviour
     [SerializeField]
     private float typingSpeed = 0.02f;
     private bool canStartTalk = true;
-    [SerializeField]
-    private float cinematicPause = 5f;
+    private float cinematicPause = 2f;
     private const int beginningSize = 3;
     private const int middleSize = 2;
     private const int endSize = 1;
     private bool endedFirstSentence = false;
+    [SerializeField]
+    private GameObject dialogBox = null;
     enum State
     {
         Idle,
@@ -88,7 +89,8 @@ public class BossSpeech : MonoBehaviour
             textDisplay.text = "";
             NextSpeech();
             yield return new WaitForSeconds(cinematicPause);
-            endedFirstSentence = true;
+            if(!endedFirstSentence) endedFirstSentence = true;
+            yield return new WaitForSeconds(cinematicPause);
         }
     }
 
@@ -106,6 +108,7 @@ public class BossSpeech : MonoBehaviour
         {
             canStartTalk = false;
             state++;
+            dialogBox.SetActive(true);
             HandleSpeechOrder();
         }
     }
@@ -117,6 +120,7 @@ public class BossSpeech : MonoBehaviour
         StopAllCoroutines();
         index = GetNewIndex();
         endedFirstSentence = true;
+        dialogBox.SetActive(false);
     }
 
     public bool EndedFirstSentence()
