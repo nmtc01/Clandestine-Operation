@@ -19,10 +19,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     private bool isAlive = true;
     [SerializeField]
     private CameraFollowBoss secondaryCamera = null;
+    [SerializeField]
+    private BossSpeech speech = null;
     private bool secondaryCameraActive = false;
     private bool firstTimeTurn = true;
     private bool firstTimeGrabbingGun = true;
-    
     private Health health;
 
     // Start is called before the first frame update
@@ -37,7 +38,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     // FixedUpdate is called once per frame
     void FixedUpdate()
     {
-        if (canShoot)
+        if (canShoot && isAlive)
         {
             // Enemy looks to the player
             Vector3 direction = (Player.GetArmatureTransform().position - transform.position).normalized;
@@ -55,14 +56,23 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
 
         if (secondaryCamera.IsInRange() && secondaryCameraActive)
         {
-            if (firstTimeTurn)
+            speech.ActivateDialogManager();
+            if (firstTimeTurn && speech.EndedFirstSentence())
             {
                 firstTimeTurn = false;
                 Turn();
             }
+
             if (Input.GetButton("Return"))
             {
                 DeactivateBossCamera();
+                speech.DeactivateDialogManager();
+                if (firstTimeTurn)
+                {
+                    firstTimeTurn = false;
+                    Turn();
+                    ShowUI();
+                } 
             }
         }
     }
@@ -84,7 +94,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         return instance;
     }
 
-    public void Turn()
+    private void Turn()
     {
         animator.SetTrigger("turn_right");
     }
@@ -128,10 +138,13 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
 
     public void SetIsDead(bool dead)
     {
-        isAlive = dead;
+        isAlive = !dead;
         animator.SetBool("is_dead", dead);
         if (dead)
+        {
+            canShoot = false;
             DestroyBossPhysics();
+        }
     }
 
     public void DamageEnemy(float damage)
@@ -155,8 +168,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         secondaryCameraActive = false;
         GrabGun(true);
         wasInFOV = false;
-        gun.DefaultAudio();
-        gun.PlayAudio();
+        if (isAlive)
+        {
+            gun.DefaultAudio();
+            gun.PlayAudio();
+        }
     }
 
     private void DestroyBossPhysics()

@@ -11,4 +11,10 @@ public class BossHealth : EnemyHealth
             BossController.GetInstance().ActivateBossCamera();
         }
     }
+
+    public override void Kill()
+    {
+        base.Kill();
+        BossController.GetInstance().ActivateBossCamera();
+    }
 }
