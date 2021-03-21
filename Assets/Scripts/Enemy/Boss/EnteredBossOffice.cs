@@ -4,7 +4,7 @@ public class EnteredBossOffice : MonoBehaviour
 {
     private bool firstTime = true;
     [SerializeField]
-    private GameObject spot = null;
+    private int spot = 30;
     
     private void OnCollisionEnter(Collision collision)
     {
@@ -13,7 +13,7 @@ public class EnteredBossOffice : MonoBehaviour
             firstTime = false;
             BossController.GetInstance().ActivateBossCamera();
             GameObject player = Player.GetInstance();
-            player.transform.position = new Vector3(spot.transform.position.x, player.transform.position.y, player.transform.position.z);
+            player.transform.position = new Vector3(spot, player.transform.position.y, player.transform.position.z);
         }
     }
 }

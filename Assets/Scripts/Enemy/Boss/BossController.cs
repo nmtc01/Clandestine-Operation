@@ -25,6 +25,10 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     private bool firstTimeTurn = true;
     private bool firstTimeGrabbingGun = true;
     private Health health;
+    [SerializeField]
+    private GameObject cage = null;
+    [SerializeField]
+    private int endSpot = 75;
 
     // Start is called before the first frame update
     void Start()
@@ -144,6 +148,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         {
             canShoot = false;
             DestroyBossPhysics();
+            HandleParty();
         }
     }
 
@@ -179,5 +184,13 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     {
         GetComponent<Collider>().enabled = false;
         StopAllCoroutines();
+    }
+
+    private void HandleParty()
+    {
+        if (cage) cage.transform.Rotate(new Vector3(0,0,180));
+        GameObject player = Player.GetInstance();
+        player.transform.position = new Vector3(endSpot, player.transform.position.y, player.transform.position.z);
+        Player.GetInstanceControl().SetIsCovering(false);
     }
 }
