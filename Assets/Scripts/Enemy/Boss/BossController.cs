@@ -25,10 +25,15 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     private bool firstTimeTurn = true;
     private bool firstTimeGrabbingGun = true;
     private Health health;
+
+    #region party
     [SerializeField]
     private GameObject cage = null;
     [SerializeField]
     private int endSpot = 75;
+    [SerializeField]
+    private Friend[] friends;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -75,8 +80,8 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
                 {
                     firstTimeTurn = false;
                     Turn();
-                    ShowUI();
                 } 
+                if (isAlive) ShowUI();
             }
         }
     }
@@ -192,5 +197,10 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         GameObject player = Player.GetInstance();
         player.transform.position = new Vector3(endSpot, player.transform.position.y, player.transform.position.z);
         Player.GetInstanceControl().SetIsCovering(false);
+        
+        for (int i = 0; i < friends.Length; i++)
+        {
+            friends[i].StartParty();
+        }
     }
 }
