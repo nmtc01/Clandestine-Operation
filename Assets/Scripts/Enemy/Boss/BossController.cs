@@ -16,7 +16,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     private float timeToShoot = 1f, timeBetweenShots = 0.1f;
     [SerializeField]
     private GameObject healthUI = null;
-    public bool isAlive = true;
+    private bool isAlive = true;
     [SerializeField]
     private CameraFollowBoss secondaryCamera = null;
     [SerializeField]
@@ -61,7 +61,6 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
             {
                 firstTimeTurn = false;
                 Turn();
-                ShowUI();
             }
 
             if (Input.GetButton("Return"))
@@ -169,8 +168,11 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         secondaryCameraActive = false;
         GrabGun(true);
         wasInFOV = false;
-        gun.DefaultAudio();
-        gun.PlayAudio();
+        if (isAlive)
+        {
+            gun.DefaultAudio();
+            gun.PlayAudio();
+        }
     }
 
     private void DestroyBossPhysics()
