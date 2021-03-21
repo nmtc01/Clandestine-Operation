@@ -7761,6 +7761,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3666549597828597965, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: vpCrshrPos.max
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666549597828597965, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
+      propertyPath: vpCrshrPos.min
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3666549597828597966, guid: 723f63f0f37520f4b926b7efb4a78e31, type: 3}
       propertyPath: m_Name
       value: Player

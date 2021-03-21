@@ -1,20 +1,26 @@
+using System;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+    [Serializable]
+    private struct MinMaxValues
+    {
+        public float min;
+        public float max;
+    }
+
     [SerializeField]
     private GameObject spine = null;
 
-    [SerializeField]
     private float maxRotation = 45f;
     [SerializeField]
-    private float minVPCrshrX = .25f, maxVPCrshrX = .75f;
+    private MinMaxValues vpCrshrX;
     [SerializeField]
-    private float minVPCrshrY = .2f, maxVPCrshrY = .8f;
+    private MinMaxValues vpCrshrY;
     [SerializeField]
-    private float minLegRotY = 80f, maxLegRotY = 100f;
+    private MinMaxValues legRotY;
 
-    [SerializeField]
     private Vector3 initialRotation = Vector3.zero;
 
     [SerializeField]
@@ -33,6 +39,9 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private GameObject crosshair = null;
     private float coverAimingLineRange = 30f;
+    private float boxCastYSize = .1f;
+    [SerializeField] 
+    private float boxCastZSize = 1.75f;
 
     // Start is called before the first frame update
     void Start()
@@ -122,13 +131,12 @@ public class PlayerShoot : MonoBehaviour
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
 
-
         Vector2 rayDirection = bulletSpawnerTransform.forward;
-        Vector2 startPoint = bulletSpawnerTransform.position;
+        Vector3 startPoint = bulletSpawnerTransform.position;
 
-        Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), aimMaxLength);
+        Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), aimMaxLength, false);
 
-        DrawAimingLine(startPoint, endWorldPoint, (endWorldPoint - bulletSpawnerTransform.position).normalized);
+        DrawAimingLine(startPoint, endWorldPoint, (endWorldPoint - startPoint).normalized);
     }
 
     private void DrawAimingLine(Vector3 startPoint, Vector3 endPoint, Vector3 shootingDirection)
@@ -140,16 +148,26 @@ public class PlayerShoot : MonoBehaviour
         currentGun.SetShootingDirection(shootingDirection);
     }
 
-    private Vector3 GetAimingLineFinalPos(Ray ray, float maxLength)
+    private Vector3 GetAimingLineFinalPos(Ray ray, float maxLength, bool raycast = false)
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, aimMaxLength, aimingIgnoredColliders))
+        if (GetTarget(ray, maxLength, raycast, out hit))
         {
             return hit.point;
         }
 
         return ray.origin + ray.direction * aimMaxLength;
+    }
+
+    private bool GetTarget(Ray ray, float maxLength, bool raycast, out RaycastHit hit)
+    {
+        if(raycast)
+        {
+            return Physics.Raycast(ray, out hit, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
+        }
+
+        return Physics.BoxCast(ray.origin, new Vector3(1, boxCastYSize, boxCastZSize), ray.direction, out hit, Quaternion.identity, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
     }
 
     private void ResetAimingLine()
@@ -190,12 +208,12 @@ public class PlayerShoot : MonoBehaviour
         crosshair.SetActive(true);
 
         Vector2 vpMousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        vpMousePos.x = Mathf.Clamp(vpMousePos.x, minVPCrshrX, maxVPCrshrX);
-        vpMousePos.y = Mathf.Clamp(vpMousePos.y, minVPCrshrY, maxVPCrshrY);
+        vpMousePos.x = Mathf.Clamp(vpMousePos.x, vpCrshrX.min, vpCrshrX.max);
+        vpMousePos.y = Mathf.Clamp(vpMousePos.y, vpCrshrY.min, vpCrshrY.max);
 
         Ray ray = Camera.main.ViewportPointToRay(vpMousePos);
         
-        Vector3 crosshairPos = GetAimingLineFinalPos(ray, coverAimingLineRange);
+        Vector3 crosshairPos = GetAimingLineFinalPos(ray, coverAimingLineRange, true);
         
         crosshair.transform.position = crosshairPos;
 
@@ -211,7 +229,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void RotateSpineCrosshair(Vector3 crosshairPos)
     {
-        float dirY = Mathf.Clamp(Quaternion.LookRotation((crosshairPos - Player.GetArmatureTransform().position)).eulerAngles.y, minLegRotY, maxLegRotY);
+        float dirY = Mathf.Clamp(Quaternion.LookRotation((crosshairPos - Player.GetArmatureTransform().position)).eulerAngles.y, legRotY.min, legRotY.max);
 
         Player.GetInstanceControl().RotateSkeleton(dirY);
 
