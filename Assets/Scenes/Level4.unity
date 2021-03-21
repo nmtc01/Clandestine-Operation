@@ -11013,7 +11013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2130330538764619278, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: maxHealth
-      value: 50
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 2130330538764619278, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: healthUIController

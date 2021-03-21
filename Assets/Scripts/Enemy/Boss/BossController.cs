@@ -82,6 +82,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
                     Turn();
                 } 
                 if (isAlive) ShowUI();
+                else HandleParty();
             }
         }
     }
@@ -153,7 +154,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         {
             canShoot = false;
             DestroyBossPhysics();
-            HandleParty();
+            Player.GetInstanceControl().SetIsCovering(false);
         }
     }
 
@@ -196,7 +197,6 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         if (cage) cage.transform.Rotate(new Vector3(0,0,180));
         GameObject player = Player.GetInstance();
         player.transform.position = new Vector3(endSpot, player.transform.position.y, player.transform.position.z);
-        Player.GetInstanceControl().SetIsCovering(false);
         
         for (int i = 0; i < friends.Length; i++)
         {
