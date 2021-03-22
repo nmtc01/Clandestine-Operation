@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour, IHealthController, IEnemyControlle
     #endregion
 
 
-    private Health health;
+    private EnemyHealth health;
     private bool isDead = false;
 
     // Start is called before the first frame update
@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour, IHealthController, IEnemyControlle
 
         audioSource = GetComponent<AudioSource>();
 
-        health = GetComponent<Health>();
+        health = GetComponent<EnemyHealth>();
     }
 
     // FixedUpdate is called once per frame
@@ -117,7 +117,9 @@ public class EnemyController : MonoBehaviour, IHealthController, IEnemyControlle
     public void AlertEnemy()
     {
         if (!alertedBefore && !isDead)
+        {
             Alert();
+        }
     }
 
     private IEnumerator WaitOnPosition()
@@ -206,6 +208,8 @@ public class EnemyController : MonoBehaviour, IHealthController, IEnemyControlle
     {
         // Damage enemy - caused by player shooting
         health.Damage(damage);
+
+        health.ShowUI();
 
         AlertEnemy();
     }
