@@ -119,7 +119,6 @@ public class EnemyController : MonoBehaviour, IHealthController, IEnemyControlle
         if (!alertedBefore && !isDead)
         {
             Alert();
-            health.ShowUI();
         }
     }
 
@@ -209,6 +208,9 @@ public class EnemyController : MonoBehaviour, IHealthController, IEnemyControlle
     {
         // Damage enemy - caused by player shooting
         health.Damage(damage);
+
+        if (!alertedBefore)
+            health.ShowUI();
 
         AlertEnemy();
     }
