@@ -28,6 +28,11 @@ public class PlayerControl : MonoBehaviour, IHealthController
         animator.SetBool("isWalking", walking);
     }
 
+    public void SetIsRunning(bool running)
+    {
+        animator.SetBool("isRunning", running);
+    }
+
     public void SetOppositeDir(float oppositeDir)
     {
         animator.SetFloat("oppositeDir", oppositeDir, 0.1f, Time.deltaTime);

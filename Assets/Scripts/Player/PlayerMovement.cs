@@ -31,22 +31,35 @@ public class PlayerMovement : MonoBehaviour
     void Move() 
     {
         float movement = Input.GetAxis("Horizontal");
-        if (movement != 0)
+
+        bool isWalking = movement != 0;
+
+        Player.GetInstanceControl().SetIsWalking(isWalking);
+
+        if (isWalking)
         {
-            // Player is walking
-            Player.GetInstanceControl().SetIsWalking(true);
-            
             int camDelta = 1;
-            transform.position += new Vector3(playerSpeed * movement * Time.deltaTime, 0f, 0f);
+            float x_speed = playerSpeed * movement * Time.deltaTime;
 
             if (!Player.GetInstanceControl().IsAiming())
             {
                 // Turn
                 if (!Mathf.Approximately(0, movement)) 
                     Player.GetInstanceControl().RotateSkeleton(movement < 0);
+
+                bool isRunning = Input.GetButton("Run");
+                if (isRunning)
+                {
+                    x_speed *= 2;
+                }
+
+                Player.GetInstanceControl().SetIsRunning(isRunning);
             }
             else
             {
+                // Player isn't running
+                Player.GetInstanceControl().SetIsRunning(false);
+
                 // Player is aiming
                 // Player moving while aiming in opposite directions
                 if (movement * Player.GetInstanceControl().GetSkeletonDirection().x < 0) 
@@ -57,10 +70,11 @@ public class PlayerMovement : MonoBehaviour
                 else Player.GetInstanceControl().SetOppositeDir(0f);
             }
 
+            transform.position += new Vector3(x_speed, 0f, 0f);
+
             // Camera follow movement
             cameraTarget.localPosition = new Vector3(Mathf.Lerp(cameraTarget.localPosition.x, aheadAmount * camDelta * movement, aheadSpeed * Time.deltaTime), cameraTarget.localPosition.y, cameraTarget.localPosition.z);
         }
-        else Player.GetInstanceControl().SetIsWalking(false);
     }
 
     public void WalkToElevatorDoor(Vector3 doorPosition, Elevator elevator)
