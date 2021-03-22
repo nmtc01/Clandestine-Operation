@@ -209,4 +209,12 @@ public class EnemyController : MonoBehaviour, IHealthController, IEnemyControlle
 
         AlertEnemy();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetInstanceID() == Player.GetInstance().GetInstanceID())
+        {
+            AlertEnemy();
+        }
+    }
 }
