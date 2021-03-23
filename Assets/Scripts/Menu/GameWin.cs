@@ -22,8 +22,6 @@ public class GameWin : MonoBehaviour
 
     [SerializeField]
     private TMP_Text finalScoreText = null;
-    [SerializeField]
-    private GameObject canvas = null;
 
     public static void RestartLevel(string levelName)
     {
@@ -32,7 +30,6 @@ public class GameWin : MonoBehaviour
 
     public static void MainMenu()
     {
-        GameManager.DestroyObject();
         SceneManager.LoadScene("Menu");
     }
 
@@ -44,7 +41,7 @@ public class GameWin : MonoBehaviour
         Player.GetInstanceHealth().enabled = false;
         instance.UpdateFinalScore();
 
-        Destroy(instance.canvas);
+        GameOver.DestroyObject();
         
         AudioSource audioSource = instance.GetComponent<AudioSource>();
         if (audioSource)

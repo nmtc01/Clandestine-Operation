@@ -28,7 +28,7 @@ public class GameOver : MonoBehaviour
     public static void RestartLevel(string levelName)
     {
         ResetTimer();
-        Destroy(instance.transform.parent.gameObject);
+        DestroyObject();
         SceneManager.LoadScene(levelName);
     }
 
@@ -36,7 +36,7 @@ public class GameOver : MonoBehaviour
     {
         ResetTimer();
         GameManager.DestroyObject();
-        Destroy(instance.transform.parent.gameObject);
+        DestroyObject();
         SceneManager.LoadScene("Menu");
     }
 
@@ -70,5 +70,10 @@ public class GameOver : MonoBehaviour
             Time.timeScale = Mathf.Lerp(1f, 0f, t / stopingTime);
             yield return null;
         }
+    }
+
+    public static void DestroyObject()
+    {
+        Destroy(instance.transform.parent.gameObject);
     }
 }

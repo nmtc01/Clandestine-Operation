@@ -10702,14 +10702,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 6253716267342729701, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6253716267342729701, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6988021896991480593, guid: 0875d47104c77364e97283dc064b28cb, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -11412,10 +11404,6 @@ PrefabInstance:
     - target: {fileID: 2119201073587877128, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 22.674385
-      objectReference: {fileID: 0}
-    - target: {fileID: 2130330538764619278, guid: a85771758ab940b4185441a118871c09, type: 3}
-      propertyPath: maxHealth
-      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 2130330538764619278, guid: a85771758ab940b4185441a118871c09, type: 3}
       propertyPath: healthUIController
@@ -16551,8 +16539,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+      - m_Target: {fileID: 1945002298}
+        m_TargetAssemblyTypeName: GameWin, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
@@ -19461,11 +19449,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916458311}
   m_CullTransparentMesh: 1
---- !u!1 &1926663490 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6899870437351667241, guid: c0550b189d7635c44b5bda241741568f, type: 3}
-  m_PrefabInstance: {fileID: 1155797235}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1935257605
 GameObject:
   m_ObjectHideFlags: 0
@@ -19674,7 +19657,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalScoreText: {fileID: 1909884785}
-  canvas: {fileID: 1926663490}
 --- !u!114 &1945002299
 MonoBehaviour:
   m_ObjectHideFlags: 0
