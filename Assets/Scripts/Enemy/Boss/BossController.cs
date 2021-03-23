@@ -181,7 +181,6 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         wasInFOV = false;
         if (isAlive)
         {
-            gun.DefaultAudio();
             gun.PlayAudio();
         }
     }
