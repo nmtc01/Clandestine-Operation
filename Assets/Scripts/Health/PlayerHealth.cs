@@ -70,4 +70,9 @@ public class PlayerHealth : Health
         mainAudioSource.clip = ac;
         mainAudioSource.Play();
     }
+
+    private void OnDisable()
+    {
+        hearthBeatAudioSource.Stop();
+    }
 }

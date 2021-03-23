@@ -38,11 +38,14 @@ public class GameWin : MonoBehaviour
 
     public static void ShowGameWinScreen()
     {
-        instance.canvas.SetActive(false);
         instance.gameObject.SetActive(true);
         Player.GetInstanceMovement().enabled = false;
         Player.GetInstanceShoot().enabled = false;
+        Player.GetInstanceHealth().enabled = false;
         instance.UpdateFinalScore();
+
+        Destroy(instance.canvas);
+        
         AudioSource audioSource = instance.GetComponent<AudioSource>();
         if (audioSource)
         {
