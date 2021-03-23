@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossHead : MonoBehaviour
@@ -9,6 +7,6 @@ public class BossHead : MonoBehaviour
 
     public void DamageHead(float damage)
     {
-        health?.Damage(damage);
+        health?.Damage(2*damage);
     }
 }

@@ -57,9 +57,9 @@ public class Bullet : MonoBehaviour
                 BossHead enemyHead = collision.gameObject.GetComponent<BossHead>();
                 
                 // Damage enemy - caused by player shooting
-                enemyHead?.DamageHead(damage*2);
+                enemyHead?.DamageHead(damage);
 
-                Score.IncreaseScore(ScoreValues.enemyShot);
+                Score.IncreaseScore(ScoreValues.enemyHeadshot);
             } 
             else
             {
