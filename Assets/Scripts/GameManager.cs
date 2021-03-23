@@ -23,4 +23,9 @@ public class GameManager : MonoBehaviour
     {
         Destroy(instance.gameObject);
     }
+
+    public static void StopMusic()
+    {
+        instance.GetComponent<AudioSource>().Stop();
+    }
 }
