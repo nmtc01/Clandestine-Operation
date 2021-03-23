@@ -75,6 +75,10 @@ public class PlayerMovement : MonoBehaviour
             // Camera follow movement
             cameraTarget.localPosition = new Vector3(Mathf.Lerp(cameraTarget.localPosition.x, aheadAmount * camDelta * movement, aheadSpeed * Time.deltaTime), cameraTarget.localPosition.y, cameraTarget.localPosition.z);
         }
+        else 
+        {
+            Player.GetInstanceControl().SetIsRunning(false);
+        }
     }
 
     public void WalkToElevatorDoor(Vector3 doorPosition, Elevator elevator)

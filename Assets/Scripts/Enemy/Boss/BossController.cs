@@ -26,6 +26,15 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     private bool firstTimeGrabbingGun = true;
     private Health health;
 
+    #region party
+    [SerializeField]
+    private GameObject cage = null;
+    [SerializeField]
+    private int endSpot = 75;
+    [SerializeField]
+    private Friend[] friends;
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,8 +80,9 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
                 {
                     firstTimeTurn = false;
                     Turn();
-                    ShowUI();
                 } 
+                if (isAlive) ShowUI();
+                else HandleParty();
             }
         }
     }
@@ -144,6 +154,7 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         {
             canShoot = false;
             DestroyBossPhysics();
+            Player.GetInstanceControl().SetIsCovering(false);
         }
     }
 
@@ -170,7 +181,6 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
         wasInFOV = false;
         if (isAlive)
         {
-            gun.DefaultAudio();
             gun.PlayAudio();
         }
     }
@@ -179,5 +189,20 @@ public class BossController : MonoBehaviour, IHealthController, IEnemyController
     {
         GetComponent<Collider>().enabled = false;
         StopAllCoroutines();
+    }
+
+    private void HandleParty()
+    {
+        if (cage) cage.transform.Rotate(new Vector3(0,0,180));
+        GameObject player = Player.GetInstance();
+        player.transform.position = new Vector3(endSpot, player.transform.position.y, player.transform.position.z);
+        GameManager.DestroyObject();
+        GameWin.ShowGameWinScreen();
+        
+        for (int i = 0; i < friends.Length; i++)
+        {
+            friends[i].StartParty();
+        }
+        Player.GetInstanceControl().SetIsDancing(true);
     }
 }

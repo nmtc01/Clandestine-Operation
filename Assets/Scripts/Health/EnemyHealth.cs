@@ -13,7 +13,7 @@ public class EnemyHealth : Health
     {
         base.Kill();
 
-        Destroy(healthUIController.gameObject);
+        if(healthUIController) Destroy(healthUIController.gameObject);
     }
 
     public void ShowUI()

@@ -100,4 +100,9 @@ public class PlayerControl : MonoBehaviour, IHealthController
         SetIsAiming(false);
         SetIsWalking(false);
     }
+
+    public void SetIsDancing(bool dancing)
+    {
+        animator.SetBool("isDancing", dancing);
+    }
 }
