@@ -23,7 +23,7 @@ public class Cover : MonoBehaviour, IHealthController
             if (key) key.SetActive(true);
 
             // Interact
-            if (Input.GetButtonDown("Interact"))
+            if (Input.GetButtonDown("Interact") && Player.GetInstanceControl().IsAlive())
             {
                 Interact();
             }
