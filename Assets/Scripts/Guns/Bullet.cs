@@ -4,7 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private float timeBeforeDestroying = 5f;
+    private float timeBeforeDestroying = 1.5f;
 
     private float damage = 0f;
 
@@ -57,19 +57,26 @@ public class Bullet : MonoBehaviour
                 BossHead enemyHead = collision.gameObject.GetComponent<BossHead>();
                 
                 // Damage enemy - caused by player shooting
-                enemyHead?.DamageHead(damage*2);
+                enemyHead?.DamageHead(damage);
 
-                Score.IncreaseScore(ScoreValues.enemyShot);
+                Score.IncreaseScore(ScoreValues.enemyHeadshot);
             } 
             else
             {
-                Health enemyHealth = collision.gameObject.GetComponent<Health>();
+                IEnemyController enemyController = collision.gameObject.GetComponent<IEnemyController>();
 
                 // Damage enemy - caused by player shooting
-                enemyHealth?.Damage(damage);
+                enemyController?.DamageEnemy(damage);
 
                 Score.IncreaseScore(ScoreValues.enemyShot);
             }
+        }
+        else if(collision.gameObject.layer == LayerMask.NameToLayer("Cover"))
+        {
+            Health coverHealth = collision.gameObject.GetComponent<Health>();
+
+            // Damage cover - caused by enemy shooting
+            coverHealth?.Damage(damage);
         }
 
         // Destroy Bullet

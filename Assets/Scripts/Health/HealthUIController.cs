@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public abstract class HealthUIController : MonoBehaviour
 {
     [SerializeField]
-    private Slider slider = null;
+    protected Slider slider = null;
 
     public virtual void SetMaxValue(float maxValue)
     {

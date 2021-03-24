@@ -31,6 +31,11 @@ public class Gun : MonoBehaviour
         //audioSource.Stop();
         audioSource.Play(); // Play shoot sound
 
+        ShootBullet();
+    }
+
+    public virtual void ShootBullet()
+    {
         GameObject instBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.Euler(bulletSpawner.transform.forward));
         instBullet.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce, ForceMode.Impulse);
 

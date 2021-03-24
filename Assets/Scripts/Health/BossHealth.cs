@@ -1,12 +1,20 @@
-public class BossHealth : Health
+public class BossHealth : EnemyHealth
 {
-    // Extend methods to detect middle of the health bar
-
-    protected override void Start()
+    private bool firstTime = true;
+    public override void Damage(float damage)
     {
-        base.Start();
+        base.Damage(damage);
 
-        currentHealth = maxHealth;
-        healthUIController.SetValue(currentHealth);
+        if (firstTime && currentHealth <= maxHealth*0.5f)
+        {
+            firstTime = false;
+            BossController.GetInstance().ActivateBossCamera();
+        }
+    }
+
+    public override void Kill()
+    {
+        base.Kill();
+        BossController.GetInstance().ActivateBossCamera();
     }
 }

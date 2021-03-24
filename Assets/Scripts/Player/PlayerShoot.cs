@@ -1,14 +1,26 @@
+using System;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+    [Serializable]
+    private struct MinMaxValues
+    {
+        public float min;
+        public float max;
+    }
+
     [SerializeField]
     private GameObject spine = null;
 
-    [SerializeField]
     private float maxRotation = 45f;
-
     [SerializeField]
+    private MinMaxValues vpCrshrX;
+    [SerializeField]
+    private MinMaxValues vpCrshrY;
+    [SerializeField]
+    private MinMaxValues legRotY;
+
     private Vector3 initialRotation = Vector3.zero;
 
     [SerializeField]
@@ -26,12 +38,16 @@ public class PlayerShoot : MonoBehaviour
     const float spineHeight = 0.075f;
     [SerializeField]
     private GameObject crosshair = null;
+    private float coverAimingLineRange = 30f;
+    private float boxCastYSize = .1f;
+    [SerializeField] 
+    private float boxCastZSize = 1.75f;
 
     // Start is called before the first frame update
     void Start()
     {
         currentGun = defaultGun;
-        
+
         // Set Gun UI
         ((PlayerGun)currentGun).SetCurrentGun(true);
 
@@ -42,9 +58,9 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         PlayerControl playerControl = Player.GetInstanceControl();
-         
-        // Can't aim and shoot if entering on elevator
-        if (playerControl.IsInElevator())
+
+        // Can't aim and shoot if in a cinematic transition
+        if (playerControl.IsInTransition())
         {
             return;
         }
@@ -57,26 +73,31 @@ public class PlayerShoot : MonoBehaviour
     private void LateUpdate()
     {
         PlayerControl playerControl = Player.GetInstanceControl();
-        if (playerControl.IsAiming() && !playerControl.IsCovering())
+        if (playerControl.IsAiming())
         {
-            RotateSpine();
-            SetAimingLinePositions();
+            if(playerControl.IsCovering())
+            {
+                Player.EnablePhysics(true);
+                Vector3 crosshairPos = AimCrosshair();
+                RotateSpineCrosshair(crosshairPos);
+                SetAimingCrossHairLinePositions(crosshairPos);
+            } 
+            else
+            {
+                RotateSpine();
+                SetAimingLinePositions();
+                crosshair.SetActive(false);
+            }
         }
-        else if (playerControl.IsAiming() && playerControl.IsCovering())
+        else
         {
-            Player.EnablePhysics(true);
-            Vector3 crosshairPos = AimCrosshair();
-            RotateSpineCrosshair(crosshairPos);
-            SetAimingCrossHairLinePositions(crosshairPos);
-        }
-        else {
             if (playerControl.IsCovering())
             {
                 Player.EnablePhysics(false);
                 ResetRotationSpineCrosshair();
             }
-            else 
-            { 
+            else
+            {
                 spine.transform.localRotation = Quaternion.Euler(initialRotation);
             }
             ResetAimingLine();
@@ -91,7 +112,7 @@ public class PlayerShoot : MonoBehaviour
 
         Vector2 lookToMouseVec = (vpMousePos - vpSpinePos).normalized;
 
-        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, Player.GetInstanceControl().getSkeletonDirection()), -1f, 1f));
+        float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, Player.GetInstanceControl().GetSkeletonDirection()), -1f, 1f));
 
         if (vpMousePos.x < vpSpinePos.x)
         {
@@ -110,27 +131,43 @@ public class PlayerShoot : MonoBehaviour
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
 
-        Vector3 endWorldPoint;
-
-        RaycastHit hit;
-
         Vector2 rayDirection = bulletSpawnerTransform.forward;
-        Vector2 startPoint = bulletSpawnerTransform.position;
+        Vector3 startPoint = bulletSpawnerTransform.position;
 
-        if (Physics.Raycast(startPoint, rayDirection, out hit, aimMaxLength, aimingIgnoredColliders))
-        {
-            endWorldPoint = hit.point;
-        }
-        else
-        {
-            endWorldPoint = bulletSpawnerTransform.position + bulletSpawnerTransform.forward * aimMaxLength;
-        }
+        Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), aimMaxLength, false);
 
+        DrawAimingLine(startPoint, endWorldPoint, (endWorldPoint - startPoint).normalized);
+    }
+
+    private void DrawAimingLine(Vector3 startPoint, Vector3 endPoint, Vector3 shootingDirection)
+    {
         aimingLine.gameObject.SetActive(true);
         aimingLine.SetPosition(0, startPoint);
-        aimingLine.SetPosition(1, endWorldPoint);
+        aimingLine.SetPosition(1, endPoint);
 
-        currentGun.SetShootingDirection((endWorldPoint - bulletSpawnerTransform.position).normalized);
+        currentGun.SetShootingDirection(shootingDirection);
+    }
+
+    private Vector3 GetAimingLineFinalPos(Ray ray, float maxLength, bool raycast = false)
+    {
+        RaycastHit hit;
+
+        if (GetTarget(ray, maxLength, raycast, out hit))
+        {
+            return hit.point;
+        }
+
+        return ray.origin + ray.direction * aimMaxLength;
+    }
+
+    private bool GetTarget(Ray ray, float maxLength, bool raycast, out RaycastHit hit)
+    {
+        if(raycast)
+        {
+            return Physics.Raycast(ray, out hit, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
+        }
+
+        return Physics.BoxCast(ray.origin, new Vector3(1, boxCastYSize, boxCastZSize), ray.direction, out hit, Quaternion.identity, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
     }
 
     private void ResetAimingLine()
@@ -140,11 +177,11 @@ public class PlayerShoot : MonoBehaviour
 
     public void SetNewGun(PlayerGun gun)
     {
-        if(currentGun == defaultGun)
+        if (currentGun == defaultGun)
         {
             ((PlayerGun)currentGun).SetCurrentGun(false);
             currentGun.gameObject.SetActive(false);
-        } 
+        }
         else
         {
             Destroy(currentGun);
@@ -169,37 +206,39 @@ public class PlayerShoot : MonoBehaviour
     private Vector3 AimCrosshair()
     {
         crosshair.SetActive(true);
-        Ray vpMousePos = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        Vector3 crosshairPos;
-        if (Physics.Raycast(vpMousePos, out hit, 10, aimingIgnoredColliders))
-            crosshairPos = hit.point;
-        else crosshairPos = vpMousePos.origin + vpMousePos.direction * 10;
-        crosshair.transform.position = crosshairPos;
+
+        Vector2 vpMousePos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        vpMousePos.x = Mathf.Clamp(vpMousePos.x, vpCrshrX.min, vpCrshrX.max);
+        vpMousePos.y = Mathf.Clamp(vpMousePos.y, vpCrshrY.min, vpCrshrY.max);
+
+        Ray ray = Camera.main.ViewportPointToRay(vpMousePos);
         
+        Vector3 crosshairPos = GetAimingLineFinalPos(ray, coverAimingLineRange, true);
+        
+        crosshair.transform.position = crosshairPos;
+
         return crosshairPos;
     }
 
     private void SetAimingCrossHairLinePositions(Vector3 crosshairPos)
     {
         Transform bulletSpawnerTransform = currentGun.GetBulletSpawnerTransform();
-        Vector3 startPoint = bulletSpawnerTransform.position;
 
-        aimingLine.gameObject.SetActive(true);
-        aimingLine.SetPosition(0, startPoint);
-        aimingLine.SetPosition(1, crosshairPos);
-
-        currentGun.SetShootingDirection((crosshairPos - bulletSpawnerTransform.position).normalized);
+        DrawAimingLine(bulletSpawnerTransform.position, crosshairPos, (crosshairPos - bulletSpawnerTransform.position).normalized);
     }
 
     private void RotateSpineCrosshair(Vector3 crosshairPos)
     {
-        Vector3 direction = crosshairPos - spine.transform.position;
-        Player.GetInstanceControl().RotateSkeleton(direction);
+        float dirY = Mathf.Clamp(Quaternion.LookRotation((crosshairPos - Player.GetArmatureTransform().position)).eulerAngles.y, legRotY.min, legRotY.max);
+
+        Player.GetInstanceControl().RotateSkeleton(dirY);
+
+        spine.transform.LookAt(crosshairPos);
     }
+
     private void ResetRotationSpineCrosshair()
     {
-        Player.GetInstanceControl().RotateSkeleton(new Vector3(1,0,0));
+        Player.GetInstanceControl().RotateSkeleton(new Vector3(1, 0, 0));
     }
 
     private void OnDisable()

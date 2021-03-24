@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour, IHealthController
+public class EnemyController : MonoBehaviour, IHealthController, IEnemyController
 {
     #region Walking Variables
     [SerializeField]
@@ -45,6 +45,10 @@ public class EnemyController : MonoBehaviour, IHealthController
     private AudioSource audioSource;
     #endregion
 
+
+    private EnemyHealth health;
+    private bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +58,8 @@ public class EnemyController : MonoBehaviour, IHealthController
         shootingBehaviour = AimAndShoot();
 
         audioSource = GetComponent<AudioSource>();
+
+        health = GetComponent<EnemyHealth>();
     }
 
     // FixedUpdate is called once per frame
@@ -62,15 +68,9 @@ public class EnemyController : MonoBehaviour, IHealthController
         // Walk Animation
         SetIsWalking(canWalk);
         
-        if((!Player.GetInstanceControl().IsInvisible() || alertedBefore) && FOVDetection.InFOV(transform, Player.GetArmatureTransform(), maxAngle, lookRadius))
+        if((!Player.GetInstanceControl().IsInvisible() && FOVDetection.InFOV(transform, Player.GetArmatureTransform(), maxAngle, lookRadius)) || alertedBefore)
         {
-            // Starts timer countdown
-            if (!alertedBefore)
-            {
-                TimerCountDown.IncrementEnemiesAlerted();
-                alertedBefore = true;
-                audioSource.Play();
-            }
+            AlertEnemy();
 
             // Stopping agent from moving
             canWalk = false;
@@ -104,6 +104,21 @@ public class EnemyController : MonoBehaviour, IHealthController
         {
             canWalk = false;
             StartCoroutine(WaitOnPosition());
+        }
+    }
+
+    private void Alert()
+    {
+        TimerCountDown.IncrementEnemiesAlerted();
+        alertedBefore = true;
+        audioSource.Play();
+    }
+
+    public void AlertEnemy()
+    {
+        if (!alertedBefore && !isDead)
+        {
+            Alert();
         }
     }
 
@@ -163,6 +178,7 @@ public class EnemyController : MonoBehaviour, IHealthController
 
     public void SetIsDead(bool dead)
     {
+        isDead = dead;
         if (dead) 
         {
             if (alertedBefore) TimerCountDown.DecrementEnemiesAlerted();
@@ -186,5 +202,23 @@ public class EnemyController : MonoBehaviour, IHealthController
         agent.enabled = false;
         headCollider.enabled = false;
         enabled = false;
+    }
+
+    public void DamageEnemy(float damage)
+    {
+        // Damage enemy - caused by player shooting
+        health.Damage(damage);
+
+        health.ShowUI();
+
+        AlertEnemy();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetInstanceID() == Player.GetInstance().GetInstanceID())
+        {
+            AlertEnemy();
+        }
     }
 }

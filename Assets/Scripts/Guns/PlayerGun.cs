@@ -96,12 +96,14 @@ public class PlayerGun : Gun
 
     protected IEnumerator Reload()
     {
+        isReloading = true;
+        yield return new WaitForSeconds(audioSource.clip.length - audioSource.time);
+
         // Plays the reload clip
         audioSource.Stop();
         audioSource.clip = reloadAudioClip;
         audioSource.Play();
 
-        isReloading = true;
         yield return new WaitForSeconds(reloadingTime);
 
         clipCurrentSize = clipMaxSize;

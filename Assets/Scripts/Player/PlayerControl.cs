@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour, IHealthController
 {
     private bool isAiming = false;
-    private bool inElevator = false;
+    private bool inTransition = false;
     private bool isCovering = false;
     private bool isAlive = true;
 
@@ -26,6 +26,11 @@ public class PlayerControl : MonoBehaviour, IHealthController
     public void SetIsWalking(bool walking)
     {
         animator.SetBool("isWalking", walking);
+    }
+
+    public void SetIsRunning(bool running)
+    {
+        animator.SetBool("isRunning", running);
     }
 
     public void SetOppositeDir(float oppositeDir)
@@ -59,19 +64,19 @@ public class PlayerControl : MonoBehaviour, IHealthController
         skeleton.transform.rotation = Quaternion.Euler(0, yRot, 0);
     }
 
-    public Vector3 getSkeletonDirection()
+    public Vector3 GetSkeletonDirection()
     {
         return skeleton.transform.forward;
     }
 
-    public void SetInElevator(bool elev)
+    public void SetInTransition(bool trans)
     {
-        inElevator = elev;
+        inTransition = trans;
     }
 
-    public bool IsInElevator()
+    public bool IsInTransition()
     {
-        return inElevator;
+        return inTransition;
     }
 
     public void SetIsCovering(bool covering)
@@ -90,10 +95,14 @@ public class PlayerControl : MonoBehaviour, IHealthController
         return isCovering && !isAiming;
     }
 
-    public void SetIsFallingBack(bool falling)
+    public void ResetPlayerMovements()
     {
-        isAlive = false;
-        animator.SetBool("isFallingBack", falling);
-        Player.GetInstanceHealth().Kill();
+        SetIsAiming(false);
+        SetIsWalking(false);
+    }
+
+    public void SetIsDancing(bool dancing)
+    {
+        animator.SetBool("isDancing", dancing);
     }
 }
