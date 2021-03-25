@@ -3,19 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Head
+  - HeadBoss
+  - GameOver
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - FourthWall
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerBullet
+  - Player
+  - Enemy
+  - EnemyBullet
+  - Cover
   - 
   - 
   - 
