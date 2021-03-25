@@ -18,7 +18,7 @@ public class Trapdoor : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(Random.Range(4f, 5.5f));
+            yield return new WaitForSeconds(Random.Range(2f, 3.5f));
             animator.SetTrigger("open");
             audioSource.Play();
 

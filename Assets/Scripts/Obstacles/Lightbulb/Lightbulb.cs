@@ -35,7 +35,7 @@ public class Lightbulb : MonoBehaviour
     {
         gameObject.transform.localPosition = initialPosition;
         gameObject.SetActive(true);
-        rb.velocity = Vector3.zero;
+        rb.velocity = Vector3.down * 10;
         rb.angularVelocity = Vector3.zero;
         Destroy(newCrackedLb);
     }
