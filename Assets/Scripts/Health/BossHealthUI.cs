@@ -31,7 +31,7 @@ public class BossHealthUI : HealthUIController
     private IEnumerator BossHealthBarAnimation()
     {
         float animTime = 2.5f;
-        for (float t = 0; t < animTime; t += Time.deltaTime)
+        for (float t = 0; t <= animTime; t += Time.deltaTime)
         {
             float currentValue = Mathf.Lerp(0, slider.maxValue, t / animTime);
 
@@ -39,5 +39,9 @@ public class BossHealthUI : HealthUIController
             secondSlider.value = currentValue;
             yield return null;
         }
+
+        slider.value = slider.maxValue;
+        secondSlider.value = secondSlider.maxValue;
+        yield return null;
     }
 }

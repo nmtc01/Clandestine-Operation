@@ -28,7 +28,7 @@ public class Printer : MonoBehaviour
     {       
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(2f, 5.0f));
+            yield return new WaitForSeconds(Random.Range(1.5f, 3f));
             audioSource.Play();
             animator.SetTrigger("launch");
         }
