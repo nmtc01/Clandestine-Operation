@@ -36,12 +36,12 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private LineRenderer aimingLine = null;
     const float spineHeight = 0.075f;
-    [SerializeField]
-    private GameObject crosshair = null;
+
+    [Header("Crosshair")]
+    [SerializeField] private GameObject crosshair = null;
     private float coverAimingLineRange = 30f;
     private float boxCastYSize = .1f;
-    [SerializeField] 
-    private float boxCastZSize = 1.75f;
+    [SerializeField] private float boxCastZSize = 1.75f;
 
     // Start is called before the first frame update
     void Start()
@@ -75,13 +75,13 @@ public class PlayerShoot : MonoBehaviour
         PlayerControl playerControl = Player.GetInstanceControl();
         if (playerControl.IsAiming())
         {
-            if(playerControl.IsCovering())
+            if (playerControl.IsCovering())
             {
                 Player.EnablePhysics(true);
                 Vector3 crosshairPos = AimCrosshair();
                 RotateSpineCrosshair(crosshairPos);
                 SetAimingCrossHairLinePositions(crosshairPos);
-            } 
+            }
             else
             {
                 RotateSpine();
@@ -162,7 +162,7 @@ public class PlayerShoot : MonoBehaviour
 
     private bool GetTarget(Ray ray, float maxLength, bool raycast, out RaycastHit hit)
     {
-        if(raycast)
+        if (raycast)
         {
             return Physics.Raycast(ray, out hit, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
         }
@@ -212,10 +212,10 @@ public class PlayerShoot : MonoBehaviour
         vpMousePos.y = Mathf.Clamp(vpMousePos.y, vpCrshrY.min, vpCrshrY.max);
 
         Ray ray = Camera.main.ViewportPointToRay(vpMousePos);
-        
+
         Vector3 crosshairPos = GetAimingLineFinalPos(ray, coverAimingLineRange, true);
-        
-        crosshair.transform.position = crosshairPos;
+
+        crosshair.transform.position = Camera.main.WorldToScreenPoint(crosshairPos);
 
         return crosshairPos;
     }
