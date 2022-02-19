@@ -10,12 +10,13 @@ public class GameManager : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
+            return;
         }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
+
+        instance = this;
+        DontDestroyOnLoad(this);
+
+        Cursor.visible = false;
     }
     #endregion
 
