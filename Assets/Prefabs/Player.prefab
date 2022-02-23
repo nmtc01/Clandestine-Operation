@@ -1608,6 +1608,7 @@ MonoBehaviour:
   cameraTarget: {fileID: 3440194901051607129}
   aheadAmount: 0
   aheadSpeed: 0
+  rollingPerSecond: 5
 --- !u!114 &3666549597828597964
 MonoBehaviour:
   m_ObjectHideFlags: 0

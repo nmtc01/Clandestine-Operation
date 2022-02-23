@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public float aheadSpeed;
     private Rigidbody rb;
 
+    [SerializeField] private float rollingPerSecond = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +26,19 @@ public class PlayerMovement : MonoBehaviour
         // Can't walk with player input if in a cinematic transition or if is covering
         if (Player.GetInstanceControl().IsInTransition() || Player.GetInstanceControl().IsCovering() || !Player.GetInstanceControl().IsAlive()) return;
 
+        if (Player.GetInstanceControl().IsRolling())
+        {
+            transform.position += new Vector3(rollingPerSecond * Time.deltaTime * Player.GetInstanceControl().GetSkeletonDirection().x, 0f, 0f);
+            return;
+        }
+
+        if (Input.GetButtonDown("Roll")) Player.GetInstanceControl().SetIsRolling(true);
+
         Move();
     }
 
     // Player Horizontal Movement
-    void Move() 
+    void Move()
     {
         float movement = Input.GetAxis("Horizontal");
 
@@ -44,14 +54,12 @@ public class PlayerMovement : MonoBehaviour
             if (!Player.GetInstanceControl().IsAiming())
             {
                 // Turn
-                if (!Mathf.Approximately(0, movement)) 
+                if (!Mathf.Approximately(0, movement))
                     Player.GetInstanceControl().RotateSkeleton(movement < 0);
 
                 bool isRunning = Input.GetButton("Run");
-                if (isRunning)
-                {
-                    x_speed *= 2;
-                }
+
+                if (isRunning) x_speed *= 2;
 
                 Player.GetInstanceControl().SetIsRunning(isRunning);
             }
@@ -62,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
                 // Player is aiming
                 // Player moving while aiming in opposite directions
-                if (movement * Player.GetInstanceControl().GetSkeletonDirection().x < 0) 
+                if (movement * Player.GetInstanceControl().GetSkeletonDirection().x < 0)
                 {
                     camDelta = -1;
                     Player.GetInstanceControl().SetOppositeDir(1f);
@@ -75,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             // Camera follow movement
             cameraTarget.localPosition = new Vector3(Mathf.Lerp(cameraTarget.localPosition.x, aheadAmount * camDelta * movement, aheadSpeed * Time.deltaTime), cameraTarget.localPosition.y, cameraTarget.localPosition.z);
         }
-        else 
+        else
         {
             Player.GetInstanceControl().SetIsRunning(false);
         }

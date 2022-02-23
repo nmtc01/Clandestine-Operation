@@ -12,10 +12,7 @@ public class PlayerControl : MonoBehaviour, IHealthController
     [SerializeField]
     private Animator animator;
 
-    public bool IsAiming()
-    {
-        return isAiming;
-    }
+    public bool IsAiming() => isAiming;
 
     public void SetIsAiming(bool aiming)
     {
@@ -23,20 +20,9 @@ public class PlayerControl : MonoBehaviour, IHealthController
         animator.SetBool("isAiming", aiming);
     }
 
-    public void SetIsWalking(bool walking)
-    {
-        animator.SetBool("isWalking", walking);
-    }
-
-    public void SetIsRunning(bool running)
-    {
-        animator.SetBool("isRunning", running);
-    }
-
-    public void SetOppositeDir(float oppositeDir)
-    {
-        animator.SetFloat("oppositeDir", oppositeDir, 0.1f, Time.deltaTime);
-    }
+    public void SetIsWalking(bool walking) => animator.SetBool("isWalking", walking);
+    public void SetIsRunning(bool running) => animator.SetBool("isRunning", running);
+    public void SetOppositeDir(float oppositeDir) => animator.SetFloat("oppositeDir", oppositeDir, 0.1f, Time.deltaTime);
 
     public void SetIsDead(bool dead)
     {
@@ -44,40 +30,16 @@ public class PlayerControl : MonoBehaviour, IHealthController
         isAlive = false;
     }
 
-    public bool IsAlive()
-    {
-        return isAlive;
-    }
+    public bool IsAlive() => isAlive;
 
-    public void RotateSkeleton(bool rotate) 
-    {
-        skeleton.transform.rotation = Quaternion.Euler(0, rotate ? -90 : 90, 0);
-    }
+    public void RotateSkeleton(bool rotate) => skeleton.transform.rotation = Quaternion.Euler(0, rotate ? -90 : 90, 0);
+    public void RotateSkeleton(Vector3 direction) => skeleton.transform.forward = direction;
+    public void RotateSkeleton(float yRot) => skeleton.transform.rotation = Quaternion.Euler(0, yRot, 0);
+    public Vector3 GetSkeletonDirection() => skeleton.transform.forward;
 
-    public void RotateSkeleton(Vector3 direction) 
-    {
-        skeleton.transform.forward = direction;
-    }
+    public void SetInTransition(bool trans) => inTransition = trans;
 
-    public void RotateSkeleton(float yRot)
-    {
-        skeleton.transform.rotation = Quaternion.Euler(0, yRot, 0);
-    }
-
-    public Vector3 GetSkeletonDirection()
-    {
-        return skeleton.transform.forward;
-    }
-
-    public void SetInTransition(bool trans)
-    {
-        inTransition = trans;
-    }
-
-    public bool IsInTransition()
-    {
-        return inTransition;
-    }
+    public bool IsInTransition() => inTransition;
 
     public void SetIsCovering(bool covering)
     {
@@ -85,15 +47,8 @@ public class PlayerControl : MonoBehaviour, IHealthController
         animator.SetBool("isCovering", covering);
     }
 
-    public bool IsCovering()
-    {
-        return isCovering;
-    }
-
-    public bool IsInvisible()
-    {
-        return isCovering && !isAiming;
-    }
+    public bool IsCovering() => isCovering;
+    public bool IsInvisible() => isCovering && !isAiming;
 
     public void ResetPlayerMovements()
     {
@@ -101,8 +56,8 @@ public class PlayerControl : MonoBehaviour, IHealthController
         SetIsWalking(false);
     }
 
-    public void SetIsDancing(bool dancing)
-    {
-        animator.SetBool("isDancing", dancing);
-    }
+    public void SetIsDancing(bool dancing) => animator.SetBool("isDancing", dancing);
+    public void SetIsRolling(bool rolling) => animator.SetBool("isRolling", rolling);
+
+    public bool IsRolling() => animator.GetBool("isRolling");
 }
