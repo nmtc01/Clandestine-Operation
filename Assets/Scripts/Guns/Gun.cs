@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Gun : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class Gun : MonoBehaviour
     protected AudioClip shootAudioClip = null;
     protected AudioSource audioSource;
 
+    [Header("Particle System")]
+    [SerializeField] private ParticleSystem shootEffect = null;
+
     public virtual void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -30,6 +34,8 @@ public class Gun : MonoBehaviour
     {
         //audioSource.Stop();
         audioSource.Play(); // Play shoot sound
+
+        shootEffect?.Play();
 
         ShootBullet();
     }
