@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public static void DestroyObject()
     {
+        Cursor.visible = true;
         Destroy(instance.gameObject);
     }
 }

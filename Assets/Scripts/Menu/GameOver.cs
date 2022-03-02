@@ -29,6 +29,7 @@ public class GameOver : MonoBehaviour
     {
         ResetTimer();
         DestroyObject();
+        Cursor.visible = false;
         SceneManager.LoadScene(levelName);
     }
 
@@ -53,14 +54,12 @@ public class GameOver : MonoBehaviour
         Player.GetInstanceMovement().enabled = false;
         Player.GetInstanceShoot().enabled = false;
         instance.UpdateFinalScore();
+        Cursor.visible = true;
 
         instance.StartCoroutine(instance.Stop());
     }
 
-    private void UpdateFinalScore()
-    {
-        finalScoreText.text = Score.GetFinalScore().ToString();
-    }
+    private void UpdateFinalScore() => finalScoreText.text = Score.GetFinalScore().ToString();
 
     private IEnumerator Stop()
     {
@@ -72,8 +71,5 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    public static void DestroyObject()
-    {
-        Destroy(instance.transform.parent.gameObject);
-    }
+    public static void DestroyObject() => Destroy(instance.transform.parent.gameObject);
 }
