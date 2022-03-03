@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2771302322855308269, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2771302323973519192, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -59,6 +63,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4c2b83a14cb588a469d5ef6bdb2cc2d2, type: 2}
+    - target: {fileID: 2771302324277896366, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5441419128282580646, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
       propertyPath: m_PlayOnAwake
       value: 1

@@ -19,8 +19,8 @@ TagManager:
   - Enemy
   - EnemyBullet
   - Cover
-  - 
-  - 
+  - Floor
+  - Wall
   - 
   - 
   - 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2671246642337017432}
   - component: {fileID: 2671246642337017434}
   - component: {fileID: 2671246642337017435}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Right_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2671246643432240655}
   - component: {fileID: 2671246643432240641}
   - component: {fileID: 2671246643432240654}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Right_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 2671246643532017407}
   - component: {fileID: 2671246643532017393}
   - component: {fileID: 2671246643532017406}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Right_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 2671246643758647792}
   - component: {fileID: 2671246643758647794}
   - component: {fileID: 2671246643758647795}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Right_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 2671246643769399668}
   - component: {fileID: 2671246643769399669}
   - component: {fileID: 2671246643769399666}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Right_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,6 +715,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2671246643769399667}
     m_Modifications:
+    - target: {fileID: 2771302322855308269, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2771302323973519192, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -770,6 +774,10 @@ PrefabInstance:
     - target: {fileID: 2771302323973519193, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
       propertyPath: m_Name
       value: Doors
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771302324277896366, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}

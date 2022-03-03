@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45104444, g: 0.50087863, b: 0.5742057, a: 1}
+  m_IndirectSpecularColor: {r: 0.45104492, g: 0.50087917, b: 0.57420665, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2904,7 +2904,7 @@ GameObject:
   - component: {fileID: 338111358}
   - component: {fileID: 338111360}
   - component: {fileID: 338111359}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3947,7 +3947,7 @@ GameObject:
   - component: {fileID: 423251466}
   - component: {fileID: 423251465}
   - component: {fileID: 423251467}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left_Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4543,7 +4543,7 @@ GameObject:
   - component: {fileID: 459607179}
   - component: {fileID: 459607178}
   - component: {fileID: 459607177}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5631,7 +5631,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1015
+    m_Bits: 7159
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -6619,7 +6619,7 @@ GameObject:
   - component: {fileID: 606296812}
   - component: {fileID: 606296811}
   - component: {fileID: 606296813}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Upper_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7120,7 +7120,7 @@ GameObject:
   - component: {fileID: 692063546}
   - component: {fileID: 692063545}
   - component: {fileID: 692063544}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7558,7 +7558,7 @@ GameObject:
   - component: {fileID: 771177449}
   - component: {fileID: 771177448}
   - component: {fileID: 771177450}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Right_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9279,7 +9279,7 @@ GameObject:
   - component: {fileID: 885472112}
   - component: {fileID: 885472114}
   - component: {fileID: 885472113}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9831,7 +9831,7 @@ GameObject:
   - component: {fileID: 959843287}
   - component: {fileID: 959843286}
   - component: {fileID: 959843288}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12768,7 +12768,7 @@ GameObject:
   - component: {fileID: 1374768147}
   - component: {fileID: 1374768146}
   - component: {fileID: 1374768148}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left_Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13364,7 +13364,7 @@ GameObject:
   - component: {fileID: 1463248150}
   - component: {fileID: 1463248149}
   - component: {fileID: 1463248151}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13998,7 +13998,7 @@ GameObject:
   - component: {fileID: 1637031557}
   - component: {fileID: 1637031556}
   - component: {fileID: 1637031558}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Upper_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15025,6 +15025,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 957924283}
     m_Modifications:
+    - target: {fileID: 2978164212509509044, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978164213824854272, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978164214593751799, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5601785830407308291, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.46887
@@ -15048,6 +15060,10 @@ PrefabInstance:
     - target: {fileID: 5601785831626065060, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.23443
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601785832441455530, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5601785832460071720, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
       propertyPath: m_RootOrder
@@ -15096,6 +15112,10 @@ PrefabInstance:
     - target: {fileID: 5601785832460071723, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
       propertyPath: m_Name
       value: Left_Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5601785832460071723, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
@@ -16407,7 +16427,7 @@ GameObject:
   - component: {fileID: 1945644137}
   - component: {fileID: 1945644139}
   - component: {fileID: 1945644138}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left_Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16570,7 +16590,7 @@ GameObject:
   - component: {fileID: 1952820866}
   - component: {fileID: 1952820868}
   - component: {fileID: 1952820867}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16909,7 +16929,7 @@ GameObject:
   - component: {fileID: 1998826624}
   - component: {fileID: 1998826623}
   - component: {fileID: 1998826622}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18865,7 +18885,7 @@ GameObject:
   - component: {fileID: 2141592773}
   - component: {fileID: 2141592772}
   - component: {fileID: 2141592774}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Right_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

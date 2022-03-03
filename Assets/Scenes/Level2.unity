@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 156178844}
   - component: {fileID: 156178843}
   - component: {fileID: 156178842}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ceiling (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 354706978}
   - component: {fileID: 354706977}
   - component: {fileID: 354706976}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 596381643}
   - component: {fileID: 596381645}
   - component: {fileID: 596381644}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2136,7 +2136,7 @@ GameObject:
   - component: {fileID: 902982345}
   - component: {fileID: 902982344}
   - component: {fileID: 902982343}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2231,7 +2231,7 @@ GameObject:
   - component: {fileID: 907525149}
   - component: {fileID: 907525148}
   - component: {fileID: 907525147}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2435,12 +2435,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 442481811}
     m_Modifications:
     - target: {fileID: 505817695, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 505817695, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 505817695, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.244
+      objectReference: {fileID: 0}
+    - target: {fileID: 608019585, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 870294179965841646, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2049496967604797429, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
       propertyPath: m_IsActive
@@ -2618,6 +2630,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.535
       objectReference: {fileID: 0}
+    - target: {fileID: 7425944108512744398, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
 --- !u!4 &938330114 stripped
@@ -2632,6 +2648,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 442481811}
     m_Modifications:
+    - target: {fileID: 505817695, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 608019585, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 870294179965841646, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2958510793614807905, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
       propertyPath: m_LocalScale.y
       value: 3.86
@@ -2755,6 +2783,10 @@ PrefabInstance:
     - target: {fileID: 6499893056640262803, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 10.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 7425944108512744398, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e197d3b7c0a8d0b458b4eb5178629a4b, type: 3}
@@ -3054,7 +3086,7 @@ GameObject:
   - component: {fileID: 1038189955}
   - component: {fileID: 1038189957}
   - component: {fileID: 1038189956}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left_Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3135,7 +3167,7 @@ GameObject:
   - component: {fileID: 1040501179}
   - component: {fileID: 1040501181}
   - component: {fileID: 1040501180}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3216,7 +3248,7 @@ GameObject:
   - component: {fileID: 1096031965}
   - component: {fileID: 1096031967}
   - component: {fileID: 1096031966}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3359,7 +3391,7 @@ GameObject:
   - component: {fileID: 1188059372}
   - component: {fileID: 1188059371}
   - component: {fileID: 1188059373}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Upper_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3736,7 +3768,7 @@ GameObject:
   - component: {fileID: 1279866247}
   - component: {fileID: 1279866246}
   - component: {fileID: 1279866245}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4301,7 +4333,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7159
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -4518,7 +4550,7 @@ GameObject:
   - component: {fileID: 1420662569}
   - component: {fileID: 1420662571}
   - component: {fileID: 1420662570}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Left_Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4600,7 +4632,7 @@ GameObject:
   - component: {fileID: 1451329671}
   - component: {fileID: 1451329670}
   - component: {fileID: 1451329669}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5109,7 +5141,7 @@ GameObject:
   - component: {fileID: 1539797920}
   - component: {fileID: 1539797922}
   - component: {fileID: 1539797921}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5360,6 +5392,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 442481811}
     m_Modifications:
+    - target: {fileID: 2978164212509509044, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2978164214593751799, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5601785830407308291, guid: 7f365ceb1e81d1d4d93348741510ed42, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.53644
@@ -5786,7 +5826,7 @@ GameObject:
   - component: {fileID: 1922747929}
   - component: {fileID: 1922747928}
   - component: {fileID: 1922747930}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Upper_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

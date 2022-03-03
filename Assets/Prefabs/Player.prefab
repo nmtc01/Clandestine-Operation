@@ -1636,23 +1636,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spine: {fileID: 7192360885785296595}
-  vpCrshrX:
-    min: 0.25
-    max: 0.75
-  vpCrshrY:
-    min: 0.2
-    max: 0.8
   legRotY:
     min: 70
     max: 100
   defaultGun: {fileID: 2433647240542301530}
   gunPosition: {fileID: 3440194900652112314}
   aimMaxLength: 150
-  aimingIgnoredColliders:
+  depthAimingIgnoredColliders:
     serializedVersion: 2
     m_Bits: 1220
+  sideAimingIgnoredColliders:
+    serializedVersion: 2
+    m_Bits: 7364
   aimingLine: {fileID: 485027037}
   crosshair: {fileID: 5319308108801756235}
+  vpCrshrX:
+    min: 0.25
+    max: 0.75
+  vpCrshrY:
+    min: 0.2
+    max: 0.8
   boxCastZSize: 1.75
 --- !u!114 &2163246038567115229
 MonoBehaviour:

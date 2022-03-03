@@ -10,60 +10,52 @@ public class PlayerShoot : MonoBehaviour
         public float max;
     }
 
-    [SerializeField]
-    private GameObject spine = null;
+    [SerializeField] private GameObject spine = null;
 
     private float maxRotation = 45f;
-    [SerializeField]
-    private MinMaxValues vpCrshrX;
-    [SerializeField]
-    private MinMaxValues vpCrshrY;
-    [SerializeField]
-    private MinMaxValues legRotY;
+    [SerializeField] private MinMaxValues legRotY;
 
     private Vector3 initialRotation = Vector3.zero;
 
-    [SerializeField]
-    private Gun defaultGun = null;
+    [Header("Gun")]
+    [SerializeField] private Gun defaultGun = null;
     private Gun currentGun;
-    [SerializeField]
-    private GameObject gunPosition = null;
+    [SerializeField] private GameObject gunPosition = null;
 
-    [SerializeField]
-    private float aimMaxLength = 15f;
-    [SerializeField]
-    private LayerMask aimingIgnoredColliders = 0;
-    [SerializeField]
-    private LineRenderer aimingLine = null;
+    [Header("Aiming Line")]
+    [SerializeField] private float aimMaxLength = 15f;
+    [SerializeField] private LayerMask depthAimingIgnoredColliders = 0, sideAimingIgnoredColliders = 0;
+    [SerializeField] private LineRenderer aimingLine = null;
     const float spineHeight = 0.075f;
 
     [Header("Crosshair")]
     [SerializeField] private GameObject crosshair = null;
-    private float coverAimingLineRange = 30f;
-    private float boxCastYSize = .1f;
+    [SerializeField] private MinMaxValues vpCrshrX;
+    [SerializeField] private MinMaxValues vpCrshrY;
+
+    [Header("Aiming Box")]
     [SerializeField] private float boxCastZSize = 1.75f;
+    private float boxCastYSize = .1f;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         currentGun = defaultGun;
 
         // Set Gun UI
         ((PlayerGun)currentGun).SetCurrentGun(true);
 
-        aimingIgnoredColliders = ~aimingIgnoredColliders;
+        depthAimingIgnoredColliders = ~depthAimingIgnoredColliders;
+        sideAimingIgnoredColliders = ~sideAimingIgnoredColliders;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         PlayerControl playerControl = Player.GetInstanceControl();
 
         // Can't aim and shoot if in a cinematic transition
-        if (playerControl.IsInTransition())
-        {
-            return;
-        }
+        if (playerControl.IsInTransition()) return;
 
         bool isAiming = Input.GetButton("Aim") && playerControl.IsAlive();
 
@@ -114,10 +106,8 @@ public class PlayerShoot : MonoBehaviour
 
         float rot = Mathf.Rad2Deg * Mathf.Acos(Mathf.Clamp(Vector2.Dot(lookToMouseVec, Player.GetInstanceControl().GetSkeletonDirection()), -1f, 1f));
 
-        if (vpMousePos.x < vpSpinePos.x)
-        {
-            rot %= 180;
-        }
+        if (vpMousePos.x < vpSpinePos.x) rot %= 180;
+
         Player.GetInstanceControl().RotateSkeleton(vpMousePos.x < vpSpinePos.x);
 
         if (rot >= maxRotation) rot = maxRotation;
@@ -134,7 +124,7 @@ public class PlayerShoot : MonoBehaviour
         Vector2 rayDirection = bulletSpawnerTransform.forward;
         Vector3 startPoint = bulletSpawnerTransform.position;
 
-        Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), aimMaxLength, false);
+        Vector3 endWorldPoint = GetAimingLineFinalPos(new Ray(startPoint, rayDirection), false);
 
         DrawAimingLine(startPoint, endWorldPoint, (endWorldPoint - startPoint).normalized);
     }
@@ -148,32 +138,25 @@ public class PlayerShoot : MonoBehaviour
         currentGun.SetShootingDirection(shootingDirection);
     }
 
-    private Vector3 GetAimingLineFinalPos(Ray ray, float maxLength, bool raycast = false)
+    private Vector3 GetAimingLineFinalPos(Ray ray, bool raycast = false)
     {
         RaycastHit hit;
 
-        if (GetTarget(ray, maxLength, raycast, out hit))
-        {
-            return hit.point;
-        }
+        if (GetTarget(ray, raycast, out hit)) return hit.point;
 
         return ray.origin + ray.direction * aimMaxLength;
     }
 
-    private bool GetTarget(Ray ray, float maxLength, bool raycast, out RaycastHit hit)
+    private bool GetTarget(Ray ray, bool raycast, out RaycastHit hit)
     {
-        if (raycast)
-        {
-            return Physics.Raycast(ray, out hit, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
-        }
+        if (raycast) return Physics.Raycast(ray, out hit, aimMaxLength, depthAimingIgnoredColliders, QueryTriggerInteraction.Ignore);
 
-        return Physics.BoxCast(ray.origin, new Vector3(1, boxCastYSize, boxCastZSize), ray.direction, out hit, Quaternion.identity, aimMaxLength, aimingIgnoredColliders, QueryTriggerInteraction.Ignore);
+        ExtDebug.DrawBoxCastBox(ray.origin, new Vector3(1, boxCastYSize, boxCastZSize), Quaternion.identity, ray.direction, aimMaxLength, Color.yellow);
+
+        return Physics.BoxCast(ray.origin, new Vector3(1, boxCastYSize, boxCastZSize), ray.direction, out hit, Quaternion.identity, aimMaxLength, sideAimingIgnoredColliders, QueryTriggerInteraction.Ignore);
     }
 
-    private void ResetAimingLine()
-    {
-        aimingLine.gameObject.SetActive(false);
-    }
+    private void ResetAimingLine() => aimingLine.gameObject.SetActive(false);
 
     public void SetNewGun(PlayerGun gun)
     {
@@ -213,7 +196,7 @@ public class PlayerShoot : MonoBehaviour
 
         Ray ray = Camera.main.ViewportPointToRay(vpMousePos);
 
-        Vector3 crosshairPos = GetAimingLineFinalPos(ray, coverAimingLineRange, true);
+        Vector3 crosshairPos = GetAimingLineFinalPos(ray, true);
 
         crosshair.transform.position = Camera.main.WorldToScreenPoint(crosshairPos);
 
@@ -236,10 +219,7 @@ public class PlayerShoot : MonoBehaviour
         spine.transform.LookAt(crosshairPos);
     }
 
-    private void ResetRotationSpineCrosshair()
-    {
-        Player.GetInstanceControl().RotateSkeleton(new Vector3(1, 0, 0));
-    }
+    private void ResetRotationSpineCrosshair() => Player.GetInstanceControl().RotateSkeleton(new Vector3(1, 0, 0));
 
     private void OnDisable()
     {

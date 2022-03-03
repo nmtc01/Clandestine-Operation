@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3957014381988294586}
   - component: {fileID: 3957014381988294589}
   - component: {fileID: 3957014381988294588}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3957014382549713820}
   - component: {fileID: 3957014382549713823}
   - component: {fileID: 3957014382549713822}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OpenCeiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 3957014382558577109}
   - component: {fileID: 3957014382558577108}
   - component: {fileID: 3957014382558577111}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 3957014384088733697}
   - component: {fileID: 3957014384088733696}
   - component: {fileID: 3957014384088733699}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
