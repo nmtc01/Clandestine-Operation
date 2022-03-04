@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43247148, g: 0.46860152, b: 0.5032156, a: 1}
+  m_IndirectSpecularColor: {r: 0.4324717, g: 0.46860194, b: 0.5032163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4412,7 +4412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 469477255}
   - component: {fileID: 469477256}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4729,7 +4729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 476306306}
   - component: {fileID: 476306307}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13248,6 +13248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vending Machine
       objectReference: {fileID: 0}
+    - target: {fileID: 5453239821257593795, guid: 5991276acbb03dd4ab877a46d944b33e, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5991276acbb03dd4ab877a46d944b33e, type: 3}
 --- !u!1 &1166556322
@@ -17430,7 +17434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1668361118}
   - component: {fileID: 1668361119}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17817,7 +17821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723180805}
   - component: {fileID: 1723180806}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
