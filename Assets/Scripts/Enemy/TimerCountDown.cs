@@ -37,7 +37,9 @@ public class TimerCountDown : MonoBehaviour
 
     private AudioSource audioSource = null;
 
-    void Start()
+    private RedLight light;
+
+    private void Start()
     {
         textDisplay = GetComponent<TMP_Text>();
         audioSource = GetComponent<AudioSource>();
@@ -50,6 +52,7 @@ public class TimerCountDown : MonoBehaviour
     {
         startCounting = count;
         secondsLeft = time;
+        light.ActivateRedLight(count);
     }
 
     private IEnumerator TimerTake()
@@ -76,43 +79,26 @@ public class TimerCountDown : MonoBehaviour
             textDisplay.text = "00:" + secondsLeft;
     }
 
-    public static bool IsFinished() 
-    {
-        return secondsLeft <= 0;
-    }
+    public static bool IsFinished() => secondsLeft <= 0;
 
-    private bool GetCounting()
-    {
-        return startCounting;
-    }
+    private bool GetCounting() => startCounting;
 
-    public static bool IsCounting()
-    {
-        return instance.GetCounting();
-    }
+    public static bool IsCounting() => instance.GetCounting();
 
     public static void IncrementEnemiesAlerted()
     {
-        if (enemiesAlerted == 0)
-        {
-            instance.StartTimer();
-        }
+        if (enemiesAlerted == 0) instance.StartTimer();
+
         enemiesAlerted++;
     }
 
     public static void DecrementEnemiesAlerted()
     {
         enemiesAlerted--;
-        if (enemiesAlerted == 0)
-        {
-            instance.StopTimer();
-        }
+        if (enemiesAlerted == 0) instance.StopTimer();
     }
 
-    public static void ResetEnemiesAlerted()
-    {
-        enemiesAlerted = 0;
-    }
+    public static void ResetEnemiesAlerted() => enemiesAlerted = 0;
 
     private void StopTimer()
     {
@@ -129,5 +115,13 @@ public class TimerCountDown : MonoBehaviour
         StartCoroutine(timer);
         instance.audioSource.Play();
         instance.SetCounting(true);
+    }
+
+    public void AddRedLight(RedLight l) => light = l;
+    public void RemoveRedLight(RedLight l)
+    {
+        if (light != l) return;
+
+        light = null;
     }
 }

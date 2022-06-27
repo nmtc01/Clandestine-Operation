@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class RedLight : MonoBehaviour
 {
-    private Light myLight;
+    [SerializeField] private PostProcessVolume volume = null;
 
-    private void Start() => myLight = GetComponent<Light>();
+    private ColorGrading colorGrading;
 
-    // Update is called once per frame
-    private void Update()
+    private void Start()
     {
-        myLight.color = TimerCountDown.IsCounting() ? 
-            Color.Lerp(myLight.color, Color.red*3, Time.deltaTime)
-            : Color.white;
+        TimerCountDown.GetInstance().AddRedLight(this);
+        colorGrading = volume.profile.GetSetting<ColorGrading>();
     }
+
+
+    public void ActivateRedLight(bool active)
+        => colorGrading.mixerRedOutRedIn.Override(active ? 200 : 100);
+
+
+    private void OnDestroy() => TimerCountDown.GetInstance()?.RemoveRedLight(this);
 }
