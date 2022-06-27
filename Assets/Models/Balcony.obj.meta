@@ -3,7 +3,37 @@ guid: f638b997c50f8264080dfdd1060075bd
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_1_2Mat
+    second: {fileID: 2100000, guid: 827d5e31f2c8274488226463f73842cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_1_3Mat
+    second: {fileID: 2100000, guid: 25788d48794ee8c4d8cd5605a3e5d326, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_1_4Mat
+    second: {fileID: 2100000, guid: 8c7c1c789396a784d988e4b9888beaf6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_1_5Mat
+    second: {fileID: 2100000, guid: 0354b6c9e1c05ec40af23881c30b105d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cube_1_6Mat
+    second: {fileID: 2100000, guid: bfa0aea2a8fb61445b70f11b595a9360, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: default_1_1Mat
+    second: {fileID: 2100000, guid: f7e63e5af3a43f7488d8ca164ed78539, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -73,7 +103,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 1
+  importAnimation: 0
   humanDescription:
     serializedVersion: 3
     human: []

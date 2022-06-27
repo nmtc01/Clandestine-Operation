@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2671246643432240652}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.033175, y: 9.35, z: 0}
+  m_LocalPosition: {x: -0.033175, y: 9.45, z: 0}
   m_LocalScale: {x: 0.92793757, y: 3.9, z: 1}
   m_Children: []
   m_Father: {fileID: 2671246643769399667}
@@ -279,7 +279,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8848810374240701247, guid: b92cee2a7652b164d89325dda4e9cd2d, type: 3}
+  - {fileID: 2100000, guid: ca6114ac7c5128143a619f199c963cd6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -360,7 +360,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8848810374240701247, guid: b92cee2a7652b164d89325dda4e9cd2d, type: 3}
+  - {fileID: 2100000, guid: ca6114ac7c5128143a619f199c963cd6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -408,7 +408,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2671246643769399664}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 66.5, y: -6.8, z: -0.25}
   m_LocalScale: {x: 12, y: 1, z: 15}
   m_Children:
@@ -719,6 +719,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2771302322855308271, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca6114ac7c5128143a619f199c963cd6, type: 2}
     - target: {fileID: 2771302323973519192, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -775,6 +779,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doors
       objectReference: {fileID: 0}
+    - target: {fileID: 2771302324277896352, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca6114ac7c5128143a619f199c963cd6, type: 2}
     - target: {fileID: 2771302324277896366, guid: a7ed526431a50ca4c99dc6dab80858f4, type: 3}
       propertyPath: m_Layer
       value: 12

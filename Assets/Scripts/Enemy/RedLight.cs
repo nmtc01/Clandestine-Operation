@@ -4,21 +4,13 @@ public class RedLight : MonoBehaviour
 {
     private Light myLight;
 
-    void Start()
-    {
-        myLight = GetComponent<Light>();
-    }
+    private void Start() => myLight = GetComponent<Light>();
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (TimerCountDown.IsCounting()) 
-        {
-            myLight.color = Color.Lerp(myLight.color, Color.red*3, Time.deltaTime);
-        }
-        else
-        {
-            myLight.color = Color.white;
-        }
+        myLight.color = TimerCountDown.IsCounting() ? 
+            Color.Lerp(myLight.color, Color.red*3, Time.deltaTime)
+            : Color.white;
     }
 }

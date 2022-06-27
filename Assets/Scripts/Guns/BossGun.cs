@@ -36,6 +36,8 @@ public class BossGun : Gun
             audioSource.Play();
             firstTimeShooting = false;
         }
+
+        shootEffect?.Play();
         base.ShootBullet();
 
         timeSinceLastShot = 0;

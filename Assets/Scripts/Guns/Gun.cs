@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
     protected AudioSource audioSource;
 
     [Header("Particle System")]
-    [SerializeField] private ParticleSystem shootEffect = null;
+    [SerializeField] protected ParticleSystem shootEffect = null;
 
     public virtual void Start()
     {
